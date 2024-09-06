@@ -15,10 +15,6 @@ public class BookGenre implements Identifiable, Archivable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
-
-    @ManyToOne
     @JoinColumn(name = "genre_id")
     private Genre genre;
 

@@ -6,6 +6,8 @@ import org.library.bookservice.model.base.Archivable;
 import org.library.bookservice.model.base.Identifiable;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -39,6 +41,10 @@ public class Book implements Identifiable, Archivable {
 
     @Column(nullable = false, precision = 10, scale = 2)
     private Double price;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JoinColumn(name = "book_id")
+    private List<BookGenre> bookGenres = new ArrayList<>();
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private boolean archived;
