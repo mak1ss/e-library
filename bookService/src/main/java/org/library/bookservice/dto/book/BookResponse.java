@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.library.bookservice.dto.AbstractResponse;
 import org.library.bookservice.dto.author.AuthorResponse;
-import org.library.bookservice.dto.bookGenre.BookGenreResponse;
 import org.library.bookservice.dto.category.CategoryResponse;
+import org.library.bookservice.dto.genre.GenreResponse;
 import org.library.bookservice.dto.publisher.PublisherResponse;
 
 import java.time.LocalDate;
@@ -26,5 +26,5 @@ public class BookResponse extends AbstractResponse {
     private PublisherResponse publisher;
     private LocalDate releaseDate;
     private Double price;
-    private List<BookGenreResponse> bookGenres;
+    private List<GenreResponse> bookGenres;
 }

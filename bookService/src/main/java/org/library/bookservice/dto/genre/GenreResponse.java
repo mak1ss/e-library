@@ -1,4 +1,4 @@
-package org.library.bookservice.dto.bookGenre;
+package org.library.bookservice.dto.genre;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,9 +8,11 @@ import org.library.bookservice.dto.AbstractResponse;
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @Data
-public class BookGenreResponse extends AbstractResponse {
+public class GenreResponse extends AbstractResponse {
 
     private Integer id;
 
-    private Integer genreId;
+    private String name;
+
+    private String description;
 }

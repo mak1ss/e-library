@@ -15,6 +15,8 @@ public class Publisher implements Identifiable, Archivable {
 
     private String name;
 
+    private String address;
+
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private boolean archived;
 }

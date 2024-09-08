@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import org.library.bookservice.dto.AbstractRequest;
-import org.library.bookservice.dto.bookGenre.BookGenreRequest;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,7 +27,8 @@ public class BookRequest extends AbstractRequest {
     @NotNull
     private Integer categoryId;
 
-    private List<BookGenreRequest> bookGenres;
+    @NotNull
+    private List<Integer> genreIdList;
 
     @Size(max = 500, message = "Specified description is too long. Max length is 500")
     private String description;
@@ -39,7 +39,6 @@ public class BookRequest extends AbstractRequest {
     @NotNull
     private Integer publisherId;
 
-    @NotNull
     private LocalDate releaseDate;
 
     @NotNull

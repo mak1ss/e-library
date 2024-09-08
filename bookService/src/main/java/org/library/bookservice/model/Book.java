@@ -42,9 +42,13 @@ public class Book implements Identifiable, Archivable {
     @Column(nullable = false, precision = 10, scale = 2)
     private Double price;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, orphanRemoval = true)
-    @JoinColumn(name = "book_id")
-    private List<BookGenre> bookGenres = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "book_genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private List<Genre> bookGenres = new ArrayList<>();
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private boolean archived;

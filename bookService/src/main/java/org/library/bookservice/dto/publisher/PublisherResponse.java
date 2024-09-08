@@ -13,4 +13,6 @@ public class PublisherResponse extends AbstractResponse {
     private Integer id;
 
     private String name;
+
+    private String address;
 }

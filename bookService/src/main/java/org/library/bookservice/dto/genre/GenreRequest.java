@@ -1,4 +1,4 @@
-package org.library.bookservice.dto.category;
+package org.library.bookservice.dto.genre;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
@@ -10,10 +10,10 @@ import org.library.bookservice.dto.AbstractRequest;
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @Data
-public class CategoryRequest extends AbstractRequest {
+public class GenreRequest extends AbstractRequest {
 
     @NotBlank
-    @Length(max = 100, message = "Specified name is too long. Max length is 100")
+    @Length(min = 1, max = 50, message = "Specified name is too long. Max length is 50")
     private String name;
 
     @NotBlank

@@ -23,14 +23,16 @@ CREATE TABLE author
 CREATE TABLE genre
 (
     id         INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     archived   BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE category
 (
     id            INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     archived      BOOLEAN DEFAULT FALSE
 );
 
@@ -38,6 +40,7 @@ CREATE TABLE publisher
 (
     id             INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     archived       BOOLEAN DEFAULT FALSE
 );
 
@@ -46,7 +49,6 @@ CREATE TABLE book_genre
     id       INT AUTO_INCREMENT PRIMARY KEY,
     book_id  INT,
     genre_id INT,
-    archived BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (book_id, genre_id)
 );
 
@@ -57,4 +59,5 @@ ALTER TABLE book
 
 ALTER TABLE book_genre
     ADD CONSTRAINT fk_book_genres_book_id FOREIGN KEY (book_id) REFERENCES book (id),
-    ADD CONSTRAINT fk_book_genres_genre_id FOREIGN KEY (genre_id) REFERENCES genre (id);
+    ADD CONSTRAINT fk_book_genres_genre_id FOREIGN KEY (genre_id) REFERENCES genre (id),
+    ADD CONSTRAINT uq_book_genre unique (book_id, genre_id);

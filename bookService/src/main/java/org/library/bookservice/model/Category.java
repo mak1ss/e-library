@@ -15,6 +15,8 @@ public class Category implements Identifiable, Archivable {
 
     private String name;
 
+    private String description;
+
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private boolean archived;
 }

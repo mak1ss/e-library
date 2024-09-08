@@ -15,4 +15,8 @@ public class PublisherRequest extends AbstractRequest {
     @NotBlank
     @Length(max = 255, message = "Specified name is too long. Max length is 255")
     private String name;
+
+    @NotBlank
+    @Length(max = 255, message = "Specified address is too long. Max length is 255")
+    private String address;
 }

@@ -13,4 +13,6 @@ public class CategoryResponse extends AbstractResponse {
     private Integer id;
 
     private String name;
+
+    private String description;
 }
