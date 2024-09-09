@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.library</groupId>
     <artifactId>bookService</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1</version>
     <name>bookService</name>
     <description>bookService</description>
     <url/>
@@ -74,6 +74,7 @@
     </dependencies>
 
     <build>
+        <finalName>bookService</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

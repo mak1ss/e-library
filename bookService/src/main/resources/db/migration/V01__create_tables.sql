@@ -48,8 +48,7 @@ CREATE TABLE book_genre
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
     book_id  INT,
-    genre_id INT,
-    PRIMARY KEY (book_id, genre_id)
+    genre_id INT
 );
 
 ALTER TABLE book

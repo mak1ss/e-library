@@ -9,3 +9,25 @@ services:
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./infrastructure/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD' ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - book_service_network
+
+  book_service:
+    build: /bookService
+    container_name: book_service
+    ports: 
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - book_service_network
+
+
+networks: 
+  book_service_network:

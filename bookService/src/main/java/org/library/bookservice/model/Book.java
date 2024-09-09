@@ -39,7 +39,7 @@ public class Book implements Identifiable, Archivable {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
-    @Column(nullable = false, precision = 10, scale = 2)
+    @Column(nullable = false)
     private Double price;
 
     @ManyToMany
