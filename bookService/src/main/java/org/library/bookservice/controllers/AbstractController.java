@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.library.bookservice.dto.AbstractRequest;
 import org.library.bookservice.dto.AbstractResponse;
+import org.library.bookservice.dto.PageResponse;
 import org.library.bookservice.filtering.FilterableProperty;
 import org.library.bookservice.filtering.FilteringOperation;
 import org.library.bookservice.filtering.SearchCriteria;
@@ -17,7 +18,9 @@ import org.library.bookservice.model.base.Identifiable;
 import org.library.bookservice.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,6 +38,8 @@ import java.util.regex.Pattern;
 public abstract class AbstractController<T extends Identifiable & Archivable, RequestType extends AbstractRequest, ResponseType extends AbstractResponse> {
 
     private static final Pattern PATTERN = Pattern.compile("(\\w+?)(:|[!<>_]=?|=)(.*)");
+    private static final String DEFAULT_PAGE_NUMBER = "0";
+    private static final String DEFAULT_PAGE_SIZE = "5";
 
     @Autowired
     private ConversionService conversionService;
@@ -53,16 +58,23 @@ public abstract class AbstractController<T extends Identifiable & Archivable, Re
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<ResponseType>> getAll(
-            @RequestParam Integer pageIndex,
-            @RequestParam Integer pageSize,
-            @RequestParam(required = false) Optional<String> search
+    public ResponseEntity<PageResponse<ResponseType>> getAll(
+            @RequestParam(required = false, defaultValue = DEFAULT_PAGE_NUMBER) Integer pageIndex,
+            @RequestParam(required = false, defaultValue = DEFAULT_PAGE_SIZE) Integer pageSize,
+            @RequestParam(required = false) Optional<String> search,
+            @RequestParam(required = false) String[] sort
     ) {
-
+        Sort sortParams = convertSortingParams(sort);
         Specification<T> filter = buildDefaultGetAllFiltering(search);
 
-        List<ResponseType> responseList = getMapper().entitiesToListResponse(getService().getAll(PageRequest.of(pageIndex, pageSize), filter));
-        return ResponseEntity.ok(responseList);
+        Page<T> pageResult = getService().getAll(PageRequest.of(pageIndex, pageSize, sortParams), filter);
+
+        return ResponseEntity.ok(PageResponse.<ResponseType>builder()
+                .size(pageResult.getSize())
+                .total(pageResult.getTotalPages())
+                .pageNumber(pageResult.getNumber())
+                .items(getMapper().entitiesToListResponse(pageResult.getContent()))
+                .build());
     }
 
     @Operation(summary = "Get", description = "Retrieve specific entity by ID")
@@ -187,6 +199,31 @@ public abstract class AbstractController<T extends Identifiable & Archivable, Re
             return Arrays.stream(value.split("\\|\\|")).map(v -> conversionService.convert(v, expectedType)).toList();
         }
         return conversionService.convert(value, expectedType);
+    }
+
+    /**
+     * @param sort
+     * There is 2 options how is sort retrieving
+     * 1. Single sort parameter in the array ["column1", "dir1"]
+     * 2. Multiple sort params like:
+     * ["column1,dir1","column2,dir2"]
+     * are converting into Sort.Order objects using substring based on index of ","
+     **/
+    private Sort convertSortingParams(String[] sort) {
+        if(sort == null || sort.length == 0) {
+            return Sort.unsorted();
+        }
+        if(!sort[0].contains(",")){
+            return Sort.by(Sort.Direction.fromString(sort[1]), sort[0]);
+        }
+
+        List<Sort.Order> sortParams = Arrays.stream(sort)
+                .map(s -> new Sort.Order(
+                        Sort.Direction.fromString(s.substring(s.indexOf(",") + 1)),
+                        s.substring(0, s.indexOf(","))))
+                .toList();
+
+        return Sort.by(sortParams);
     }
 
     protected T executeEntityCreate(T entity) {

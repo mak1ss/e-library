@@ -2,6 +2,7 @@ package org.library.bookservice.service;
 
 import org.library.bookservice.dao.AbstractDao;
 import org.library.bookservice.model.base.Identifiable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,7 @@ public abstract class AbstractService<T extends Identifiable> {
         return getDao().getAll(pageable);
     }
 
-    public List<T> getAll(Pageable pageable, Specification<T> filter) {
+    public Page<T> getAll(Pageable pageable, Specification<T> filter) {
         return getDao().getAll(pageable, filter);
     }
 

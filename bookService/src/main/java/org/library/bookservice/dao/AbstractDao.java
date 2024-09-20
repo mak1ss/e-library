@@ -4,6 +4,7 @@ import org.library.bookservice.filtering.ArchivedSpecification;
 import org.library.bookservice.model.base.Archivable;
 import org.library.bookservice.model.base.PrimaryEntity;
 import org.library.bookservice.repository.PrimaryRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -24,15 +25,15 @@ public abstract class AbstractDao<T extends PrimaryEntity<Integer>> {
                 .and(addAdditionalSpecificationForGetAll()), pageable).getContent();
     }
 
-    public List<T> getAll(Pageable pageable, Specification<T> filter) {
+    public Page<T> getAll(Pageable pageable, Specification<T> filter) {
         return getAll(pageable, filter, false);
     }
 
-    public List<T> getAll(Pageable pageable, Specification<T> filter, boolean includeArchived) {
+    public Page<T> getAll(Pageable pageable, Specification<T> filter, boolean includeArchived) {
         return getRepository().findAll(
                 addSpecification(includeArchived)
                 .and(filter)
-                .and(addAdditionalSpecificationForGetAll()), pageable).getContent();
+                .and(addAdditionalSpecificationForGetAll()), pageable);
     }
 
     protected Specification<T> addSpecification(boolean includeArchived) {
