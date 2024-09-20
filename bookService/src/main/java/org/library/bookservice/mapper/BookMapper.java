@@ -52,7 +52,7 @@ public class BookMapper implements Mapper<Book, BookResponse, BookRequest> {
                 () -> new IllegalArgumentException("Genre with id " + gId + " not found")
         )).forEach(bookGenres::add);
 
-        entity.setBookGenres(bookGenres);
+        entity.setGenres(bookGenres);
 
         return entity;
     }
@@ -70,7 +70,7 @@ public class BookMapper implements Mapper<Book, BookResponse, BookRequest> {
                 .publisher(publisherMapper.entityToResponse(entity.getPublisher()))
                 .releaseDate(entity.getReleaseDate())
                 .price(entity.getPrice())
-                .bookGenres(genreMapper.entitiesToListResponse(entity.getBookGenres()))
+                .bookGenres(genreMapper.entitiesToListResponse(entity.getGenres()))
                 .build();
 
     }

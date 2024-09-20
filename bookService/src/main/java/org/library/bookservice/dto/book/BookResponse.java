@@ -9,6 +9,7 @@ import org.library.bookservice.dto.category.CategoryResponse;
 import org.library.bookservice.dto.genre.GenreResponse;
 import org.library.bookservice.dto.publisher.PublisherResponse;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,6 +26,6 @@ public class BookResponse extends AbstractResponse {
     private String ISBN;
     private PublisherResponse publisher;
     private LocalDate releaseDate;
-    private Double price;
+    private BigDecimal price;
     private List<GenreResponse> bookGenres;
 }

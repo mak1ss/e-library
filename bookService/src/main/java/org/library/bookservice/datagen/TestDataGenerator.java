@@ -7,6 +7,7 @@ import org.library.bookservice.repository.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -202,8 +203,8 @@ public class TestDataGenerator {
         book1.setISBN("9780451524935");
         book1.setPublisher(publishers.get(0));
         book1.setReleaseDate(LocalDate.of(1949, 6, 8));
-        book1.setPrice(15.99);
-        book1.setBookGenres(List.of(genres.get(0), genres.get(3)));
+        book1.setPrice(BigDecimal.valueOf(15.99));
+        book1.setGenres(List.of(genres.get(0), genres.get(3)));
         books.add(book1);
 
         Book book2 = new Book();
@@ -214,8 +215,8 @@ public class TestDataGenerator {
         book2.setISBN("9780747532743");
         book2.setPublisher(publishers.get(1));
         book2.setReleaseDate(LocalDate.of(1997, 6, 26));
-        book2.setPrice(20.99);
-        book2.setBookGenres(List.of(genres.get(6), genres.get(2)));
+        book2.setPrice(BigDecimal.valueOf(20.99));
+        book2.setGenres(List.of(genres.get(6), genres.get(2)));
         books.add(book2);
 
         Book book3 = new Book();
@@ -226,8 +227,8 @@ public class TestDataGenerator {
         book3.setISBN("9780307743657");
         book3.setPublisher(publishers.get(2));
         book3.setReleaseDate(LocalDate.of(1977, 1, 28));
-        book3.setPrice(18.50);
-        book3.setBookGenres(List.of(genres.get(5)));
+        book3.setPrice(BigDecimal.valueOf(18.50));
+        book3.setGenres(List.of(genres.get(5)));
         books.add(book3);
 
         Book book4 = new Book();
@@ -238,8 +239,8 @@ public class TestDataGenerator {
         book4.setISBN("9780141439518");
         book4.setPublisher(publishers.get(3));
         book4.setReleaseDate(LocalDate.of(1813, 1, 28));
-        book4.setPrice(12.99);
-        book4.setBookGenres(List.of(genres.get(0), genres.get(4)));
+        book4.setPrice(BigDecimal.valueOf(12.99));
+        book4.setGenres(List.of(genres.get(0), genres.get(4)));
         books.add(book4);
 
         Book book5 = new Book();
@@ -250,8 +251,8 @@ public class TestDataGenerator {
         book5.setISBN("9780553293357");
         book5.setPublisher(publishers.get(4));
         book5.setReleaseDate(LocalDate.of(1951, 6, 1));
-        book5.setPrice(16.99);
-        book5.setBookGenres(List.of(genres.get(2), genres.get(6)));
+        book5.setPrice(BigDecimal.valueOf(16.99));
+        book5.setGenres(List.of(genres.get(2), genres.get(6)));
         books.add(book5);
 
         bookRepository.saveAll(books);

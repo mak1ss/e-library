@@ -3,6 +3,8 @@ package org.library.bookservice.controllers;
 import lombok.AllArgsConstructor;
 import org.library.bookservice.dto.book.BookRequest;
 import org.library.bookservice.dto.book.BookResponse;
+import org.library.bookservice.filtering.model.EntityFilterSpecificationBuilder;
+import org.library.bookservice.filtering.model.book.BookSpecificationBuilder;
 import org.library.bookservice.mapper.BookMapper;
 import org.library.bookservice.mapper.Mapper;
 import org.library.bookservice.model.Book;
@@ -19,6 +21,8 @@ public class BookController extends AbstractController<Book, BookRequest, BookRe
     private final BookService service;
     private final BookMapper mapper;
 
+    private final BookSpecificationBuilder specificationBuilder;
+
     @Override
     protected AbstractService<Book> getService() {
         return service;
@@ -27,5 +31,10 @@ public class BookController extends AbstractController<Book, BookRequest, BookRe
     @Override
     protected Mapper<Book, BookResponse, BookRequest> getMapper() {
         return mapper;
+    }
+
+    @Override
+    protected EntityFilterSpecificationBuilder<Book> getSpecificationBuilder() {
+        return specificationBuilder;
     }
 }

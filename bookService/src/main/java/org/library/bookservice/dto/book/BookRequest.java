@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 
 import org.library.bookservice.dto.AbstractRequest;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -42,5 +43,5 @@ public class BookRequest extends AbstractRequest {
     private LocalDate releaseDate;
 
     @NotNull
-    private Double price;
+    private BigDecimal price;
 }

@@ -16,7 +16,10 @@ public enum FilteringOperation {
     GREATER_OR_EQUAL(">="),
 
     LESS_THEN("<"),
-    LESS_OR_EQUAL("<=");
+    LESS_OR_EQUAL("<="),
+
+    IN("_="),
+    NOT_IN("!_=");
 
     private final String value;
 

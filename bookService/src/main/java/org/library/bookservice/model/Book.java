@@ -5,6 +5,7 @@ import lombok.Data;
 import org.library.bookservice.model.base.Archivable;
 import org.library.bookservice.model.base.Identifiable;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,8 @@ public class Book implements Identifiable, Archivable {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
-    @Column(nullable = false)
-    private Double price;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal price;
 
     @ManyToMany
     @JoinTable(
@@ -48,7 +49,7 @@ public class Book implements Identifiable, Archivable {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-    private List<Genre> bookGenres = new ArrayList<>();
+    private List<Genre> genres = new ArrayList<>();
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private boolean archived;

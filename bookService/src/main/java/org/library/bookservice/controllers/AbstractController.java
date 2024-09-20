@@ -25,6 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -33,7 +34,7 @@ import java.util.regex.Pattern;
 @Slf4j
 public abstract class AbstractController<T extends Identifiable & Archivable, RequestType extends AbstractRequest, ResponseType extends AbstractResponse> {
 
-    private static final Pattern PATTERN = Pattern.compile("(\\w+?)(:|[!<>]=?|=)(.*)");
+    private static final Pattern PATTERN = Pattern.compile("(\\w+?)(:|[!<>_]=?|=)(.*)");
 
     @Autowired
     private ConversionService conversionService;
@@ -182,6 +183,9 @@ public abstract class AbstractController<T extends Identifiable & Archivable, Re
     }
 
     protected Object convertFilteringValue(String value, Class<?> expectedType) {
+        if(value.contains("||")) {
+            return Arrays.stream(value.split("\\|\\|")).map(v -> conversionService.convert(v, expectedType)).toList();
+        }
         return conversionService.convert(value, expectedType);
     }
 
