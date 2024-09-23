@@ -1,4 +1,4 @@
-CREATE TABLE books
+CREATE TABLE book
 (
     id           INT AUTO_INCREMENT PRIMARY KEY,
     title        VARCHAR(255) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE books
     archived     BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE authors
+CREATE TABLE author
 (
     id        INT AUTO_INCREMENT PRIMARY KEY,
     name      VARCHAR(255) NOT NULL,
@@ -20,67 +20,43 @@ CREATE TABLE authors
     archived  BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE genres
+CREATE TABLE genre
 (
     id         INT AUTO_INCREMENT PRIMARY KEY,
-    genre_name VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     archived   BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE categories
+CREATE TABLE category
 (
     id            INT AUTO_INCREMENT PRIMARY KEY,
-    category_name VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     archived      BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE publishers
+CREATE TABLE publisher
 (
     id             INT AUTO_INCREMENT PRIMARY KEY,
-    publisher_name VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     archived       BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE book_reviews
-(
-    id           INT AUTO_INCREMENT PRIMARY KEY,
-    book_id      INT,
-    user_id      INT,
-    review_text  TEXT,
-    rating_value INT CHECK (rating_value >= 1 AND rating_value <= 5),
-    review_date  DATETIME NOT NULL,
-    archived     BOOLEAN DEFAULT FALSE
-);
-
-CREATE TABLE book_ratings
-(
-    id             INT AUTO_INCREMENT PRIMARY KEY,
-    book_id        INT,
-    average_rating DECIMAL(3, 2),
-    ratings_count  INT,
-    archived       BOOLEAN DEFAULT FALSE
-);
-
-CREATE TABLE book_genres
+CREATE TABLE book_genre
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
     book_id  INT,
-    genre_id INT,
-    archived BOOLEAN DEFAULT FALSE,
-    PRIMARY KEY (book_id, genre_id)
+    genre_id INT
 );
 
-ALTER TABLE books
-    ADD CONSTRAINT fk_books_author_id FOREIGN KEY (author_id) REFERENCES authors (id),
-    ADD CONSTRAINT fk_books_category_id FOREIGN KEY (category_id) REFERENCES categories (id),
-    ADD CONSTRAINT fk_books_publisher_id FOREIGN KEY (publisher_id) REFERENCES publishers (id);
+ALTER TABLE book
+    ADD CONSTRAINT fk_books_author_id FOREIGN KEY (author_id) REFERENCES author (id),
+    ADD CONSTRAINT fk_books_category_id FOREIGN KEY (category_id) REFERENCES category (id),
+    ADD CONSTRAINT fk_books_publisher_id FOREIGN KEY (publisher_id) REFERENCES publisher (id);
 
-ALTER TABLE book_reviews
-    ADD CONSTRAINT fk_book_reviews_book_id FOREIGN KEY (book_id) REFERENCES books (id);
-
-ALTER TABLE book_ratings
-    ADD CONSTRAINT fk_book_ratings_book_id FOREIGN KEY (book_id) REFERENCES books (id);
-
-ALTER TABLE book_genres
-    ADD CONSTRAINT fk_book_genres_book_id FOREIGN KEY (book_id) REFERENCES books (id),
-    ADD CONSTRAINT fk_book_genres_genre_id FOREIGN KEY (genre_id) REFERENCES genres (id);
+ALTER TABLE book_genre
+    ADD CONSTRAINT fk_book_genres_book_id FOREIGN KEY (book_id) REFERENCES book (id),
+    ADD CONSTRAINT fk_book_genres_genre_id FOREIGN KEY (genre_id) REFERENCES genre (id),
+    ADD CONSTRAINT uq_book_genre unique (book_id, genre_id);
