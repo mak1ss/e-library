@@ -40,8 +40,10 @@ public class ReviewMapper implements IMapper<Review, ReviewRequest, ReviewRespon
     @Override
     public ReviewResponse entityToResponse(Review entity) {
         return ReviewResponse.builder()
+                .id(entity.getId())
                 .userId(entity.getUserId())
                 .bookId(entity.getBookId())
+                .createdAt(entity.getCreatedAt())
                 .rating(entity.getRating())
                 .text(entity.getText())
                 .build();

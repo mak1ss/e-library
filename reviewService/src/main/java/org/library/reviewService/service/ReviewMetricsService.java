@@ -1,6 +1,7 @@
 package org.library.reviewService.service;
 
 import lombok.AllArgsConstructor;
+import org.library.reviewService.dto.reviewMetrics.ReviewMetricsResponse;
 import org.library.reviewService.model.ReviewMetrics;
 import org.library.reviewService.repository.BaseRepository;
 import org.library.reviewService.repository.ReviewMetricsRepository;
@@ -28,5 +29,15 @@ public class ReviewMetricsService extends AbstractService<ReviewMetrics> {
     @Override
     protected Class<ReviewMetrics> getEntityClass() {
         return ReviewMetrics.class;
+    }
+
+    public static ReviewMetricsResponse mapToResponse(ReviewMetrics reviewMetrics) {
+        return ReviewMetricsResponse.builder()
+                .id(reviewMetrics.getId())
+                .bookId(reviewMetrics.getBookId())
+                .totalReviews(reviewMetrics.getTotalReviews())
+                .averageRating(reviewMetrics.getAverageRating())
+                .reviewCountsRating(reviewMetrics.getReviewCountsRating())
+                .build();
     }
 }

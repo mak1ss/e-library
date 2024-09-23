@@ -11,49 +11,49 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public abstract class AbstractService<T extends Identifiable> {
+public abstract class AbstractService<DocumentType extends Identifiable> {
 
-    protected abstract BaseRepository<T> getRepository();
+    protected abstract BaseRepository<DocumentType> getRepository();
 
     protected abstract MongoOperations getMongoOperations();
 
-    protected abstract Class<T> getEntityClass();
+    protected abstract Class<DocumentType> getEntityClass();
 
-    public List<T> getAll(Pageable pageable) {
+    public List<DocumentType> getAll(Pageable pageable) {
         return getRepository().findAll(pageable).getContent();
     }
 
-    public Optional<List<T>> getAllByQuery(Query query) {
+    public Optional<List<DocumentType>> getAllByQuery(Query query) {
         return Optional.of(getMongoOperations().find(query, getEntityClass()));
     }
 
-    public Optional<T> getById(String id) {
+    public Optional<DocumentType> getById(String id) {
         return getRepository().findById(id);
     }
 
-    public T create(T entity) {
-        beforeCreate();
+    public DocumentType create(DocumentType entity) {
+        beforeCreate(entity);
         return getRepository().save(entity);
     }
 
-    protected void beforeCreate() {
+    protected void beforeCreate(DocumentType entity) {
     }
 
-    public T update(T entity) {
+    public DocumentType update(DocumentType entity) {
         beforeUpdate(entity);
         return getRepository().save(entity);
     }
 
-    protected void beforeUpdate(T entity) {
+    protected void beforeUpdate(DocumentType entity) {
     }
 
-    public void delete(T entity) {
+    public void delete(DocumentType entity) {
         beforeDelete(entity);
 
         getRepository().save(entity);
     }
 
-    protected void beforeDelete(T entity) {
+    protected void beforeDelete(DocumentType entity) {
     }
 
     public void deleteById(String id) {
