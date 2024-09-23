@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/
+      database: review_db
+
+book-service:
+  url: http://localhost:8080
+

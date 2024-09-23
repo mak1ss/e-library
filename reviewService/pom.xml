@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.library</groupId>
 	<artifactId>reviewService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<name>reviewService</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -30,6 +30,23 @@
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -77,6 +94,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>reviewService</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
