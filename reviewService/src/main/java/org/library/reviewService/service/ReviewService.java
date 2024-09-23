@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 public class ReviewService extends AbstractService<Review> {
 
     private final ReviewRepository reviewRepository;
+    private final ReviewMetricsService metricsService;
     private final MongoOperations mongoOperations;
     private final BookServiceClient bookClient;
 
@@ -36,9 +37,14 @@ public class ReviewService extends AbstractService<Review> {
     @Override
     protected void beforeCreate(Review entity) {
         try {
-            var response = bookClient.getById(entity.getBookId());
+            bookClient.getById(entity.getBookId());
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException("No book was found with id " + entity.getBookId());
         }
+    }
+
+    @Override
+    protected void afterCreate(Review entity) {
+        metricsService.updateMetrics(entity.getBookId(), entity.getRating());
     }
 }

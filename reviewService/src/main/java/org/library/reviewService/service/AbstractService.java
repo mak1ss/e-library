@@ -31,12 +31,21 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
         return getRepository().findById(id);
     }
 
+    public Optional<DocumentType> getOne(Query query) {
+        return Optional.ofNullable(getMongoOperations().findOne(query, getEntityClass()));
+    }
+
     public DocumentType create(DocumentType entity) {
         beforeCreate(entity);
-        return getRepository().save(entity);
+        entity = getRepository().save(entity);
+        afterCreate(entity);
+        return entity;
     }
 
     protected void beforeCreate(DocumentType entity) {
+    }
+
+    protected void afterCreate(DocumentType entity) {
     }
 
     public DocumentType update(DocumentType entity) {
