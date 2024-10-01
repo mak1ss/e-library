@@ -1,0 +1,19 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+services:
+  url:
+    book: http://localhost:8080
+    review: http://localhost:8081
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+services:
+  url:
+    book: http://book-service:8080
+    review: http://review-service:8080
