@@ -3,6 +3,8 @@ package org.library.reviewService.controller;
 import lombok.AllArgsConstructor;
 import org.library.reviewService.dto.review.ReviewRequest;
 import org.library.reviewService.dto.review.ReviewResponse;
+import org.library.reviewService.filter.model.DocumentFilterSpecificationBuilder;
+import org.library.reviewService.filter.model.review.ReviewSpecificationBuilder;
 import org.library.reviewService.mapper.IMapper;
 import org.library.reviewService.mapper.ReviewMapper;
 import org.library.reviewService.model.Review;
@@ -18,6 +20,7 @@ public class ReviewController extends AbstractController<Review, ReviewRequest, 
 
     private final ReviewService reviewService;
     private final ReviewMapper reviewMapper;
+    private final ReviewSpecificationBuilder specificationBuilder;
 
     @Override
     protected AbstractService<Review> getService() {
@@ -27,5 +30,10 @@ public class ReviewController extends AbstractController<Review, ReviewRequest, 
     @Override
     protected IMapper<Review, ReviewRequest, ReviewResponse> getMapper() {
         return reviewMapper;
+    }
+
+    @Override
+    protected DocumentFilterSpecificationBuilder getSpecificationBuilder() {
+        return specificationBuilder;
     }
 }

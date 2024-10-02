@@ -1,6 +1,7 @@
 package org.library.reviewService.model;
 
 import lombok.Data;
+import org.library.reviewService.model.base.Archivable;
 import org.library.reviewService.model.base.Identifiable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Document(collection = "reviews")
-public class Review implements Identifiable {
+public class Review implements Identifiable, Archivable {
 
     @Id
     private String id;
@@ -25,4 +26,6 @@ public class Review implements Identifiable {
 
     @Field(write = Field.Write.ALWAYS)
     private String text;
+
+    private boolean archived;
 }
