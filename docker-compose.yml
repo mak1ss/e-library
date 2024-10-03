@@ -17,11 +17,11 @@ services:
     networks:
       - book_service_network
 
-  book_service:
+  book-service:
     build: /bookService
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-    container_name: book_service
+    container_name: book-service
     ports: 
       - "8080:8080"
     depends_on:
@@ -30,6 +30,36 @@ services:
     networks:
       - book_service_network
 
+  mongo:
+    image: mongo:8.0
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 070809az
+      MONGO_INITDB_DATABASE: review_db
+    ports:
+      - "27018:27017"
+    volumes: 
+      - ./docker/mongodb/data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+    networks:
+     - review_service_network
+      
+  review-service:
+    container_name: review-service
+    build: /reviewService
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    ports:
+      - "8081:8080"
+    depends_on:
+      mongo: 
+        condition: service_healthy
+    networks:
+      - book_service_network
+      - review_service_network
 
 networks: 
   book_service_network:
+  review_service_network:

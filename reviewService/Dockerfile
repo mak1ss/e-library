@@ -9,11 +9,11 @@ RUN mvn clean package -DskipTests
 
 FROM amazoncorretto:17.0.11
 
-WORKDIR /bookService
-
 EXPOSE 8080
 
-COPY target/bookService.jar /bookService/bookService.jar
+WORKDIR /reviewService
 
-CMD java -jar bookService.jar
+COPY --from=build ./app/target/reviewService.jar .
+
+CMD java -jar reviewService.jar
 
