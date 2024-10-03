@@ -1,12 +1,19 @@
+FROM maven:3.9.9-amazoncorretto-17 AS build
+
+WORKDIR /app
+
+COPY pom.xml .
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
 FROM amazoncorretto:17.0.11
 
-RUN mkdir /bookService
-
-COPY target/bookService.jar /bookService/bookService.jar
+WORKDIR /bookService
 
 EXPOSE 8080
 
-WORKDIR /bookService
+COPY target/bookService.jar /bookService/bookService.jar
 
 CMD java -jar bookService.jar
 

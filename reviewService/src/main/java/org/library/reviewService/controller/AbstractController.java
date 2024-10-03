@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -58,11 +59,12 @@ public abstract class AbstractController<DocumentType extends Identifiable, Requ
     public ResponseEntity<PageResponse<ResponseType>> getAll(
             @RequestParam(required = false, defaultValue = DEFAULT_PAGE_NUMBER) Integer pageIndex,
             @RequestParam(required = false, defaultValue = DEFAULT_PAGE_SIZE) Integer pageSize,
-            @RequestParam(required = false) Optional<String> search
+            @RequestParam(required = false) Optional<String> search,
+            @RequestParam(required = false) String[] sort
     ) {
-
+        Sort parsedSort = convertSortingParams(sort);
         Query query = buildDefaultGetAllFiltering(search);
-        Page<DocumentType> responseList = getService().getAll(query, PageRequest.of(pageIndex, pageSize));
+        Page<DocumentType> responseList = getService().getAll(query, PageRequest.of(pageIndex, pageSize, parsedSort));
         return ResponseEntity.ok(PageResponse.<ResponseType>builder()
                 .size(responseList.getSize())
                 .total(responseList.getTotalPages())
@@ -197,6 +199,30 @@ public abstract class AbstractController<DocumentType extends Identifiable, Requ
             return Arrays.stream(value.split("\\|\\|")).map(v -> conversionService.convert(v, expectedType)).toList();
         }
         return conversionService.convert(value, expectedType);
+    }
+
+    /**
+     * @param sort
+     * There is 2 options how sort is retrieving
+     * 1. Single sort parameter - ["column1", "dir1"]
+     * 2. Multiple sort params - ["column1,dir1","column2,dir2"]
+     * they are converting into Sort.Order objects using substring based on index of ","
+     **/
+    private Sort convertSortingParams(String[] sort) {
+        if(sort == null || sort.length == 0) {
+            return Sort.unsorted();
+        }
+        if(!sort[0].contains(",")){
+            return Sort.by(Sort.Direction.fromString(sort[1]), sort[0]);
+        }
+
+        List<Sort.Order> sortParams = Arrays.stream(sort)
+                .map(s -> new Sort.Order(
+                        Sort.Direction.fromString(s.substring(s.indexOf(",") + 1)),
+                        s.substring(0, s.indexOf(","))))
+                .toList();
+
+        return Sort.by(sortParams);
     }
 
     protected DocumentType executeEntityCreate(DocumentType entity) {
