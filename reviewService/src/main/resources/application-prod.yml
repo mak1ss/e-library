@@ -1,0 +1,11 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://root:070809az@mongo:27017/?authSource=admin
+      database: review_db
+
+book-service:
+  url: http://book-service:8080
+
+server:
+  port: 8080
