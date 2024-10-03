@@ -60,6 +60,22 @@ services:
       - book_service_network
       - review_service_network
 
+  api-gateway:
+    container_name: api-gateway
+    build: /apiGateway
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    ports:
+      - "9000:8080"
+    depends_on:
+      book-service: 
+        condition: service_started
+      review-service: 
+        condition: service_started
+    networks:
+      - book_service_network
+      - review_service_network
+
 networks: 
   book_service_network:
   review_service_network:
