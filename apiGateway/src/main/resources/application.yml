@@ -6,6 +6,8 @@ services:
   url:
     book: http://localhost:8080
     review: http://localhost:8081
+server:
+  port: 9000
 
 ---
 
@@ -17,3 +19,5 @@ services:
   url:
     book: http://book-service:8080
     review: http://review-service:8080
+server:
+  port: 8080
