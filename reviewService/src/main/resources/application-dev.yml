@@ -6,6 +6,3 @@ spring:
 
 book-service:
   url: http://localhost:8080
-
-server:
-  port: 8081

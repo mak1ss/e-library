@@ -9,7 +9,7 @@ RUN mvn clean package -DskipTests
 
 FROM amazoncorretto:17.0.11
 
-EXPOSE 8080
+EXPOSE 8081
 
 WORKDIR /reviewService
 

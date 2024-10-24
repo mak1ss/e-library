@@ -13,7 +13,7 @@ WORKDIR /bookService
 
 EXPOSE 8080
 
-COPY target/bookService.jar /bookService/bookService.jar
+COPY --from=build  ./app/target/bookService.jar .
 
 CMD java -jar bookService.jar
 
