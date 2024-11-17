@@ -48,7 +48,9 @@ public abstract class AbstractService<T extends Identifiable> {
     protected void afterUpdate(T entity) {}
 
     public void delete(T entity) {
+        beforeDelete(entity);
         getDao().delete(entity);
+        afterDelete(entity);
     }
 
     private void delete(T entity, boolean ignorePermissions) {

@@ -9,9 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -111,6 +113,16 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
             deleteById(id);
         } else {
             getRepository().deleteById(id);
+        }
+    }
+
+    public void deleteByQuery(Query query) {
+        if (getEntityClass().isAssignableFrom(Archivable.class)) {
+            Update update = new Update();
+            update.set("archived", true);
+            getMongoOperations().updateMulti(query, update, getEntityClass());
+        } else {
+            getMongoOperations().remove(query, getEntityClass());
         }
     }
 }

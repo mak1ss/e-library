@@ -15,7 +15,7 @@ services:
       timeout: 5s
       retries: 3
     networks:
-      - book_service_network
+      - e-library-network
 
   book-service:
     build: /bookService
@@ -28,7 +28,7 @@ services:
       mysql:
         condition: service_healthy
     networks:
-      - book_service_network
+      - e-library-network
 
   mongo:
     image: mongo:8.0
@@ -44,7 +44,7 @@ services:
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
     networks:
-     - review_service_network
+     - e-library-network
       
   review-service:
     container_name: review-service
@@ -57,8 +57,7 @@ services:
       mongo: 
         condition: service_healthy
     networks:
-      - book_service_network
-      - review_service_network
+      - e-library-network
 
   api-gateway:
     container_name: api-gateway
@@ -73,9 +72,66 @@ services:
       review-service: 
         condition: service_started
     networks:
-      - book_service_network
-      - review_service_network
-
+      - e-library-network
+  
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - e-library-network
+  
+  broker:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: broker
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - e-library-network
+  
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.5.0
+    hostname: schema-registry
+    container_name: schema-registry
+    depends_on:
+      - broker
+    ports:
+      - "8082:8085"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:29092'
+      SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8082
+    networks:
+      - e-library-network
+  
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8083:8080"
+    depends_on:
+      - broker
+      - schema-registry
+    environment:
+      KAFKA_CLUSTERS_NAME: local
+      KAFKA_CLUSTERS_BOOTSTRAPSERVERS: broker:29092
+      KAFKA_CLUSTERS_SCHEMAREGISTRY: http://schema-registry:8082
+      DYNAMIC_CONFIG_ENABLED: 'true'
+    networks:
+      - e-library-network
+  
 networks: 
-  book_service_network:
-  review_service_network:
+  e-library-network:
