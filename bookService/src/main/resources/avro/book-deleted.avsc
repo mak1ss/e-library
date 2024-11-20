@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "BookDeletedEvent",
+  "namespace": "event",
+  "fields": [
+    {
+      "name": "bookId",
+      "type": "int"
+    }
+  ]
+}

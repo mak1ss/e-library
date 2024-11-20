@@ -37,4 +37,10 @@ public class BookController extends AbstractController<Book, BookRequest, BookRe
     protected EntityFilterSpecificationBuilder<Book> getSpecificationBuilder() {
         return specificationBuilder;
     }
+
+    @Override
+    protected void executeEntityDelete(Integer id) {
+        Book entity = getService().getById(id).orElseThrow();
+        getService().delete(entity);
+    }
 }
