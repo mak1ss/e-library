@@ -1,4 +1,4 @@
-package com.library.apiGateway;
+package com.library.apiGateway.configs;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.server.mvc.handler.GatewayRouterFunctions;
