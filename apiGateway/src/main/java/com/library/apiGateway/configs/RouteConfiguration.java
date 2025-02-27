@@ -10,6 +10,7 @@ import org.springframework.web.servlet.function.ServerResponse;
 
 import static org.springframework.cloud.gateway.server.mvc.filter.BeforeFilterFunctions.setPath;
 import static org.springframework.cloud.gateway.server.mvc.filter.BeforeFilterFunctions.stripPrefix;
+import static org.springframework.cloud.gateway.server.mvc.filter.TokenRelayFilterFunctions.tokenRelay;
 import static org.springframework.cloud.gateway.server.mvc.handler.GatewayRouterFunctions.route;
 import static org.springframework.cloud.gateway.server.mvc.handler.HandlerFunctions.http;
 
@@ -27,6 +28,7 @@ public class RouteConfiguration {
         return route("book-service")
                 .route(RequestPredicates.path("/book-service/**"), http(BOOK_SERVICE_URL))
                 .before(stripPrefix(1))
+                .filter(tokenRelay())
                 .build();
     }
 
@@ -35,6 +37,7 @@ public class RouteConfiguration {
         return route("review-service")
                 .route(RequestPredicates.path("/review-service/**"), http(REVIEW_SERVICE_URL))
                 .before(stripPrefix(1))
+                .filter(tokenRelay())
                 .build();
     }
 

@@ -2,6 +2,14 @@ spring:
   config:
     activate:
       on-profile: dev
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/e-library
+          jwk-set-uri: http://localhost:8181/realms/e-library/protocol/openid-connect/certs
+
 services:
   url:
     book: http://localhost:8080
@@ -13,6 +21,13 @@ spring:
   config:
     activate:
       on-profile: prod
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/e-library
+
 services:
   url:
     book: http://book-service:8080

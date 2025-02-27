@@ -1,8 +1,25 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/
+      uri: mongodb://localhost:27018/
       database: review_db
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/e-library
+          jwk-set-uri: http://localhost:8181/realms/e-library/protocol/openid-connect/certs
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      properties:
+        schema:
+          registry:
+            url: http://localhost:8082
 
 book-service:
   url: http://localhost:8080
+gateway:
+  url: http://localhost:9000

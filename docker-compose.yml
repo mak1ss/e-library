@@ -7,70 +7,13 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql-dev/data:/var/lib/mysql
       - ./infrastructure/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD' ]
       interval: 10s
       timeout: 5s
       retries: 3
-    networks:
-      - e-library-network
-
-  book-service:
-    build: /bookService
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-    container_name: book-service
-    ports: 
-      - "8080:8080"
-    depends_on:
-      mysql:
-        condition: service_healthy
-    networks:
-      - e-library-network
-
-  mongo:
-    image: mongo:8.0
-    container_name: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 070809az
-      MONGO_INITDB_DATABASE: review_db
-    ports:
-      - "27018:27017"
-    volumes: 
-      - ./docker/mongodb/data:/data/db
-    healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
-    networks:
-     - e-library-network
-      
-  review-service:
-    container_name: review-service
-    build: /reviewService
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-    ports:
-      - "8081:8081"
-    depends_on:
-      mongo: 
-        condition: service_healthy
-    networks:
-      - e-library-network
-
-  api-gateway:
-    container_name: api-gateway
-    build: /apiGateway
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-    ports:
-      - "9000:9000"
-    depends_on:
-      book-service: 
-        condition: service_started
-      review-service: 
-        condition: service_started
     networks:
       - e-library-network
   
@@ -93,7 +36,21 @@ services:
       retries: 3
     networks:
       - e-library-network
-  
+
+  mongo:
+    image: mongo:8.0
+    container_name: mongo
+    environment:
+      MONGO_INITDB_DATABASE: review_db
+    ports:
+      - "27018:27017"
+    volumes: 
+      - ./docker/mongodb-dev/data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+    networks:
+     - e-library-network
+
   keycloak:
     container_name: keycloak    
     image: quay.io/keycloak/keycloak:24.0.1
@@ -173,6 +130,6 @@ services:
       DYNAMIC_CONFIG_ENABLED: 'true'
     networks:
       - e-library-network
-      
+       
 networks: 
   e-library-network:
