@@ -14,7 +14,7 @@ import org.library.reviewService.dto.AbstractRequest;
 public class ReviewRequest extends AbstractRequest {
 
     @NotNull
-    private Integer userId;
+    private String userId;
 
     @NotNull
     private Integer bookId;

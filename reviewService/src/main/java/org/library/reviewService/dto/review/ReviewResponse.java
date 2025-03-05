@@ -14,7 +14,7 @@ public class ReviewResponse extends AbstractResponse {
 
     private String id;
 
-    private Integer userId;
+    private String userId;
 
     private Integer bookId;
 

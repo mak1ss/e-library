@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/review")
+@RequestMapping("/api/reviews")
 @AllArgsConstructor
 public class ReviewController extends AbstractController<Review, ReviewRequest, ReviewResponse> {
 

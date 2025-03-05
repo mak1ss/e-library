@@ -1,6 +1,7 @@
 package org.library.reviewService.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.library.reviewService.exception.AccessDeniedException;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import java.nio.file.AccessDeniedException;
 import java.util.NoSuchElementException;
 
 @RestControllerAdvice
@@ -65,7 +65,7 @@ public class GlobalExceptionHandler {
 
         log.error("Access denied:", exception);
 
-        String message = "Access denied for your request: " + exception.getMessage();
+        String message = "Access denied for your request: " + exception.getLocalizedMessage();
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorMessage(message));
     }

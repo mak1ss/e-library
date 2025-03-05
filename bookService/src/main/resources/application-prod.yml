@@ -1,12 +1,12 @@
 spring:
-  data:
-    mongodb:
-      uri: mongodb://root:070809az@mongo:27017/?authSource=admin
-      database: review_db
+  datasource:
+    url: jdbc:mysql://mysql/book_service
+    username: root
+    password: 070809az
 
   kafka:
     bootstrap-servers: broker:29092
-    consumer:
+    producer:
       properties:
         schema:
           registry:
@@ -18,7 +18,7 @@ spring:
         jwt:
           issuer-uri: http://keycloak:8080/realms/e-library
 
-book-service:
-  url: http://book-service:8080
 gateway:
   url: http://api-gateway:9000
+review-service:
+  url: http://review-service:8081

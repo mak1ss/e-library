@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3307/book_service
+    username: root
+    password: 070809az
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      properties:
+        schema:
+          registry:
+            url: http://localhost:8082
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/e-library
+          jwk-set-uri: http://localhost:8181/realms/e-library/protocol/openid-connect/certs
+
+gateway:
+  url: http://localhost:9000
+review-service:
+  url: http://localhost:8081

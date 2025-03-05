@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,7 +34,9 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
 
     public Page<DocumentType> getAll(Query query, Pageable pageable, boolean includeArchived) {
         return PageableExecutionUtils.getPage(getMongoOperations()
-                .find(query.with(pageable).addCriteria(addArchivedCriteria(includeArchived)).addCriteria(addAdditionalCriteriaForGetAll()), getEntityClass()),
+                        .find(query.with(pageable)
+                                .addCriteria(addArchivedCriteria(includeArchived))
+                                .addCriteria(addAdditionalCriteriaForGetAll()), getEntityClass()),
                 pageable,
                 () -> getMongoOperations().count(Query.of(query).limit(-1).skip(-1), getEntityClass()));
     }
@@ -60,6 +61,7 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
         beforeCreate(entity);
         entity = getRepository().save(entity);
         afterCreate(entity);
+
         return entity;
     }
 
@@ -71,6 +73,7 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
 
     public DocumentType update(DocumentType entity) {
         beforeUpdate(entity);
+
         return getRepository().save(entity);
     }
 
@@ -79,6 +82,7 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
 
     public void delete(DocumentType entity) {
         beforeDelete(entity);
+
         if (entity instanceof Archivable archivable) {
             archivable.setArchived(true);
             getRepository().save(entity);
@@ -100,6 +104,9 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
 
     public void deleteById(String id) {
         DocumentType entity = getRepository().findById(id).orElseThrow();
+
+        beforeDelete(entity);
+
         if (entity instanceof Archivable archivable) {
             archivable.setArchived(true);
             getRepository().save(entity);
