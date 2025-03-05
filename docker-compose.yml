@@ -55,6 +55,7 @@ services:
     container_name: keycloak    
     image: quay.io/keycloak/keycloak:24.0.1
     command: [ "start-dev", "--import-realm" ]
+    restart: always
     environment:
       KC_DB: mysql
       KC_DB_URL: jdbc:mysql://kc-mysql:3306/keycloak
@@ -65,7 +66,7 @@ services:
     ports:
       - "8181:8080"
     volumes:
-      - ./docker/keycloak/realms/:/opt/keycloak/data/import/
+      - .infrastructure/keycloak:/opt/keycloak/data/import/
     depends_on:
       kc-mysql:
         condition: service_healthy
