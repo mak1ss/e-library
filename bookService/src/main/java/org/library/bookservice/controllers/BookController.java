@@ -1,6 +1,7 @@
 package org.library.bookservice.controllers;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.library.bookservice.dto.book.BookRequest;
 import org.library.bookservice.dto.book.BookResponse;
 import org.library.bookservice.filtering.model.EntityFilterSpecificationBuilder;
@@ -13,6 +14,9 @@ import org.library.bookservice.service.BookService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.NoSuchElementException;
+
+@Slf4j
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/books")
@@ -40,7 +44,14 @@ public class BookController extends AbstractController<Book, BookRequest, BookRe
 
     @Override
     protected void executeEntityDelete(Integer id) {
-        Book entity = getService().getById(id).orElseThrow();
-        getService().delete(entity);
+        getService().getById(id).ifPresentOrElse(book -> {
+            if(book.isArchived()) {
+               log.info("Archived book was tried to delete. ID: {}", book.getId());
+               return;
+            }
+            getService().delete(book);
+        }, () -> {
+            throw new NoSuchElementException();
+        });
     }
 }

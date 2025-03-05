@@ -16,7 +16,7 @@ public class Review implements Identifiable, Archivable {
     @Id
     private String id;
 
-    private Integer userId;
+    private String userId;
 
     private Integer bookId;
 
