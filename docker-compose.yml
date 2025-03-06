@@ -66,7 +66,7 @@ services:
     ports:
       - "8181:8080"
     volumes:
-      - .infrastructure/keycloak:/opt/keycloak/data/import/
+      - ./infrastructure/keycloak:/opt/keycloak/data/import/
     depends_on:
       kc-mysql:
         condition: service_healthy
