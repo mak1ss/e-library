@@ -2,18 +2,9 @@ name: Book Service CI
 
 on:
   push:
-    branches:
-      - "**"
     paths: 
       - "bookService/**"
-      
-  pull_request:
-    branches:
-      - development
-      - master
-    paths:
-      - "bookService/**"
-	 
+
 jobs:
   compile:
     name: Compile
