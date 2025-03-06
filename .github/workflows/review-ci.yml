@@ -1,9 +1,9 @@
-name: Book Service CI
+name: Review Service CI
 
 on:
   pull_request:
     paths:
-      - "bookService/**"
+      - "reviewService/**"
       - ".github/workflows/**"
 
 jobs:
@@ -13,20 +13,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4.7.0
         with:
           distribution: "corretto"
           java-version: "17"
           cache: maven
-          
-      - name: Compile of Book service
+
+      - name: Compile of Review service
         run: |
-          cd bookService
+          cd reviewService
           mvn clean compile
-          
-  build: 
+
+  build:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -39,13 +39,13 @@ jobs:
           distribution: "corretto"
           java-version: "17"
           cache: maven
-          
-      - name: Build of Book service
+
+      - name: Build of Review service
         run: |
-          cd bookService
+          cd reviewService
           mvn clean package -DskipTests
 
-  test: 
+  test:
     name: Test
     runs-on: ubuntu-latest
     steps:
@@ -58,10 +58,10 @@ jobs:
           distribution: "corretto"
           java-version: "17"
           cache: maven
-          
-      - name: Tests execution of Book service
+
+      - name: Tests execution of Review service
         run: |
-          cd bookService
+          cd reviewService
           mvn test 
         
       
