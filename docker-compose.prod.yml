@@ -71,3 +71,13 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8082
     networks:
       - e-library-network
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infrastructure/prometheus/prometheus-prod.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - e-library-network
