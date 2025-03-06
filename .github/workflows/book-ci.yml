@@ -4,6 +4,7 @@ on:
   push:
     paths: 
       - "bookService/**"
+      - ".github/workflows/**"
 
 jobs:
   compile:
