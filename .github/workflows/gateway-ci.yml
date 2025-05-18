@@ -1,0 +1,46 @@
+name: Api Gateway CI
+
+on:
+  pull_request:
+    paths:
+      - "apiGateway/**"
+      - ".github/workflows/**"
+
+jobs:
+  compile:
+    name: Compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4.7.0
+        with:
+          distribution: "corretto"
+          java-version: "17"
+          cache: maven
+
+      - name: Compile of Api Gateway
+        run: |
+          cd apiGateway
+          mvn clean compile
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4.7.0
+        with:
+          distribution: "corretto"
+          java-version: "17"
+          cache: maven
+
+      - name: Build of Api Gateway
+        run: |
+          cd apiGateway
+          mvn clean package -DskipTests
