@@ -3,6 +3,7 @@ package org.library.reviewService.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
@@ -35,7 +36,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Slf4j
-public abstract class AbstractController<DocumentType extends Identifiable, RequestType extends AbstractRequest, ResponseType extends AbstractResponse> {
+@SecurityRequirement(name = "passwordFlow")
+@SecurityRequirement(name = "clientCredentialsFlow")
+public abstract class AbstractController<DocumentType extends Identifiable, RequestType extends AbstractRequest,
+        ResponseType extends AbstractResponse> {
 
     private static final Pattern PATTERN = Pattern.compile("(\\w+?)(:|[!<>_]=?|=)(.*)");
     private static final String DEFAULT_PAGE_NUMBER = "0";

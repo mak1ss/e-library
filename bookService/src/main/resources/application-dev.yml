@@ -18,6 +18,7 @@ spring:
         jwt:
           issuer-uri: http://keycloak:8080/realms/e-library
           jwk-set-uri: http://localhost:8181/realms/e-library/protocol/openid-connect/certs
+          token-uri: http://localhost:8181/realms/e-library/protocol/openid-connect/token
 
 gateway:
   url: http://localhost:9000

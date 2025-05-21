@@ -17,7 +17,7 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://keycloak:8080/realms/e-library
-
+          token-uri: http://keycloak:8080/realms/e-library/protocol/openid-connect/token
 gateway:
   url: http://api-gateway:9000
 review-service:

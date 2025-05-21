@@ -3,6 +3,7 @@ package org.library.bookservice.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.library.bookservice.dto.AbstractRequest;
@@ -35,6 +36,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Slf4j
+@SecurityRequirement(name = "passwordFlow")
+@SecurityRequirement(name = "clientCredentialsFlow")
 public abstract class AbstractController<T extends Identifiable & Archivable, RequestType extends AbstractRequest, ResponseType extends AbstractResponse> {
 
     private static final Pattern PATTERN = Pattern.compile("(\\w+?)(:|[!<>_]=?|=)(.*)");
