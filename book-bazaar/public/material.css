@@ -1,0 +1,5 @@
+@import "tailwindcss";
+::ng-deep #mdc-button__ripple {
+  @apply bg-secondary !important;
+  color: blueviolet !Important;
+}

@@ -1,0 +1,12 @@
+.genre-chip {
+  background-color: var(--color-blue-100) !important;
+}
+
+.category-chip {
+  background-color: var(--color-indigo-200) !important;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

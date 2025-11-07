@@ -1,0 +1,63 @@
+<section class="text-book-gray">
+  <div class="h-96 flex pl-24 pr-24 items-center b-bottom bg-gradient-to-r from-secondary-trans to-primary-trans">
+    <div class="text-wrap w-1/2">
+      <h1 class="text-5xl font-bold mb-6">Discover Your Next Great Read</h1>
+      <p class="text-xl text-book-gray mb-8">Explore thousands of books, read reviews, and connect with fellow book
+        lovers in our digital library.</p>
+      <div class="max-w-md">
+        <form [formGroup]="formGroup" (ngSubmit)="search()">
+          <mat-form-field appearance="outline" class="w-full">
+            <input matInput placeholder="What would you like to read today?" formControlName="search">
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+    <div></div>
+  </div>
+  <section class="p-20 flex flex-col items-center justify-center border-t-1 border-gray">
+    <h2 class="mb-15 text-4xl font-bold">Browse by Categories</h2>
+    <div class="mt-10 w-full flex pl-24 pr-24 items-center justify-center">
+      @for (genre of browsingGenres; track $index) {
+        <button matRipple class="flex items-center justify-center text-center grow-1 h-24 w-24 hover:bg-secondary"
+             (click)="searchByGenre(genre)">
+          <p class="flex text-xl font-medium">{{ genre.name }}</p>
+        </button>
+      }
+    </div>
+  </section>
+  <section class="p-20 bg-secondary-trans">
+    <div class="flex justify-between items-center mb-12">
+      <h2 class="text-3xl font-bold">Popular this week</h2>
+      <button matButton="text" class="font-medium" (click)="this.router.navigate(['/search'])">View all</button>
+    </div>
+    <div class="grid grid-cols-5 gap-6">
+      @for (book of popularBooks; track $index) {
+        <a routerLink="/book-details/{{book.id}}">
+          <div class="hover:shadow-lg w-75">
+            <mat-card appearance="outlined">
+              <div class="flex items-center m-8 justify-center overflow-hidden rounded-lg">
+                <img class="object-cover object-center" mat-card-xl-image
+                     src="{{ book.image || 'assets/default-book-cover.jpg' }}" alt="{{ book.title }} cover"/>
+              </div>
+              <mat-card-title-group class="p-8 pt-0 pb-0 w-24">
+                <mat-card-title class="overflow-hidden text-ellipsis">{{ book.title }}</mat-card-title>
+                <mat-card-subtitle class="overflow-hidden text-ellipsis">{{ book.author }}</mat-card-subtitle>
+              </mat-card-title-group>
+
+              <mat-chip-set class="pl-8 pb-8 pt-1">
+                @if(book.category) {
+                <mat-chip class="category-chip">{{ book.category }}</mat-chip>
+                }
+                @for (genre of book.genres || []; track genre.id) {
+                  <mat-chip class="genre-chip">{{ genre.name }}</mat-chip>
+                }
+              </mat-chip-set>
+            </mat-card>
+          </div>
+        </a>
+      }
+    </div>
+  </section>
+  <div>
+  </div>
+</section>

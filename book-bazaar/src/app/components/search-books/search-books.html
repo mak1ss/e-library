@@ -1,0 +1,29 @@
+<section class="py-12 text-book-gray bg-primary-trans border-b border-gray">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-book-dark-gray mb-4">Find Your Perfect Book</h1>
+      <p class="text-xl text-book-gray">Search through thousands of books and discover your next favorite read</p>
+    </div>
+    <div class="max-w-3xl mx-auto">
+      <form [formGroup]="formGroup" (ngSubmit)="search()" class="flex items-center gap-x-2">
+        <mat-form-field appearance="outline" class="flex-1 items-between">
+          <div class="flex items-between">
+            <input matInput placeholder="Search for a ..." formControlName="search" >
+            <button matButton="tonal" class="search-button">
+              Search
+            </button>
+          </div>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</section>
+<section class="mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+  <div class="flex gap-8">
+    <aside class="w-80 sticky top-24 h-fit">
+      <div class="rounded-lg p-6">
+        <app-filter-panel></app-filter-panel>
+      </div>
+    </aside>
+  </div>
+</section>

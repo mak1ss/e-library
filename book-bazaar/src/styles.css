@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto&display=swap');
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@theme {
+  --color-primary: oklch(0.549 0.1968 265.33);
+  --color-secondary: oklch(0.8735 0.0444 299.65);
+  --color-primary-trans: oklch(0.585 0.195 261.25 / 0.29);
+  --color-secondary-trans: oklch(0.8735 0.0444 299.65 / 67.7%);
+  --color-dark: oklch(0.2893 0.0271 277.41);
+}
+
+.text-book-gray {
+   --tw-text-opacity: 1;
+   color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+}
+

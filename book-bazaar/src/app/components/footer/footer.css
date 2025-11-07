@@ -1,0 +1,4 @@
+@import "tailwindcss";
+.social-link {
+  @apply w-9 p-1;
+}
