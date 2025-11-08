@@ -22,7 +22,11 @@
   <div class="flex gap-8">
     <aside class="w-80 sticky top-24 h-fit">
       <div class="rounded-lg p-6">
-        <app-filter-panel></app-filter-panel>
+        <app-filter-panel 
+        (changed)="onFiltersChanged($event)" 
+        [selectedFilters]="selectedFilters()"
+        >
+        </app-filter-panel>
       </div>
     </aside>
   </div>
