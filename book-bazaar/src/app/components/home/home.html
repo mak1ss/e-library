@@ -30,31 +30,9 @@
       <h2 class="text-3xl font-bold">Popular this week</h2>
       <button matButton="text" class="font-medium" (click)="this.router.navigate(['/search'])">View all</button>
     </div>
-    <div class="grid grid-cols-5 gap-6">
+    <div class="flex flex-wrap gap-8">
       @for (book of popularBooks; track $index) {
-        <a routerLink="/book-details/{{book.id}}">
-          <div class="hover:shadow-lg w-75">
-            <mat-card appearance="outlined">
-              <div class="flex items-center m-8 justify-center overflow-hidden rounded-lg">
-                <img class="object-cover object-center" mat-card-xl-image
-                     src="{{ book.image || 'assets/default-book-cover.jpg' }}" alt="{{ book.title }} cover"/>
-              </div>
-              <mat-card-title-group class="p-8 pt-0 pb-0 w-24">
-                <mat-card-title class="overflow-hidden text-ellipsis">{{ book.title }}</mat-card-title>
-                <mat-card-subtitle class="overflow-hidden text-ellipsis">{{ book.author }}</mat-card-subtitle>
-              </mat-card-title-group>
-
-              <mat-chip-set class="pl-8 pb-8 pt-1">
-                @if(book.category) {
-                <mat-chip class="category-chip">{{ book.category }}</mat-chip>
-                }
-                @for (genre of book.genres || []; track genre.id) {
-                  <mat-chip class="genre-chip">{{ genre.name }}</mat-chip>
-                }
-              </mat-chip-set>
-            </mat-card>
-          </div>
-        </a>
+        <app-book-card [book]="book"></app-book-card>
       }
     </div>
   </section>

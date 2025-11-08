@@ -3,7 +3,7 @@
     <h3 class="text-2xl text-book-dark-gray">Filters</h3>
     <button matButton (click)="clearFilters()">Clear all</button>
   </div>
-  @for (filter of filters; track filter.name) {
+  @for (filter of filters(); track filter.name) {
     <div class="flex flex-col">
       <h3 class="text-lg mb-2 text-dark">{{ filter.label }}</h3>
 

@@ -15,22 +15,8 @@ import {MatButton} from '@angular/material/button';
   styleUrl: './filter-panel.css',
 })
 export class FilterPanel {
-  filters: Filter[] = [
-    {
-      name: 'author',
-      label: 'Authors',
-      options: ['Rowling', 'Tolkien', 'Gaiman', 'Orwell', 'Murakami', 'Austen', 'King'],
-      defaultVisibleCount: 4,
-      expanded: false,
-    },
-    {
-      name: 'genre',
-      label: 'Genres',
-      options: ['Comedy', 'Romance', 'Adventure', 'Business', 'Thriller', 'Drama'],
-      defaultVisibleCount: 3,
-      expanded: false,
-    },
-  ];  
+
+  filters = input.required<Filter[]>();
 
   currentSelected = signal<Record<string, string[]>>({});
 
@@ -72,7 +58,7 @@ export class FilterPanel {
   }
 
   toggleExpanded(filterName: string) {
-    const filter = this.filters.find(f => f.name === filterName);
+    const filter = this.filters().find(f => f.name === filterName);
     if (filter) filter.expanded = !filter.expanded;
   }
 

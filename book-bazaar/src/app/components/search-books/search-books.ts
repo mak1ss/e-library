@@ -5,9 +5,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { FilterPanel } from '../filter-panel/filter-panel';
 import { Book } from '../../model/book';
-import { Publisher } from '../../model/publisher';
-import { Genre } from '../../model/genre';
 import { Filter } from '../../utils/filter';
+import { BookService } from '../../services/book/book-service';
+import { BookCard } from "../book-card/book-card";
+import { AuthorService } from '../../services/author/author-service';
+import { GenreService } from '../../services/genre/genre-service';
+import { CategoryService } from '../../services/category/category-service';
+import { PublisherService } from '../../services/publisher/publisher-service';
 
 @Component({
   selector: 'app-search-books',
@@ -16,28 +20,23 @@ import { Filter } from '../../utils/filter';
     ReactiveFormsModule,
     MatInput,
     MatButton,
-    FilterPanel
+    FilterPanel,
+    BookCard
   ],
   templateUrl: './search-books.html',
   styleUrl: './search-books.css',
 })
 export class SearchBooks {
 
-  browsingGenres: Genre[] = [
-    new Genre(1, "Comedy"),
-    new Genre(1, "Romance"),
-    new Genre(1, "Adventure"),
-    new Genre(1, "Business")
-  ];
-
-  popularBooks: Book[] = [
-    new Book(1, "1983", "Orwell", "Fiction", "Anti-utopy", "21938432", new Publisher(1, "World Books"), "1953-10-05", 30.22, this.browsingGenres, "book-image.png"),
-    new Book(1, "1983", "Orwell", "Fiction", "Anti-utopy", "21938432", new Publisher(1, "World Books"), "1953-10-05", 30.22, this.browsingGenres, "book-image.png"),
-    new Book(1, "1983", "Orwell", "Fiction", "Anti-utopy", "21938432", new Publisher(1, "World Books"), "1953-10-05", 30.22, this.browsingGenres, "book-image.png"),
-  ];
+  popularBooks: Book[];
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private authorService = inject(AuthorService);
+  private genreService = inject(GenreService);
+  private categoryService = inject(CategoryService);
+  private publisherService = inject(PublisherService);
+
   query = '';
 
   formGroup: FormGroup = new FormGroup({
@@ -50,6 +49,43 @@ export class SearchBooks {
     console.log(this.selectedFilters());
   });
 
+  filterOptions: Filter[] = [];
+
+  constructor(bookService: BookService) {
+    this.popularBooks = bookService.getBooks();
+
+    this.filterOptions.push(
+      {
+        name: 'author',
+        label: 'Author',
+        options: this.authorService.getAuthors().map(a => a.name),
+        defaultVisibleCount: 4,
+        expanded: false
+      } as Filter,
+      {
+        name: 'genre',
+        label: 'Genre',
+        options: this.genreService.getGenres().map(g => g.name),
+        defaultVisibleCount: 4,
+        expanded: false
+      } as Filter,
+      {
+        name: 'category',
+        label: 'Category',
+        options: this.categoryService.getCategories().map(c => c.name),
+        defaultVisibleCount: 4,
+        expanded: false
+      } as Filter,
+      {
+        name: 'publisher',
+        label: 'Publisher',
+        options: this.publisherService.getPublishers().map(p => p.name),
+        defaultVisibleCount: 4,
+        expanded: false
+      } as Filter
+    );
+  }
+
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       this.query = params.get('query') ?? '';
@@ -58,16 +94,11 @@ export class SearchBooks {
 
       const filters: Record<string, string[]> = {};
 
-      const genres = params.getAll('genre') ?? [];
-      if (genres.length) filters['genre'] = genres;
+      this.filterOptions.forEach(f => {
+        const values = params.getAll(f.name) ?? [];
+        if (values.length) filters[f.name] = values;
+      });
 
-      // if you also use 'author' param(s), handle similarly:
-      const authors = params.getAll('author') ?? [];
-      if (authors.length) filters['author'] = authors;
-
-      // single-value keys (e.g. category) can be mapped too:
-      const category = params.get('category');
-      if (category) filters['category'] = [category];
       this.selectedFilters.set(filters);
     })
   }
@@ -93,11 +124,12 @@ export class SearchBooks {
 
     console.log('Navigating with query params:', output, qp);
 
+    if (this.query) qp['query'] = this.query;
     // merge with existing query params (and remove empty ones)
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: qp,
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'replace'
     });
   }
 }

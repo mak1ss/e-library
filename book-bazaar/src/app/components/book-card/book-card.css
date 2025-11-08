@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+.genre-chip {
+  background-color: var(--color-blue-100) !important;
+}
+
+.category-chip {
+  background-color: var(--color-indigo-200) !important;
+}
+
+.hover-shadow {
+    @apply hover:shadow-lg
+}
+
+/* NEW: make flex child shrinkable and ensure subtitle also ellipses */
+.mat-card-title-group {
+  min-width: 0 !important; /* allow its children to shrink inside a flex container */
+}
+
+.mat-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* allow title container to shrink inside flex parents */
+.mat-card-title-group {
+  min-width: 0 !important;
+  overflow: hidden;
+}
+
+/* ensure ellipsis works */
+.mat-card-title,
+.title,
+.mat-card-subtitle,
+.subtitle {
+  display: block;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  max-width: 100%;
+}
+
+.subtitle {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem; /* 14px */
+}
+
+/* ensure image cannot stretch the card horizontally */
+img[mat-card-xl-image] {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
