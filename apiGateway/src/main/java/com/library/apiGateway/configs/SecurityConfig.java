@@ -20,7 +20,16 @@ public class SecurityConfig {
             "/swagger-ui/**",
             "/v3/api-docs/**",
             "/swagger-resources/**",
-            "/aggregate/**"
+            "/aggregate/**",
+
+        // Public APIs
+            "/book-service/api/books/**",
+            "/book-service/api/authors/**",
+            "/book-service/api/publishers/**",
+            "/book-service/api/genres/**",
+            "/book-service/api/categories/**",
+            "/review-service/api/reviews/**",
+            "/review-service/api/review-metrics/**"
     };
 
     @Bean
@@ -37,7 +46,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

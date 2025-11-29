@@ -7,7 +7,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - ./docker/mysql-dev/data:/var/lib/mysql
+      - mysql-dev_data:/var/lib/mysql
       - ./infrastructure/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD' ]
@@ -28,7 +28,7 @@ services:
     ports:
       - "3308:3306"
     volumes:
-      - ./docker/kc-mysql/data:/var/lib/mysql
+      - kc-mysql_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD' ]
       interval: 10s
@@ -45,7 +45,7 @@ services:
     ports:
       - "27018:27017"
     volumes: 
-      - ./docker/mongodb-dev/data:/data/db
+      - mongodb-dev_data:/data/db
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
     networks:
@@ -157,3 +157,7 @@ services:
       - e-library-network
 networks: 
   e-library-network:
+volumes:
+  mysql-dev_data:
+  kc-mysql_data:
+  mongodb-dev_data:
