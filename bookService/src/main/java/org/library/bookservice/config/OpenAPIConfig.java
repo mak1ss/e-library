@@ -18,7 +18,7 @@ public class OpenAPIConfig {
     @Value("${server.port}")
     private String port;
 
-    @Value("${spring.security.oauth2.resourceserver.jwt.token-uri}")
+    @Value("${openapi.api-docs.token-uri}")
     private String keycloakTokenUrl;
 
     private String passwordSecurityScheme = "passwordFlow";
