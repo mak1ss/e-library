@@ -10,7 +10,7 @@ services:
     ports:
       - "27018:27017"
     volumes: 
-      - ./docker/mongodb/data:/data/db
+      - mongodb_data:/data/db
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
     networks:
@@ -23,6 +23,8 @@ services:
     container_name: book-service
     ports: 
       - "8080:8080"
+    volumes:
+      - ./data:/app/data
     depends_on:
       mysql:
         condition: service_healthy
@@ -81,3 +83,6 @@ services:
       - ./infrastructure/prometheus/prometheus-prod.yml:/etc/prometheus/prometheus.yml
     networks:
       - e-library-network
+
+volumes:
+  mongodb_data:

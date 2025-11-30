@@ -1,0 +1,14 @@
+[
+  { "name": "Penguin Books", "address": "London, UK" },
+  { "name": "Bloomsbury", "address": "London, UK" },
+  { "name": "Scribner", "address": "New York, USA" },
+  { "name": "HarperCollins", "address": "New York, USA" },
+  { "name": "Doubleday", "address": "New York, USA" },
+  { "name": "George Allen & Unwin", "address": "Sydney, Australia" },
+  { "name": "J. B. Lippincott & Co.", "address": "Philadelphia, USA" },
+  { "name": "Chilton Books", "address": "Boston, USA" },
+  { "name": "Little, Brown and Company", "address": "Boston, USA" },
+  { "name": "Random House", "address": "New York, USA" },
+  { "name": "Prentice Hall", "address": "New Jersey, USA" },
+  { "name": "Celadon Books", "address": "New York, USA" }
+]

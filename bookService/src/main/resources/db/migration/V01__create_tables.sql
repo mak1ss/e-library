@@ -9,7 +9,8 @@ CREATE TABLE book
     publisher_id INT,
     release_date DATE,
     price        DECIMAL(10, 2),
-    archived     BOOLEAN DEFAULT FALSE
+    archived     BOOLEAN DEFAULT FALSE,
+    image_key    VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE author

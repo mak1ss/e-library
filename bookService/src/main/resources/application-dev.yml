@@ -24,3 +24,11 @@ gateway:
   url: http://localhost:9000
 review-service:
   url: http://localhost:8081
+
+data:
+  book:
+    images:
+      location: ../data/book_images/
+      url-host: http://localhost:8080
+  seeding:
+    folder: ../data/seeding/

@@ -1,0 +1,14 @@
+[
+  { "name": "Dystopian", "description": "Societies characterized by human misery." },
+  { "name": "Fantasy", "description": "Stories with magic and supernatural elements." },
+  { "name": "Horror", "description": "Fiction intended to scare or disgust." },
+  { "name": "Romance", "description": "Focus on relationship and romantic love." },
+  { "name": "Classic", "description": "Books of high literary merit that have stood the test of time." },
+  { "name": "Science Fiction", "description": "Speculative fiction based on future science." },
+  { "name": "Mystery", "description": "Stories involving a crime or puzzle to solve." },
+  { "name": "Thriller", "description": "Suspenseful stories with high stakes." },
+  { "name": "Adventure", "description": "Stories featuring exciting and dangerous journeys." },
+  { "name": "Self-Help", "description": "Books written to instruct on solving personal problems." },
+  { "name": "Psychology", "description": "Study of mind and behavior." },
+  { "name": "Education", "description": "Textbooks and learning materials." }
+]

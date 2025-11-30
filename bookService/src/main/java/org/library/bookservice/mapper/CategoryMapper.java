@@ -18,6 +18,7 @@ public class CategoryMapper implements Mapper<Category, CategoryResponse, Catego
 
         entity.setId(id.orElse(null));
         entity.setName(request.getName());
+        entity.setDescription(request.getDescription());
 
         return entity;
     }
@@ -28,6 +29,7 @@ public class CategoryMapper implements Mapper<Category, CategoryResponse, Catego
         return CategoryResponse.builder()
                 .id(entity.getId())
                 .name(entity.getName())
+                .description(entity.getDescription())
                 .build();
     }
 
