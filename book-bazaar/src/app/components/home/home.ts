@@ -35,13 +35,14 @@ export class Home {
 
   protected browsingGenres: Genre[];
 
-  popularBooks: Book[];
+  popularBooks: Book[] = [];
 
   constructor(
     bookService: BookService,
     genreService: GenreService
   ) {
-    this.popularBooks = bookService.getBooks().slice(0, 5);
+    bookService.getBooks({}, 0, 5)
+      .subscribe(page => this.popularBooks = page.items);
     this.browsingGenres = genreService.getGenres().slice(0, 4);
   }
 

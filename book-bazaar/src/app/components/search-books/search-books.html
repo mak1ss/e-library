@@ -22,18 +22,33 @@
   <div class="flex gap-8">
     <aside class="w-80 sticky top-24 h-fit">
       <div class="rounded-lg p-6">
-        <app-filter-panel [filters]="filterOptions" (changed)="onFiltersChanged($event)" [selectedFilters]="selectedFilters()">
+        <app-filter-panel [filters]="filterOptions" (changed)="onFiltersChanged($event)"
+          [selectedFilters]="selectedFilters()">
         </app-filter-panel>
       </div>
     </aside>
     <div class="flex-1">
-      @if(popularBooks.length === 0) {
+      @if(books.length === 0) {
       <p class="text-center text-book-gray text-xl mt-20">No books found matching your criteria.</p>
       } @else {
       <div class="flex flex-wrap gap-8">
-        @for (book of popularBooks; track book.id) {
-        <app-book-card [book]="book"></app-book-card>
-        }
+        <div class="flex-1">
+          @if (loading()) {
+          <div class="text-center mt-20">Loading books...</div>
+          }
+
+          @else if (books().length === 0) {
+          <p class="text-center text-book-gray text-xl mt-20">No books found matching your criteria.</p>
+          }
+
+          @else {
+          <div class="flex flex-wrap gap-8">
+            @for (book of books(); track book.id) {
+            <app-book-card [book]="book"></app-book-card>
+            }
+          </div>
+          }
+        </div>
       </div>
       }
     </div>

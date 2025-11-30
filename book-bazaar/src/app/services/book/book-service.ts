@@ -1,38 +1,47 @@
 import { inject, Injectable } from '@angular/core';
 import { Book } from '../../model/book';
-import { HttpClient } from '@angular/common/http';
-import { Publisher } from '../../model/publisher';
-import { Genre } from '../../model/genre';
-import { Author } from '../../model/author';
-import { Category } from '../../model/category';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { PageResponse } from '../../model/pageResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
 
+  private baseUrl = 'http://localhost:9000/book-service/api/books';
   private http: HttpClient = inject(HttpClient);
 
-  browsingGenres: Genre[] = [
-    new Genre(1, "Comedy"),
-    new Genre(1, "Romance"),
-    new Genre(1, "Adventure"),
-    new Genre(1, "Business")
-  ];
+  /**
+   * Отримує список книг з фільтрацією та пагінацією
+   * @param filters - об'єкт з фільтрами (наприклад, { genre: ['Fantasy'], query: 'Harry' })
+   * @param page - номер сторінки (починаючи з 0)
+   * @param size - розмір сторінки
+   */
+  getBooks(filters: Record<string, any> = {}, page: number = 0, size: number = 10): Observable<PageResponse<Book>> {
+    let params = new HttpParams()
+      .set('pageIndex', page)
+      .set('pageSize', size);
 
-  popularBooks: Book[] = [
-    new Book(1, "1983", new Author(1, "Orwell"), new Category(1, "Fiction"), "Anti-utopy", "21938432", new Publisher(1, "World Books"), "1953-10-05", 30.22, this.browsingGenres, "book-image.png"),
-    new Book(2, "1983", new Author(1, "Orwell"), new Category(1, "Fiction"), "Anti-utopy", "21938432", new Publisher(1, "World Books"), "1953-10-05", 30.22, this.browsingGenres, "book-image.png"),
-    new Book(3, "1983", new Author(1, "Orwell"), new Category(1, "Fiction"), "Anti-utopy", "21938432", new Publisher(1, "World Books"), "1953-10-05", 30.22, this.browsingGenres, "book-image.png"),
-    new Book(4, "1983", new Author(1, "Orwell"), new Category(1, "Fiction"), "Anti-utopy", "21938432", new Publisher(1, "World Books"), "1953-10-05", 30.22, this.browsingGenres, "book-image.png"),
-    new Book(5, "1983", new Author(1, "Orwell"), new Category(1, "Fiction"), "Anti-utopy", "21938432", new Publisher(1, "World Books"), "1953-10-05", 30.22, this.browsingGenres, "book-image.png"),
-  ];
+    // Проходимося по всіх фільтрах і додаємо їх у параметри запиту
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) {
+        if (Array.isArray(value)) {
+          // Якщо це масив (наприклад, декілька жанрів), додаємо кожен окремо
+          value.forEach(item => {
+            params = params.append(key, item);
+          });
+        } else {
+          params = params.set(key, value);
+        }
+      }
+    });
 
-  getBooks(): Book[] {
-    return this.popularBooks;
+    return this.http.get<PageResponse<Book>>(this.baseUrl, { params });
   }
-
-  getBookById(id: number): Book | undefined {
-    return this.popularBooks.find(book => book.id === id);
+  
+  // Метод для отримання однієї книги (деталі)
+  getBookById(id: number): Observable<Book> {
+    return this.http.get<Book>(`${this.baseUrl}/${id}`);
   }
 }

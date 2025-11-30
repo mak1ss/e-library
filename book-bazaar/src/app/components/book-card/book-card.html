@@ -3,7 +3,7 @@
         <mat-card appearance="outlined" class="hover-shadow flex flex-col h-full max-w-80 min-w-60"> <!-- make card a column flex container -->
             <div class="flex items-center m-8 justify-center overflow-hidden rounded-lg">
                 <img class="object-cover object-center max-w-full" mat-card-xl-image
-                    src="{{ book().image || 'assets/default-book-cover.jpg' }}" alt="{{ book().title }} cover" />
+                    src="{{ book().imageUrl || 'assets/default.png' }}" alt="{{ book().title }} cover" />
             </div>
             <mat-card-title-group class="p-8 pt-0 pb-0 flex-1 min-w-0"> <!-- add min-w-0 here -->
                 <mat-card-title class="title truncate">{{ book().title }}</mat-card-title> <!-- add truncate -->

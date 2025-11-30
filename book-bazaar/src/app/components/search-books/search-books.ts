@@ -28,7 +28,9 @@ import { PublisherService } from '../../services/publisher/publisher-service';
 })
 export class SearchBooks {
 
-  popularBooks: Book[];
+  books = signal<Book[]>([]); 
+  totalBooks = signal<number>(0);
+  loading = signal<boolean>(false);
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -36,6 +38,7 @@ export class SearchBooks {
   private genreService = inject(GenreService);
   private categoryService = inject(CategoryService);
   private publisherService = inject(PublisherService);
+  private bookService = inject(BookService);
 
   query = '';
 
@@ -51,8 +54,7 @@ export class SearchBooks {
 
   filterOptions: Filter[] = [];
 
-  constructor(bookService: BookService) {
-    this.popularBooks = bookService.getBooks();
+  constructor() {
 
     this.filterOptions.push(
       {
@@ -87,20 +89,46 @@ export class SearchBooks {
   }
 
   ngOnInit(): void {
+    // Підписуємося на зміни параметрів URL
     this.route.queryParamMap.subscribe(params => {
+      this.loading.set(true);
+      
+      // 1. Оновлюємо форму пошуку
       this.query = params.get('query') ?? '';
-
       this.formGroup.patchValue({ search: this.query }, { emitEvent: false });
 
-      const filters: Record<string, string[]> = {};
+      // 2. Збираємо фільтри з URL
+      const filters: Record<string, any> = {};
+      
+      // Додаємо query (пошук по назві)
+      if (this.query) {
+        filters['query'] = this.query; // Переконайтеся, що бекенд очікує параметр 'query' або 'title'
+      }
 
+      // Додаємо інші фільтри з панелі
       this.filterOptions.forEach(f => {
-        const values = params.getAll(f.name) ?? [];
-        if (values.length) filters[f.name] = values;
+        const values = params.getAll(f.name); // getAll повертає масив
+        if (values && values.length > 0) {
+          filters[f.name] = values;
+        }
       });
 
-      this.selectedFilters.set(filters);
-    })
+      this.selectedFilters.set(filters as Record<string, string[]>);
+
+      // 3. Робимо реальний запит на бекенд
+      this.bookService.getBooks(filters, 0, 20).subscribe({
+        next: (response) => {
+          this.books.set(response.items); // Важливо: backend повертає 'items'
+          this.totalBooks.set(response.total);
+          this.loading.set(false);
+        },
+        error: (err) => {
+          console.error('Error fetching books:', err);
+          this.books.set([]);
+          this.loading.set(false);
+        }
+      });
+    });
   }
 
   protected search(): void {
