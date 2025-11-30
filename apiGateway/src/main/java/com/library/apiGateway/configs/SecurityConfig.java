@@ -24,6 +24,7 @@ public class SecurityConfig {
 
         // Public APIs
             "/book-service/api/books/**",
+            "/book-service/api/book/images/**",
             "/book-service/api/authors/**",
             "/book-service/api/publishers/**",
             "/book-service/api/genres/**",

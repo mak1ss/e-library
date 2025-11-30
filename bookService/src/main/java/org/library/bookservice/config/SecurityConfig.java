@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/books/**").permitAll()
                         .requestMatchers("/api/books/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/book/images/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/authors/**").permitAll()
                         .requestMatchers("/api/authors/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/publishers/**").permitAll()
