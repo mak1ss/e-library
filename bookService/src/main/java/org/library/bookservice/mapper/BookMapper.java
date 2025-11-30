@@ -1,6 +1,7 @@
 package org.library.bookservice.mapper;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.library.bookservice.dto.book.BookRequest;
 import org.library.bookservice.dto.book.BookResponse;
 import org.library.bookservice.model.Book;
@@ -9,6 +10,7 @@ import org.library.bookservice.service.AuthorService;
 import org.library.bookservice.service.CategoryService;
 import org.library.bookservice.service.GenreService;
 import org.library.bookservice.service.PublisherService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,18 +19,24 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BookMapper implements Mapper<Book, BookResponse, BookRequest> {
 
-    private AuthorService authorService;
-    private CategoryService categoryService;
-    private PublisherService publisherService;
-    private GenreService genreService;
+    private final AuthorService authorService;
+    private final CategoryService categoryService;
+    private final PublisherService publisherService;
+    private final GenreService genreService;
 
-    private AuthorMapper authorMapper;
-    private CategoryMapper categoryMapper;
-    private PublisherMapper publisherMapper;
-    private GenreMapper genreMapper;
+    private final AuthorMapper authorMapper;
+    private final CategoryMapper categoryMapper;
+    private final PublisherMapper publisherMapper;
+    private final GenreMapper genreMapper;
+
+    @Value("${data.book.images.url-host}")
+    private String imagesHost;
+
+    @Value("${data.book.images.path}")
+    private String imagesPath;
 
     @Override
     public Book requestToEntity(BookRequest request, Optional<Integer> id) {
@@ -71,6 +79,7 @@ public class BookMapper implements Mapper<Book, BookResponse, BookRequest> {
                 .releaseDate(entity.getReleaseDate())
                 .price(entity.getPrice())
                 .bookGenres(genreMapper.entitiesToListResponse(entity.getGenres()))
+                .imageUrl(buildImageUrl(entity.getImageKey()))
                 .build();
 
     }
@@ -78,5 +87,9 @@ public class BookMapper implements Mapper<Book, BookResponse, BookRequest> {
     @Override
     public List<BookResponse> entitiesToListResponse(Collection<Book> entityList) {
         return entityList.stream().map(this::entityToResponse).toList();
+    }
+
+    private String buildImageUrl(String key) {
+        return imagesHost + imagesPath + key;
     }
 }

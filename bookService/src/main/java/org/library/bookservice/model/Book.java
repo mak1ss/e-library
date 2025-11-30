@@ -51,6 +51,9 @@ public class Book implements Identifiable, Archivable {
     )
     private List<Genre> genres = new ArrayList<>();
 
+    @Column(name = "image_key")
+    private String imageKey;
+
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private boolean archived;
 }

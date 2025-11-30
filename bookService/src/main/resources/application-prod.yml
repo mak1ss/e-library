@@ -22,3 +22,10 @@ gateway:
   url: http://api-gateway:9000
 review-service:
   url: http://review-service:8081
+
+data:
+  book:
+    images: /app/data/book_images/
+    url-host: http://localhost:8080
+  seeding:
+    folder: /app/data/seeding/

@@ -27,5 +27,6 @@ public class BookResponse extends AbstractResponse {
     private PublisherResponse publisher;
     private LocalDate releaseDate;
     private BigDecimal price;
+    private String imageUrl;
     private List<GenreResponse> bookGenres;
 }
