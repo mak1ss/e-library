@@ -10,7 +10,8 @@ public class NameInEntitySpecificationBuilder<EntityType> implements Specificati
 
     public static final List<FilteringOperation> SUPPORTED_OPERATORS = List.of(
             FilteringOperation.EQUAL,
-            FilteringOperation.CONTAIN
+            FilteringOperation.CONTAIN,
+            FilteringOperation.IN
     );
 
     @Override

@@ -23,24 +23,48 @@ export class BookService {
       .set('pageIndex', page)
       .set('pageSize', size);
 
-    // Проходимося по всіх фільтрах і додаємо їх у параметри запиту
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value) {
-        if (Array.isArray(value)) {
-          // Якщо це масив (наприклад, декілька жанрів), додаємо кожен окремо
-          value.forEach(item => {
-            params = params.append(key, item);
-          });
-        } else {
-          params = params.set(key, value);
-        }
-      }
-    });
+    const searchCriteria: string[] = [];
 
+    if (filters['query']) {
+      searchCriteria.push(`title:${filters['query']}`);
+    }
+
+    if (filters['genre'] && filters['genre'].length > 0) {
+      const genresStr = Array.isArray(filters['genre'])
+        ? filters['genre'].join('||')
+        : filters['genre'];
+      searchCriteria.push(`genres_=${genresStr}`);
+    }
+
+    if (filters['author'] && filters['author'].length > 0) {
+      const authorsStr = Array.isArray(filters['author'])
+        ? filters['author'].join('||')
+        : filters['author'];
+      searchCriteria.push(`author_=${authorsStr}`);
+    }
+
+    if (filters['category'] && filters['category'].length > 0) {
+      const catStr = Array.isArray(filters['category'])
+        ? filters['category'].join('||')
+        : filters['category'];
+      searchCriteria.push(`category_=${catStr}`);
+    }
+
+    if (filters['publisher'] && filters['publisher'].length > 0) {
+      const pubStr = Array.isArray(filters['publisher'])
+        ? filters['publisher'].join('||')
+        : filters['publisher'];
+      searchCriteria.push(`publisher_=${pubStr}`);
+    }
+
+    if (searchCriteria.length > 0) {
+      params = params.set('search', searchCriteria.join(','));
+    }
+
+    console.log('Generated Params:', params.toString()); // Для дебагу
     return this.http.get<PageResponse<Book>>(this.baseUrl, { params });
   }
-  
-  // Метод для отримання однієї книги (деталі)
+
   getBookById(id: number): Observable<Book> {
     return this.http.get<Book>(`${this.baseUrl}/${id}`);
   }

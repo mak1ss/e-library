@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatFormField } from '@angular/material/input';
 import { MatInput } from '@angular/material/input';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -26,24 +26,23 @@ import { GenreService } from '../../services/genre/genre-service';
 })
 export class Home {
   protected router = inject(Router);
-
+  protected bookService = inject(BookService);
+  protected genreService = inject(GenreService);
   protected formGroup: FormGroup = new FormGroup(
     {
       search: new FormControl('')
     }
   );
 
-  protected browsingGenres: Genre[];
+  protected browsingGenres = signal<Genre[]>([]);
 
-  popularBooks: Book[] = [];
+  protected popularBooks = signal<Book[]>([]);
 
-  constructor(
-    bookService: BookService,
-    genreService: GenreService
-  ) {
-    bookService.getBooks({}, 0, 5)
-      .subscribe(page => this.popularBooks = page.items);
-    this.browsingGenres = genreService.getGenres().slice(0, 4);
+  ngOnInit() {
+    this.bookService.getBooks({}, 0, 5)
+      .subscribe(page => this.popularBooks.set(page.items));
+    this.genreService.getGenres(0, 5)
+      .subscribe(page => this.browsingGenres.set(page.items));
   }
 
   protected search() {

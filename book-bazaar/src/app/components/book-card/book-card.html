@@ -1,22 +1,45 @@
-<a routerLink="/book-details/{{book().id}}" class="block">
-    <div class="w-full"> <!-- changed from w-75 to w-full so tailwind sizing won't force overflow -->
-        <mat-card appearance="outlined" class="hover-shadow flex flex-col h-full max-w-80 min-w-60"> <!-- make card a column flex container -->
-            <div class="flex items-center m-8 justify-center overflow-hidden rounded-lg">
-                <img class="object-cover object-center max-w-full" mat-card-xl-image
-                    src="{{ book().imageUrl || 'assets/default.png' }}" alt="{{ book().title }} cover" />
+<a [routerLink]="['/book-details', book().id]" class="block h-full no-underline text-inherit">
+    <div class="h-full">
+        <mat-card appearance="outlined" class="hover-shadow h-full flex flex-col w-72">
+            
+            <div class="p-6 flex justify-center items-center bg-gray-50 rounded-t-lg border-b border-gray-100">
+                <img class="book-cover-image"
+                    [src]="book().imageUrl || 'assets/default-book-cover.jpg'" 
+                    [alt]="book().title + ' cover'" />
             </div>
-            <mat-card-title-group class="p-8 pt-0 pb-0 flex-1 min-w-0"> <!-- add min-w-0 here -->
-                <mat-card-title class="title truncate">{{ book().title }}</mat-card-title> <!-- add truncate -->
-                <mat-card-subtitle class="subtitle truncate">{{ book().author?.name }}</mat-card-subtitle> <!-- add truncate -->
-            </mat-card-title-group>
-            <mat-chip-set class="pl-8 pb-8 pt-1">
-                @if(book().category) {    
-                <mat-chip class="category-chip">{{ book().category?.name }}</mat-chip>
-                }
-                @for (genre of book().genres || []; track genre.id) {
-                <mat-chip class="genre-chip">{{ genre.name }}</mat-chip>
-                }
-            </mat-chip-set>
+
+            <div class="flex flex-col flex-1 p-4">
+                <mat-card-title-group class="mb-2">
+                    <mat-card-title 
+                        class="title mb-1" 
+                        [matTooltip]="book().title || ''"
+                        matTooltipShowDelay="500">
+                        {{ book().title }}
+                    </mat-card-title>
+                    <mat-card-subtitle class="subtitle">
+                        {{ book().author?.name }}
+                    </mat-card-subtitle>
+                </mat-card-title-group>
+
+                <div class="mt-auto pt-2">
+                    <mat-chip-set>
+                        @if(book().category) {    
+                            <mat-chip 
+                                class="category-chip" 
+                                (click)="searchByCategory($event, book().category!)">
+                                {{ book().category?.name }}
+                            </mat-chip>
+                        }
+                        @for (genre of book().bookGenres; track genre.id) {
+                            <mat-chip 
+                                class="genre-chip" 
+                                (click)="searchByGenre($event, genre)">
+                                {{ genre.name }}
+                            </mat-chip>
+                        }
+                    </mat-chip-set>
+                </div>
+            </div>
         </mat-card>
     </div>
 </a>

@@ -1,24 +1,21 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Genre } from '../../model/genre';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { PageResponse } from '../../model/pageResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GenreService {
-  genres: Genre[] = [
-    new Genre(1, "Comedy"),
-    new Genre(2, "Romance"),
-    new Genre(3, "Adventure"),
-    new Genre(4, "Business"),
-    new Genre(5, "Science Fiction"),
-    new Genre(6, "Fantasy"),
-    new Genre(7, "Horror"),
-    new Genre(8, "Thriller"),
-    new Genre(9, "Non-Fiction"),
-    new Genre(10, "Biography"),
-  ];
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:9000/book-service/api/genres';
 
-  getGenres(): Genre[] {
-    return this.genres;
+  getGenres(page: number = 0, size: number = 10): Observable<PageResponse<Genre>> {
+    let params = new HttpParams()
+      .set('pageIndex', page)
+      .set('pageSize', size);
+
+    return this.http.get<PageResponse<Genre>>(this.apiUrl, { params });
   }
 }

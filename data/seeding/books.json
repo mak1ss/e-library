@@ -187,7 +187,7 @@
     "price": 25.00,
     "imageKey": "game_of_thrones.jpg",
     "category": "Fiction",
-    "publisher": "Bantam Books",
+    "publisher": "Celadon Books",
     "author": "George R.R. Martin",
     "genres": ["Fantasy", "Adventure"]
   },
@@ -223,7 +223,7 @@
     "price": 15.99,
     "imageKey": "fahrenheit_451.jpg",
     "category": "Fiction",
-    "publisher": "Simon & Schuster",
+    "publisher": "Random House",
     "author": "Ray Bradbury",
     "genres": ["Dystopian", "Science Fiction"]
   },
@@ -235,7 +235,7 @@
     "price": 14.00,
     "imageKey": "gone_girl.jpg",
     "category": "Fiction",
-    "publisher": "Crown Publishing Group",
+    "publisher": "Random House",
     "author": "Gillian Flynn",
     "genres": ["Thriller", "Mystery"]
   },
@@ -247,7 +247,7 @@
     "price": 20.00,
     "imageKey": "thinking_fast.jpg",
     "category": "Non-Fiction",
-    "publisher": "Farrar, Straus and Giroux",
+    "publisher": "Little, Brown and Company",
     "author": "Daniel Kahneman",
     "genres": ["Psychology", "Education"]
   },
@@ -259,7 +259,7 @@
     "price": 30.00,
     "imageKey": "steve_jobs.jpg",
     "category": "Biography",
-    "publisher": "Simon & Schuster",
+    "publisher": "Random House",
     "author": "Walter Isaacson",
     "genres": ["Education", "Technical"]
   },
@@ -283,7 +283,7 @@
     "price": 14.50,
     "imageKey": "brave_new_world.jpg",
     "category": "Fiction",
-    "publisher": "Chatto & Windus",
+    "publisher": "J. B. Lippincott & Co.",
     "author": "Aldous Huxley",
     "genres": ["Dystopian", "Science Fiction"]
   },

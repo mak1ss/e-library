@@ -14,7 +14,7 @@ export class Book {
     public publisher?: Publisher,
     public releaseDate?: string,
     public price?: number,
-    public genres?: Genre[],
+    public bookGenres?: Genre[],
     public imageUrl?: string,
   ) {
   }
@@ -30,7 +30,7 @@ export class Book {
       book.publisher,
       book.releaseDate,
       book.price,
-      book.genres,
+      book.bookGenres,
       book.imageUrl,
     );
   }

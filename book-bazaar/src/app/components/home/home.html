@@ -1,7 +1,7 @@
 <section class="text-book-gray">
   <div class="h-96 flex pl-24 pr-24 items-center b-bottom bg-gradient-to-r from-secondary-trans to-primary-trans">
     <div class="text-wrap w-1/2">
-      <h1 class="text-5xl font-bold mb-6">Discover Your Next Great Read</h1>
+      <h1 class="text-5xl font-bold mb-6 font-serif">Discover Your Next Great Read</h1>
       <p class="text-xl text-book-gray mb-8">Explore thousands of books, read reviews, and connect with fellow book
         lovers in our digital library.</p>
       <div class="max-w-md">
@@ -15,9 +15,9 @@
     <div></div>
   </div>
   <section class="p-20 flex flex-col items-center justify-center border-t-1 border-gray">
-    <h2 class="mb-15 text-4xl font-bold">Browse by Categories</h2>
+    <h2 class="mb-15 text-4xl font-bold font-serif">Browse by Categories</h2>
     <div class="mt-10 w-full flex pl-24 pr-24 items-center justify-center">
-      @for (genre of browsingGenres; track $index) {
+      @for (genre of browsingGenres(); track $index) {
         <button matRipple class="flex items-center justify-center text-center grow-1 h-24 w-24 hover:bg-secondary"
              (click)="searchByGenre(genre)">
           <p class="flex text-xl font-medium">{{ genre.name }}</p>
@@ -27,11 +27,11 @@
   </section>
   <section class="p-20 bg-secondary-trans">
     <div class="flex justify-between items-center mb-12">
-      <h2 class="text-3xl font-bold">Popular this week</h2>
+      <h2 class="text-3xl font-bold font-serif">Popular this week</h2>
       <button matButton="text" class="font-medium" (click)="this.router.navigate(['/search'])">View all</button>
     </div>
-    <div class="flex flex-wrap gap-8">
-      @for (book of popularBooks; track $index) {
+    <div class="flex flex-wrap gap-8 justify-center">
+      @for (book of popularBooks(); track $index) {
         <app-book-card [book]="book"></app-book-card>
       }
     </div>

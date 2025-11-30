@@ -1,19 +1,20 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Publisher } from '../../model/publisher';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { PageResponse } from '../../model/pageResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PublisherService {
-  publishers: Publisher[] = [
-    new Publisher(1, "Penguin Random House"),
-    new Publisher(2, "HarperCollins"),
-    new Publisher(3, "Simon & Schuster"),
-    new Publisher(4, "Hachette Book Group"),
-    new Publisher(5, "Macmillan Publishers"),
-  ]
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:9000/book-service/api/publishers';
 
-  getPublishers(): Publisher[] {
-    return this.publishers;
+  getPublishers(page: number = 0, size: number = 10): Observable<PageResponse<Publisher>> {
+    let params = new HttpParams()
+      .set('pageIndex', page)
+      .set('pageSize', size);
+    return this.http.get<PageResponse<Publisher>>(this.apiUrl, { params });
   }
 }

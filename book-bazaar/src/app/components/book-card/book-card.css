@@ -1,14 +1,41 @@
 @import 'tailwindcss';
+
+.book-cover-image {
+  height: 240px;       
+  width: auto;         
+  max-width: 100%;     
+  object-fit: contain; 
+  margin: 0 auto;      
+  display: block;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
 .genre-chip {
   background-color: var(--color-blue-100) !important;
+  cursor: pointer !important;
+}
+
+.genre-chip:hover {
+  background-color: var(--color-blue-200) !important;
 }
 
 .category-chip {
   background-color: var(--color-indigo-200) !important;
+  cursor: pointer !important;
+}
+
+.category-chip:hover {
+  background-color: var(--color-indigo-300) !important;
+}
+
+.genre-chip, .category-chip {
+  cursor: pointer !important;
+  user-select: none !important;      /* Блокує виділення тексту */
+  -webkit-user-select: none !important; /* Для Safari */
 }
 
 .hover-shadow {
-    @apply hover:shadow-lg
+    @apply hover:shadow-lg transition-shadow duration-300;
 }
 
 /* NEW: make flex child shrinkable and ensure subtitle also ellipses */
@@ -20,7 +47,9 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-sizing: border-box;
 }
+
 
 /* allow title container to shrink inside flex parents */
 .mat-card-title-group {
@@ -28,11 +57,8 @@
   overflow: hidden;
 }
 
-/* ensure ellipsis works */
 .mat-card-title,
-.title,
-.mat-card-subtitle,
-.subtitle {
+.mat-card-subtitle {
   display: block;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
@@ -42,7 +68,7 @@
 
 .subtitle {
     color: var(--color-neutral-500);
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
 }
 
 /* ensure image cannot stretch the card horizontally */

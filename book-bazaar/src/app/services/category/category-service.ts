@@ -1,19 +1,21 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Category } from '../../model/category';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { PageResponse } from '../../model/pageResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
-  categories: Category[] = [
-    new Category(1, "Fiction", "Fictional works including novels and short stories."),
-    new Category(2, "Non-Fiction", "Informative and factual books."),
-    new Category(3, "Science Fiction", "Books exploring futuristic concepts and advanced technology."),
-    new Category(4, "Biography", "Life stories of notable individuals."),
-    new Category(5, "Fantasy", "Books featuring magical and supernatural elements."),
-  ];
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:9000/book-service/api/categories';
 
-  getCategories(): Category[] {
-    return this.categories;
+  getCategories(page: number = 0, size: number = 10): Observable<PageResponse<Category>> {
+    let params = new HttpParams()
+      .set('pageIndex', page)
+      .set('pageSize', size);
+
+    return this.http.get<PageResponse<Category>>(this.apiUrl, { params });
   }
 }

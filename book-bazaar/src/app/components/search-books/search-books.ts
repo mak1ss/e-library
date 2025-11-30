@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormField, MatInput } from '@angular/material/input';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { FilterPanel } from '../filter-panel/filter-panel';
 import { Book } from '../../model/book';
 import { Filter } from '../../utils/filter';
@@ -12,6 +13,12 @@ import { AuthorService } from '../../services/author/author-service';
 import { GenreService } from '../../services/genre/genre-service';
 import { CategoryService } from '../../services/category/category-service';
 import { PublisherService } from '../../services/publisher/publisher-service';
+import { combineLatest, forkJoin, map, Observable } from 'rxjs';
+import { Category } from '../../model/category';
+import { Author } from '../../model/author';
+import { Genre } from '../../model/genre';
+import { Publisher } from '../../model/publisher';
+import { PAGE_UP } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-search-books',
@@ -21,16 +28,19 @@ import { PublisherService } from '../../services/publisher/publisher-service';
     MatInput,
     MatButton,
     FilterPanel,
-    BookCard
+    BookCard,
+    MatPaginatorModule
   ],
   templateUrl: './search-books.html',
   styleUrl: './search-books.css',
 })
 export class SearchBooks {
 
-  books = signal<Book[]>([]); 
+  books = signal<Book[]>([]);
   totalBooks = signal<number>(0);
   loading = signal<boolean>(false);
+  pageIndex = signal<number>(0);
+  pageSize = signal<number>(20);
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -52,83 +62,99 @@ export class SearchBooks {
     console.log(this.selectedFilters());
   });
 
-  filterOptions: Filter[] = [];
-
-  constructor() {
-
-    this.filterOptions.push(
-      {
-        name: 'author',
-        label: 'Author',
-        options: this.authorService.getAuthors().map(a => a.name),
-        defaultVisibleCount: 4,
-        expanded: false
-      } as Filter,
-      {
-        name: 'genre',
-        label: 'Genre',
-        options: this.genreService.getGenres().map(g => g.name),
-        defaultVisibleCount: 4,
-        expanded: false
-      } as Filter,
-      {
-        name: 'category',
-        label: 'Category',
-        options: this.categoryService.getCategories().map(c => c.name),
-        defaultVisibleCount: 4,
-        expanded: false
-      } as Filter,
-      {
-        name: 'publisher',
-        label: 'Publisher',
-        options: this.publisherService.getPublishers().map(p => p.name),
-        defaultVisibleCount: 4,
-        expanded: false
-      } as Filter
-    );
-  }
+  filterOptions = signal<Filter[]>([]);
 
   ngOnInit(): void {
-    // Підписуємося на зміни параметрів URL
-    this.route.queryParamMap.subscribe(params => {
-      this.loading.set(true);
-      
-      // 1. Оновлюємо форму пошуку
-      this.query = params.get('query') ?? '';
-      this.formGroup.patchValue({ search: this.query }, { emitEvent: false });
+    const filters$ = this.loadFilters();
+    
+    const params$ = this.route.queryParamMap;
 
-      // 2. Збираємо фільтри з URL
-      const filters: Record<string, any> = {};
-      
-      // Додаємо query (пошук по назві)
-      if (this.query) {
-        filters['query'] = this.query; // Переконайтеся, що бекенд очікує параметр 'query' або 'title'
-      }
+    combineLatest([filters$, params$]).subscribe({
+      next: ([filters, params]) => {
+        this.filterOptions.set(filters);
+        this.loading.set(true);
 
-      // Додаємо інші фільтри з панелі
-      this.filterOptions.forEach(f => {
-        const values = params.getAll(f.name); // getAll повертає масив
-        if (values && values.length > 0) {
-          filters[f.name] = values;
+        const page = Number(params.get('page') ?? 0);
+        const size = Number(params.get('size') ?? 20);
+        
+        this.pageIndex.set(page);
+        this.pageSize.set(size);
+
+        this.query = params.get('query') ?? '';
+        this.formGroup.patchValue({ search: this.query }, { emitEvent: false });
+
+        const activeFilters: Record<string, any> = {};
+
+        if (this.query) {
+          activeFilters['query'] = this.query;
         }
-      });
 
-      this.selectedFilters.set(filters as Record<string, string[]>);
+        filters.forEach(f => {
+          const values = params.getAll(f.name);
+          if (values && values.length > 0) {
+            activeFilters[f.name] = values;
+          }
+        });
 
-      // 3. Робимо реальний запит на бекенд
-      this.bookService.getBooks(filters, 0, 20).subscribe({
-        next: (response) => {
-          this.books.set(response.items); // Важливо: backend повертає 'items'
-          this.totalBooks.set(response.total);
-          this.loading.set(false);
-        },
-        error: (err) => {
-          console.error('Error fetching books:', err);
-          this.books.set([]);
-          this.loading.set(false);
-        }
-      });
+        this.selectedFilters.set(activeFilters as Record<string, string[]>);
+
+        this.bookService.getBooks(activeFilters, page, size).subscribe({
+          next: (response) => {
+            this.books.set(response.items);
+            this.totalBooks.set(response.total);
+            this.loading.set(false);
+          },
+          error: (err) => {
+            console.error('Error fetching books:', err);
+            this.books.set([]);
+            this.loading.set(false);
+          }
+        });
+      },
+      error: (err: any) => console.error('Error initializing search page:', err)
     });
+  }
+
+  private loadFilters(): Observable<Filter[]> {
+    return forkJoin({
+      authors: this.authorService.getAuthors(0, 20),
+      genres: this.genreService.getGenres(0, 20),
+      categories: this.categoryService.getCategories(0, 20),
+      publishers: this.publisherService.getPublishers(0, 20)
+    }).pipe(
+      map((res: { authors: { items: any; }; genres: { items: any; }; categories: { items: any; }; publishers: { items: any; }; }) => {
+        return [
+          {
+            name: 'author',
+            label: 'Author',
+            options: (res.authors.items || []).map((a: Author) => a.name || ''),
+            defaultVisibleCount: 4, 
+            expanded: false
+          },
+          {
+            name: 'genre',
+            label: 'Genre',
+            options: (res.genres.items || []).map((g: Genre) => g.name || ''),
+            defaultVisibleCount: 4,
+            expanded: false
+          },
+          {
+            name: 'category',
+            label: 'Category',
+            options: (res.categories.items || []).map((c: Category) => c.name || ''),
+            defaultVisibleCount: 4,
+            expanded: false
+          },
+          {
+            name: 'publisher',
+            label: 'Publisher',
+            options: (res.publishers.items || []).map((p: Publisher) => p.name || ''),
+            defaultVisibleCount: 4,
+            expanded: false
+          }
+        ];
+      })
+    );
   }
 
   protected search(): void {
@@ -150,8 +176,10 @@ export class SearchBooks {
       else qp[k] = null; // remove empty params
     });
 
+    qp['page'] = 0;
+    
     console.log('Navigating with query params:', output, qp);
-
+    
     if (this.query) qp['query'] = this.query;
     // merge with existing query params (and remove empty ones)
     this.router.navigate([], {
@@ -159,5 +187,25 @@ export class SearchBooks {
       queryParams: qp,
       queryParamsHandling: 'replace'
     });
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { 
+        page: event.pageIndex, 
+        size: event.pageSize 
+      },
+      queryParamsHandling: 'merge'
+    }).then(() => {
+      this.scrollToResults();
+    });
+  }
+
+  private scrollToResults(): void {
+    const element = document.getElementById('search');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
   }
 }
