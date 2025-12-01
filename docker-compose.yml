@@ -155,6 +155,15 @@ services:
       - ./infrastructure/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
     networks:
       - e-library-network
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - e-library-network
 networks: 
   e-library-network:
 volumes:
