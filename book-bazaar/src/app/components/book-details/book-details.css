@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+
+/* Goodreads style fonts */
+.font-serif {
+    font-family: "Merriweather", "Georgia", serif;
+}
+
+/* Імітація посилань на жанри */
+.genre-link {
+    /* Використовуємо @apply для стандартних утиліт */
+    @apply px-3 py-1 text-sm border-b-2 border-transparent cursor-pointer transition-colors;
+    
+    /* Використовуємо CSS-змінні для кастомних кольорів */
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+.genre-link:hover {
+    /* Змінюємо колір бордера при ховері через змінну */
+    border-color: var(--color-primary);
+}
+
+/* Прибираємо дефолтні стилі кнопок для зірок */
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+/* Тінь для книги */
+.book-cover-container {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+/* Збільшуємо розмір іконок Material */
+.mat-icon {
+    height: auto;
+    width: auto;
+    font-size: 24px; 
+}

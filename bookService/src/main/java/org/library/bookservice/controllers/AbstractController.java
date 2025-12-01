@@ -74,7 +74,7 @@ public abstract class AbstractController<T extends Identifiable & Archivable, Re
 
         return ResponseEntity.ok(PageResponse.<ResponseType>builder()
                 .size(pageResult.getSize())
-                .total(pageResult.getTotalPages())
+                .total(pageResult.getTotalElements())
                 .pageNumber(pageResult.getNumber())
                 .items(getMapper().entitiesToListResponse(pageResult.getContent()))
                 .build());

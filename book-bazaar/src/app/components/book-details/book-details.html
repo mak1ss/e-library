@@ -1,1 +1,137 @@
-<p>book-details works!</p>
+@if (loading()) {
+  <div class="flex justify-center items-center h-[80vh]">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+} @else if (book(); as book) {
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+      
+      <div class="md:col-span-4 lg:col-span-3">
+        <div class="sticky top-24">
+          <div class="rounded-r-lg shadow-xl overflow-hidden mb-6 book-cover-container">
+            <img [src]="book.imageUrl || 'assets/default-book-cover.jpg'" 
+                 [alt]="book.title" 
+                 class="w-full h-auto object-cover">
+          </div>
+          
+          <div class="flex flex-col gap-3 items-center">
+             <div class="text-2xl font-bold text-book-dark-gray">
+                {{ book.price | currency:'USD' }}
+             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-8 lg:col-span-9 text-book-gray">
+        
+        <h1 class="text-4xl md:text-5xl font-bold text-book-dark-gray font-serif mb-2">
+          {{ book.title }}
+        </h1>
+        
+        <div class="text-xl mb-4">
+          <span class="text-gray-500">by</span> 
+          <a class="text-book-dark-gray font-bold hover:underline cursor-pointer ml-1">
+            {{ book.author?.name }}
+          </a>
+        </div>
+
+        <div class="flex items-center gap-4 mb-6">
+          <div class="flex text-yellow-500">
+             <mat-icon>star</mat-icon>
+             <mat-icon>star</mat-icon>
+             <mat-icon>star</mat-icon>
+             <mat-icon>star</mat-icon>
+             <mat-icon>star_half</mat-icon>
+          </div>
+          <div class="text-sm">
+            <span class="font-bold text-book-dark-gray">{{ rating }}</span>
+            <span class="mx-1">•</span>
+            <span>{{ totalRatings }} ratings</span>
+          </div>
+        </div>
+
+        <div class="prose max-w-none text-lg leading-relaxed mb-8">
+          <p>{{ book.description }}</p>
+        </div>
+
+        <div class="mb-8">
+          <div class="flex flex-wrap gap-2">
+            @for (genre of book.bookGenres; track genre.id) {
+              <a class="genre-link">{{ genre.name }}</a>
+            }
+          </div>
+        </div>
+
+        <mat-divider class="mb-8"></mat-divider>
+
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-book-dark-gray mb-4">About the author</h3>
+          <div class="flex gap-4 items-start">
+            <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden shrink-0">
+               <img src="assets/author-placeholder.jpg" class="w-full h-full object-cover" alt="Author">
+            </div>
+            <div>
+              <div class="font-bold text-lg mb-1">{{ book.author?.name }}</div>
+              <p class="text-sm text-gray-600 line-clamp-3">{{ book.author?.bio || 'No biography available.' }}</p>
+            </div>
+          </div>
+        </div>
+
+        <mat-divider class="mb-8"></mat-divider>
+
+        <div class="mb-10">
+          <h3 class="text-xl font-bold text-book-dark-gray mb-4">Book Details</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-4 gap-x-8 text-sm">
+            
+            <div>
+              <div class="font-medium text-book-dark-gray">Publisher</div>
+              <div>{{ book.publisher?.name }}</div>
+            </div>
+
+            <div>
+              <div class="font-medium text-book-dark-gray">ISBN</div>
+              <div>{{ book.isbn }}</div>
+            </div>
+
+            <div>
+              <div class="font-medium text-book-dark-gray">Published</div>
+              <div>{{ book.releaseDate | date:'longDate' }}</div>
+            </div>
+
+             </div>
+        </div>
+
+        <div class="bg-gray-50 p-8 rounded-lg border border-gray-100 text-center">
+            <h3 class="text-2xl font-bold text-book-dark-gray mb-1">Ratings & Reviews</h3>
+            
+            <div class="mt-6 mb-2">
+                <div class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center mb-4">
+                     <mat-icon class="scale-150 text-gray-400">person</mat-icon>
+                </div>
+                <h4 class="text-xl font-serif text-book-dark-gray mb-2">What do you think?</h4>
+                
+                <div class="flex justify-center gap-1 mb-6" (mouseleave)="clearHoverRating()">
+                    @for (star of [1,2,3,4,5]; track star) {
+                        <button class="icon-btn transition-transform hover:scale-110" 
+                                (mouseenter)="setHoverRating(star)"
+                                (click)="setRating(star)">
+                            <mat-icon class="!w-8 !h-8 !text-3xl" 
+                                [class.text-yellow-400]="star <= (hoverRating() || userRating())"
+                                [class.text-gray-300]="star > (hoverRating() || userRating())">
+                                {{ star <= (hoverRating() || userRating()) ? 'star' : 'star_border' }}
+                            </mat-icon>
+                        </button>
+                    }
+                </div>
+
+                <button mat-flat-button color="primary" class="w-full sm:w-auto px-8 py-6 text-lg" (click)="writeReview()">
+                    Write a Review
+                </button>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+}

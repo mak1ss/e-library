@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, effect, input, output, signal, SimpleChange, SimpleChanges } from '@angular/core';
 import {Filter} from '../../utils/filter';
 import {NgIf} from '@angular/common';
 import {MatCheckbox} from '@angular/material/checkbox';
-import {MatRipple} from '@angular/material/core';
 import {MatButton} from '@angular/material/button';
 
 @Component({
@@ -16,24 +15,23 @@ import {MatButton} from '@angular/material/button';
   styleUrl: './filter-panel.css',
 })
 export class FilterPanel {
-  filters: Filter[] = [
-    {
-      name: 'authors',
-      label: 'Authors',
-      options: ['Rowling', 'Tolkien', 'Gaiman', 'Orwell', 'Murakami', 'Austen', 'King'],
-      defaultVisibleCount: 4,
-      expanded: false,
-    },
-    {
-      name: 'genres',
-      label: 'Genres',
-      options: ['Фантастика', 'Детектив', 'Роман', 'Фентезі', 'Трилер', 'Драма'],
-      defaultVisibleCount: 3,
-      expanded: false,
-    },
-  ];
 
-  selected: Record<string, string[]> = {};
+  filters = input.required<Filter[]>();
+
+  currentSelected = signal<Record<string, string[]>>({});
+
+  selectedFilters = input<Record<string, string[]>>({});
+
+  changed = output<Record<string, string[]>>();
+
+  constructor() {
+    effect(() => {
+      if (this.selectedFilters) {
+        const incoming = this.selectedFilters ?? {};
+        this.currentSelected.set(incoming());
+      }
+    })
+  }
 
   visibleOptions(filter: Filter): string[] {
     return filter.expanded
@@ -42,25 +40,34 @@ export class FilterPanel {
   }
 
   toggleOption(filterName: string, option: string) {
-    const selected = this.selected[filterName] ?? [];
+    const selected = this.currentSelected()[filterName] ?? [];
 
     if (selected.includes(option)) {
-      this.selected[filterName] = selected.filter(o => o !== option);
+      this.currentSelected.update(filters => ({
+        ...filters,
+        [filterName]: selected.filter(o => o !== option)
+      }));
     } else {
-      this.selected[filterName] = [...selected, option];
+      this.currentSelected.update(filters => ({
+        ...filters,
+        [filterName]: [...selected, option]
+      }));
     }
+
+    this.changed.emit(this.currentSelected());
   }
 
   toggleExpanded(filterName: string) {
-    const filter = this.filters.find(f => f.name === filterName);
+    const filter = this.filters().find(f => f.name === filterName);
     if (filter) filter.expanded = !filter.expanded;
   }
 
   isSelected(filterName: string, option: string): boolean {
-    return this.selected[filterName]?.includes(option) ?? false;
+    return this.currentSelected()[filterName]?.includes(option) ?? false;
   }
 
   clearFilters(): void {
-    this.selected = {};
+    this.currentSelected.set({});
+    this.changed.emit({});
   }
 }

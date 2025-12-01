@@ -1,35 +1,32 @@
-<div class="flex flex-col gap-6 p-4 rounded-2xl shadow-md text-book-gray">
-  <div class="flex justify-between items-center mb-6">
-    <h3 class="text-2xl text-book-dark-gray">Filters</h3>
-    <button matButton (click)="clearFilters()">Clear all</button>
+<div class="flex flex-col gap-6 text-book-gray w-full"> 
+  
+  <div class="flex justify-between items-center mb-2"> <h3 class="text-2xl text-book-dark-gray font-bold font-serif">Filters</h3>
+    <button matButton color="primary" (click)="clearFilters()">Clear all</button>
   </div>
-  @for (filter of filters; track filter.name) {
-    <div class="flex flex-col">
-      <h3 class="text-lg mb-2 text-dark">{{ filter.label }}</h3>
 
-      <div class="flex flex-col gap-1 h-full max-h-70 overflow-y-auto">
+  @for (filter of filters(); track filter.name) {
+    <div class="flex flex-col border-b border-gray-100 pb-4 last:border-0"> <h3 class="text-lg font-medium mb-3 text-dark">{{ filter.label }}</h3>
+
+      <div class="flex flex-col gap-2">
         @for (option of visibleOptions(filter); track option) {
-          <label class="flex items-center gap-2 cursor-pointer">
+          <label class="flex items-center gap-2 cursor-pointer hover:text-primary transition-colors">
             <mat-checkbox
-              type="checkbox"
-              class="accent-primary"
+              color="primary"
               [checked]="isSelected(filter.name, option)"
               (change)="toggleOption(filter.name, option)"
-            />
-            <span>{{ option }}</span>
+            >
+              <span class="text-base">{{ option }}</span>
+            </mat-checkbox>
           </label>
         }
       </div>
 
-      @if (filter.options.length > filter.defaultVisibleCount) {
-      }
-
       <button
         *ngIf="filter.options.length > filter.defaultVisibleCount"
-        class="text-sm text-primary hover:underline mt-2 self-start"
+        class="text-sm text-primary font-medium hover:underline mt-2 self-start"
         (click)="toggleExpanded(filter.name)"
       >
-        {{ filter.expanded ? 'Показати менше' : 'Показати більше' }}
+        {{ filter.expanded ? 'Show less' : 'Show all' }}
       </button>
     </div>
   }
