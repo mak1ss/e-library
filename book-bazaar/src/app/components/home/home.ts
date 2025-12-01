@@ -41,7 +41,7 @@ export class Home {
   ngOnInit() {
     this.bookService.getBooks({}, 0, 5)
       .subscribe(page => this.popularBooks.set(page.items));
-    this.genreService.getGenres(0, 5)
+    this.genreService.getGenres(0, 6)
       .subscribe(page => this.browsingGenres.set(page.items));
   }
 

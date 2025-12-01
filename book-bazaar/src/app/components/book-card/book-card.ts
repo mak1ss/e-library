@@ -6,10 +6,11 @@ import { MatChipSet, MatChip } from "@angular/material/chips";
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Category } from '../../model/category';
 import { Genre } from '../../model/genre';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-book-card',
-  imports: [MatCard, RouterModule, MatCardTitleGroup, MatCardTitle, MatCardSubtitle, MatChipSet, MatChip, MatTooltipModule],
+  imports: [MatCard, RouterModule, MatCardTitleGroup, MatCardTitle, MatCardSubtitle, MatChipSet, MatChip, MatTooltipModule, CurrencyPipe],
   templateUrl: './book-card.html',
   styleUrl: './book-card.css',
 })
