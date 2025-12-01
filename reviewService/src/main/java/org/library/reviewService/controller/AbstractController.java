@@ -36,7 +36,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Slf4j
-@SecurityRequirement(name = "passwordFlow")
+@SecurityRequirement(name = "standardFlow")
 @SecurityRequirement(name = "clientCredentialsFlow")
 public abstract class AbstractController<DocumentType extends Identifiable, RequestType extends AbstractRequest,
         ResponseType extends AbstractResponse> {

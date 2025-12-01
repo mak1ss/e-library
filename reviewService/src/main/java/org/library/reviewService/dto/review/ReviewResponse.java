@@ -16,6 +16,12 @@ public class ReviewResponse extends AbstractResponse {
 
     private String userId;
 
+    private String firstName;
+
+    private String lastName;
+
+    private String avatarUrl;
+
     private Integer bookId;
 
     private LocalDateTime createdAt;

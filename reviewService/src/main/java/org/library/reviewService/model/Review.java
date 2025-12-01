@@ -18,6 +18,12 @@ public class Review implements Identifiable, Archivable {
 
     private String userId;
 
+    private String firstName;
+
+    private String lastName;
+
+    private String avatarUrl;
+
     private Integer bookId;
 
     private LocalDateTime createdAt;
