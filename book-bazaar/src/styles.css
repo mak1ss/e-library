@@ -21,3 +21,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .font-serif {
     font-family: "Merriweather", "Georgia", serif;
 }
+
+/* Градієнт тексту */
+.text-transparent {
+  -webkit-text-fill-color: transparent;
+}
+
+/* Якщо використовуєте mat-button, переконайтесь що кольори правильні */
+.mat-mdc-flat-button.mat-primary {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+}

@@ -21,3 +21,13 @@
   scrollbar-width: thin;
   scrollbar-color: #e5e7eb transparent;
 }
+
+/* Зменшуємо відступи у чекбоксів, щоб вони виглядали компактніше */
+::ng-deep .mat-mdc-checkbox .mdc-form-field {
+    padding-right: 0 !important;
+}
+
+::ng-deep .mat-mdc-checkbox-touch-target {
+    width: 32px !important;
+    height: 32px !important;
+}

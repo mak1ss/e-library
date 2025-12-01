@@ -1,15 +1,17 @@
-import { Component, effect, input, output, signal, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, computed, effect, input, output, signal, SimpleChange, SimpleChanges } from '@angular/core';
 import {Filter} from '../../utils/filter';
 import {NgIf} from '@angular/common';
 import {MatCheckbox} from '@angular/material/checkbox';
 import {MatButton} from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-filter-panel',
   imports: [
     NgIf,
     MatCheckbox,
-    MatButton
+    MatButton,
+    MatIcon
   ],
   templateUrl: './filter-panel.html',
   styleUrl: './filter-panel.css',
@@ -24,6 +26,11 @@ export class FilterPanel {
 
   changed = output<Record<string, string[]>>();
 
+  hasSelectedFilters = computed(() => {
+    const selected = this.currentSelected();
+    return Object.values(selected).some(arr => arr && arr.length > 0);
+  });
+  
   constructor() {
     effect(() => {
       if (this.selectedFilters) {

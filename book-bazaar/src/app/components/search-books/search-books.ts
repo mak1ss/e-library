@@ -19,6 +19,8 @@ import { Author } from '../../model/author';
 import { Genre } from '../../model/genre';
 import { Publisher } from '../../model/publisher';
 import { PAGE_UP } from '@angular/cdk/keycodes';
+import { MatIcon } from "@angular/material/icon";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-search-books',
@@ -29,8 +31,10 @@ import { PAGE_UP } from '@angular/cdk/keycodes';
     MatButton,
     FilterPanel,
     BookCard,
-    MatPaginatorModule
-  ],
+    MatPaginatorModule,
+    MatIcon,
+    MatProgressSpinner
+],
   templateUrl: './search-books.html',
   styleUrl: './search-books.css',
 })
