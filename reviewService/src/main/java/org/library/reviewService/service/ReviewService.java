@@ -6,13 +6,17 @@ import org.library.reviewService.exception.AccessDeniedException;
 import org.library.reviewService.model.Review;
 import org.library.reviewService.repository.BaseRepository;
 import org.library.reviewService.repository.ReviewRepository;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -45,6 +49,15 @@ public class ReviewService extends AbstractService<Review> {
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException("No book was found with id " + entity.getBookId());
         }
+
+        Query query = new Query(Criteria.where("userId").is(entity.getUserId())
+            .and("bookId").is(entity.getBookId()));
+
+        Optional<Review> optionalReview = getOne(query, false);
+
+        if (optionalReview.isPresent()) {
+            throw new DuplicateKeyException("User has already reviewed this book. Use update instead.");
+        }
     }
 
     @Override
@@ -66,7 +79,7 @@ public class ReviewService extends AbstractService<Review> {
         boolean isAdmin = authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
         boolean isUserOwnerOfReview = entity.getUserId().equals(subject);
 
-        if(isAdmin || isUserOwnerOfReview) {
+        if (isAdmin || isUserOwnerOfReview) {
             return;
         }
 
@@ -74,7 +87,27 @@ public class ReviewService extends AbstractService<Review> {
     }
 
     @Override
+    public Review update(Review entity) {
+        Review oldReview = reviewRepository.findById(entity.getId())
+            .orElseThrow(() -> new NoSuchElementException("Review not found"));
+
+        Integer oldRating = oldReview.getRating();
+        Integer newRating = entity.getRating();
+
+        Review saved = super.update(entity);
+
+        metricsService.updateMetricsAfterEdit(saved.getBookId(), oldRating, newRating);
+
+        return saved;
+    }
+
+    @Override
     protected void afterCreate(Review entity) {
-        metricsService.updateMetrics(entity.getBookId(), entity.getRating());
+        metricsService.addReviewMetrics(entity.getBookId(), entity.getRating());
+    }
+
+    @Override
+    protected void afterDelete(Review entity) {
+        metricsService.removeReviewMetrics(entity.getBookId(), entity.getRating());
     }
 }

@@ -5,18 +5,18 @@
 } @else if (book(); as book) {
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-16">
       
       <div class="md:col-span-4 lg:col-span-3">
         <div class="sticky top-24">
-          <div class="rounded-r-lg shadow-xl overflow-hidden mb-6 book-cover-container">
+          <div class="rounded-r-lg shadow-xl overflow-hidden mb-6 book-cover-container bg-gray-100">
             <img [src]="book.imageUrl || 'assets/default-book-cover.jpg'" 
                  [alt]="book.title" 
                  class="w-full h-auto object-cover">
           </div>
           
           <div class="flex flex-col gap-3 items-center">
-             <div class="text-2xl font-bold text-book-dark-gray">
+             <div class="text-3xl font-bold text-primary">
                 {{ book.price | currency:'USD' }}
              </div>
           </div>
@@ -25,7 +25,7 @@
 
       <div class="md:col-span-8 lg:col-span-9 text-book-gray">
         
-        <h1 class="text-4xl md:text-5xl font-bold text-book-dark-gray font-serif mb-2">
+        <h1 class="text-4xl md:text-5xl font-bold text-book-dark-gray font-serif mb-2 leading-tight">
           {{ book.title }}
         </h1>
         
@@ -37,21 +37,25 @@
         </div>
 
         <div class="flex items-center gap-4 mb-6">
-          <div class="flex text-yellow-500">
-             <mat-icon>star</mat-icon>
-             <mat-icon>star</mat-icon>
-             <mat-icon>star</mat-icon>
-             <mat-icon>star</mat-icon>
-             <mat-icon>star_half</mat-icon>
+          <div class="flex text-yellow-400">
+             @for (_ of [1,2,3,4,5]; track $index) {
+                <mat-icon class="!w-6 !h-6 !text-[24px]">
+                    {{ getStarIcon($index) }}
+                </mat-icon>
+             }
           </div>
-          <div class="text-sm">
-            <span class="font-bold text-book-dark-gray">{{ rating }}</span>
-            <span class="mx-1">•</span>
-            <span>{{ totalRatings }} ratings</span>
+          <div class="text-sm flex items-center gap-1">
+            <span class="font-bold text-book-dark-gray text-lg">
+                {{ (metrics()?.averageRating | number:'1.1-1') || '0.0' }}
+            </span>
+            <span class="text-gray-400 mx-1">•</span>
+            <span (click)="scrollToTarget()" class="text-gray-600 border-b border-dashed border-gray-400 cursor-pointer hover:text-primary hover:border-primary transition-colors">
+                {{ metrics()?.totalReviews || 0 }} ratings
+            </span>
           </div>
         </div>
 
-        <div class="prose max-w-none text-lg leading-relaxed mb-8">
+        <div class="prose max-w-none text-lg leading-relaxed mb-8 text-gray-700">
           <p>{{ book.description }}</p>
         </div>
 
@@ -66,14 +70,16 @@
         <mat-divider class="mb-8"></mat-divider>
 
         <div class="mb-8">
-          <h3 class="text-2xl font-bold text-book-dark-gray mb-4">About the author</h3>
+          <h3 class="text-2xl font-bold text-book-dark-gray mb-4 font-serif">About the author</h3>
           <div class="flex gap-4 items-start">
-            <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden shrink-0">
-               <img src="assets/author-placeholder.jpg" class="w-full h-full object-cover" alt="Author">
+            <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden shrink-0 border border-gray-200">
+               <img src="author-placeholder.jpg" class="w-full h-full object-cover" alt="Author">
             </div>
             <div>
-              <div class="font-bold text-lg mb-1">{{ book.author?.name }}</div>
-              <p class="text-sm text-gray-600 line-clamp-3">{{ book.author?.bio || 'No biography available.' }}</p>
+              <div class="font-bold text-lg mb-1 text-gray-900">{{ book.author?.name }}</div>
+              <p class="text-sm text-gray-600 line-clamp-3 leading-relaxed">
+                  {{ book.author?.bio || 'No biography available for this author.' }}
+              </p>
             </div>
           </div>
         </div>
@@ -81,55 +87,219 @@
         <mat-divider class="mb-8"></mat-divider>
 
         <div class="mb-10">
-          <h3 class="text-xl font-bold text-book-dark-gray mb-4">Book Details</h3>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-4 gap-x-8 text-sm">
-            
+          <h3 class="text-xl font-bold text-book-dark-gray mb-4 font-serif">Book Details</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-6 gap-x-8 text-sm">
             <div>
-              <div class="font-medium text-book-dark-gray">Publisher</div>
-              <div>{{ book.publisher?.name }}</div>
+              <div class="font-semibold text-gray-900 mb-1">Publisher</div>
+              <div class="text-gray-600">{{ book.publisher?.name || 'Unknown' }}</div>
             </div>
-
             <div>
-              <div class="font-medium text-book-dark-gray">ISBN</div>
-              <div>{{ book.isbn }}</div>
+              <div class="font-semibold text-gray-900 mb-1">ISBN</div>
+              <div class="text-gray-600 font-mono">{{ book.isbn || 'N/A' }}</div>
             </div>
-
             <div>
-              <div class="font-medium text-book-dark-gray">Published</div>
-              <div>{{ book.releaseDate | date:'longDate' }}</div>
+              <div class="font-semibold text-gray-900 mb-1">Published</div>
+              <div class="text-gray-600">{{ book.releaseDate | date:'longDate' }}</div>
             </div>
-
-             </div>
+          </div>
         </div>
 
-        <div class="bg-gray-50 p-8 rounded-lg border border-gray-100 text-center">
-            <h3 class="text-2xl font-bold text-book-dark-gray mb-1">Ratings & Reviews</h3>
-            
-            <div class="mt-6 mb-2">
-                <div class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center mb-4">
-                     <mat-icon class="scale-150 text-gray-400">person</mat-icon>
-                </div>
-                <h4 class="text-xl font-serif text-book-dark-gray mb-2">What do you think?</h4>
+      </div>
+    </div>
+
+    <mat-divider class="mb-16"></mat-divider>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-10" id="reviews">
+      
+      <div class="lg:col-span-4 space-y-8">
+        <div>
+          <h3 class="text-2xl font-bold text-book-dark-gray font-serif mb-6">Community Reviews</h3>
+          
+          <div class="flex items-end gap-3 mb-6">
+            <div class="flex text-yellow-400">
+               @for (_ of [1,2,3,4,5]; track $index) {
+                  <mat-icon class="scale-125">
+                      {{ getStarIcon($index) }}
+                  </mat-icon>
+               }
+            </div>
+            <span class="text-4xl font-bold text-gray-900 leading-none">
+                {{ (metrics()?.averageRating | number:'1.1-1') || '0.0' }}
+            </span>
+            <span class="text-sm text-gray-500 mb-1 ml-1">
+                {{ metrics()?.totalReviews || 0 }} reviews
+            </span>
+          </div>
+
+          <div class="space-y-2">
+            @for (star of [5, 4, 3, 2, 1]; track star) {
+              <button 
+                class="w-full flex items-center gap-3 group text-sm hover:bg-gray-50 p-1.5 rounded-lg transition-all"
+                (click)="toggleRatingFilter(star)"
+                [ngClass]="{'bg-blue-50 ring-1 ring-blue-200': selectedRatingFilter() === star}"
+              >
+                <span class="w-14 font-medium text-gray-700 whitespace-nowrap group-hover:underline decoration-primary underline-offset-2 text-left">
+                    {{ star }} stars
+                </span>
                 
-                <div class="flex justify-center gap-1 mb-6" (mouseleave)="clearHoverRating()">
-                    @for (star of [1,2,3,4,5]; track star) {
-                        <button class="icon-btn transition-transform hover:scale-110" 
-                                (mouseenter)="setHoverRating(star)"
-                                (click)="setRating(star)">
-                            <mat-icon class="!w-8 !h-8 !text-3xl" 
-                                [class.text-yellow-400]="star <= (hoverRating() || userRating())"
-                                [class.text-gray-300]="star > (hoverRating() || userRating())">
-                                {{ star <= (hoverRating() || userRating()) ? 'star' : 'star_border' }}
-                            </mat-icon>
-                        </button>
-                    }
+                <div class="flex-1 h-3 bg-gray-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-yellow-400 rounded-full transition-all duration-500 ease-out"
+                       [style.width.%]="getStarPercentage(star)">
+                  </div>
                 </div>
 
-                <button mat-flat-button color="primary" class="w-full sm:w-auto px-8 py-6 text-lg" (click)="writeReview()">
-                    Write a Review
-                </button>
-            </div>
+                <span class="w-10 text-right text-gray-500 text-xs font-medium">
+                    {{ getStarPercentage(star) | number:'1.0-0' }}%
+                </span>
+                <span class="w-10 text-right text-gray-400 text-xs">
+                    ({{ getStarCount(star) }})
+                </span>
+              </button>
+            }
+          </div>
         </div>
+
+        <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 text-center shadow-sm">
+            <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">
+                {{ currentUserReview() ? 'Your Review' : 'What do you think?' }}
+            </h4>
+            <p class="text-sm text-gray-500 mb-6">
+                {{ currentUserReview() ? 'You have already rated this book' : 'Share your opinion with the community' }}
+            </p>
+            
+            <div class="flex justify-center gap-1 mb-6" (mouseleave)="clearHoverRating()">
+                @for (star of [1,2,3,4,5]; track star) {
+                    <button class="icon-btn transition-transform hover:scale-110 p-1" 
+                            (mouseenter)="setHoverRating(star)"
+                            (click)="setRating(star)">
+                        <mat-icon class="!w-8 !h-8 !text-[32px]" 
+                            [class.text-yellow-400]="star <= (hoverRating() || userRating())"
+                            [class.text-gray-300]="star > (hoverRating() || userRating())">
+                            {{ star <= (hoverRating() || userRating()) ? 'star' : 'star_border' }}
+                        </mat-icon>
+                    </button>
+                }
+            </div>
+
+            <button mat-flat-button color="primary" class="w-full !rounded-full !h-12 !text-base" (click)="writeReview()">
+                {{ currentUserReview() ? 'Edit Review' : 'Write a Review' }}
+            </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 border-b border-gray-100 pb-4">
+            <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                Reviews 
+                @if(selectedRatingFilter()) {
+                    <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full font-medium">
+                        {{ selectedRatingFilter() }} stars only
+                    </span>
+                    <button mat-icon-button color="warn" class="scale-75 -ml-1" (click)="toggleRatingFilter(selectedRatingFilter()!)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                }
+            </h3>
+            
+            <div class="relative">
+            <button mat-stroked-button [matMenuTriggerFor]="sortMenu"
+                class="!rounded-full !border-gray-300 !text-gray-700 !px-4">
+                <mat-icon class="text-gray-500 mr-2">sort</mat-icon>
+                <span class="font-normal text-gray-500 mr-1">Sort by:</span>
+                <span class="font-bold text-gray-900">{{ getSortLabel(currentSort()) }}</span>
+                <mat-icon iconPositionEnd class="text-gray-500 ml-1">expand_more</mat-icon>
+            </button>
+
+            <mat-menu #sortMenu="matMenu" xPosition="before" class="mt-2">
+                <button mat-menu-item (click)="onSortChange('createdAt,desc')"
+                    [class.bg-blue-50]="currentSort() === 'createdAt,desc'">
+                    <span [class.font-bold]="currentSort() === 'createdAt,desc'">Newest first</span>
+                </button>
+                <button mat-menu-item (click)="onSortChange('createdAt,asc')"
+                    [class.bg-blue-50]="currentSort() === 'createdAt,asc'">
+                    <span [class.font-bold]="currentSort() === 'createdAt,asc'">Oldest first</span>
+                </button>
+                <button mat-menu-item (click)="onSortChange('rating,desc')"
+                    [class.bg-blue-50]="currentSort() === 'rating,desc'">
+                    <span [class.font-bold]="currentSort() === 'rating,desc'">Highest rated</span>
+                </button>
+                <button mat-menu-item (click)="onSortChange('rating,asc')" [class.bg-blue-50]="currentSort() === 'rating,asc'">
+                    <span [class.font-bold]="currentSort() === 'rating,asc'">Lowest rated</span>
+                </button>
+            </mat-menu>
+        </div>
+        </div>
+
+        @if (reviewsLoading()) {
+            <div class="flex justify-center py-20">
+                <mat-spinner diameter="40"></mat-spinner>
+            </div>
+        } 
+        
+        @else if (reviews().length === 0) {
+            <div class="flex flex-col items-center justify-center py-16 bg-gray-50 rounded-xl text-center border border-dashed border-gray-200">
+                <mat-icon class="text-gray-300 scale-150 mb-4 text-5xl">chat_bubble_outline</mat-icon>
+                <p class="text-gray-600 text-lg font-medium">No reviews yet.</p>
+                <p class="text-gray-400 text-sm">Be the first to share your thoughts!</p>
+            </div>
+        } 
+        
+        @else {
+            <div class="space-y-8">
+                @for (review of reviews(); track review.id) {
+                    <div class="group">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 overflow-hidden flex items-center justify-center">
+                                    @if(review.avatarUrl) {
+                                        <img [src]="review.avatarUrl" class="w-full h-full object-cover" alt="User" referrerpolicy="no-referrer">
+                                    } @else {
+                                        <span class="text-gray-500 font-bold text-sm">
+                                            {{ (review.firstName?.charAt(0) || 'U') }}
+                                        </span>
+                                    }
+                                </div>
+                                <div>
+                                    <div class="font-bold text-gray-900 text-sm flex items-center gap-2">
+                                        {{ review.firstName || 'User' }} {{ review.lastName || '' }}
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        {{ review.createdAt | date:'mediumDate' }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex text-yellow-400 mb-3" aria-label="Review rating">
+                            @for (_ of [1,2,3,4,5]; track $index) {
+                                <mat-icon class="!w-5 !h-5 !text-[20px]">
+                                    {{ $index < review.rating ? 'star' : 'star_border' }}
+                                </mat-icon>
+                            }
+                        </div>
+
+                        <div class="text-gray-700 leading-relaxed whitespace-pre-wrap text-base">
+                            {{ review.text }}
+                        </div>
+                        
+                        <div class="border-b border-gray-100 mt-6 group-last:border-0"></div>
+                    </div>
+                }
+            </div>
+
+            <div class="mt-8 border-t border-gray-100 pt-4">
+                <mat-paginator 
+                    [length]="reviewsTotal()"
+                    [pageSize]="pageSize()"
+                    [pageIndex]="pageIndex()"
+                    [pageSizeOptions]="[5, 10, 20]"
+                    (page)="onPageChange($event)"
+                    showFirstLastButtons
+                    aria-label="Select page of reviews">
+                </mat-paginator>
+            </div>
+        }
 
       </div>
     </div>

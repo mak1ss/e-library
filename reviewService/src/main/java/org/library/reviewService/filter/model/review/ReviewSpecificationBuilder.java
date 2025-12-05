@@ -12,7 +12,7 @@ import java.util.List;
 public class ReviewSpecificationBuilder implements DocumentFilterSpecificationBuilder {
 
     private final List<FilterableProperty> filterableProperties = List.of(
-            new FilterableProperty("userId", Integer.class, new EqualingSpecificationBuilder(),
+            new FilterableProperty("userId", String.class, new EqualingSpecificationBuilder(),
                     EqualingSpecificationBuilder.SUPPORTED_OPERATORS),
             new FilterableProperty("bookId", Integer.class, new EqualingSpecificationBuilder(),
                     EqualingSpecificationBuilder.SUPPORTED_OPERATORS),

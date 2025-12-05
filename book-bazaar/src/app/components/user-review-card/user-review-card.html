@@ -1,0 +1,67 @@
+<div class="flex flex-col sm:flex-row gap-6 p-6 bg-white border border-gray-100 rounded-xl hover:shadow-md transition-shadow group">
+  
+  <div class="shrink-0 w-24 sm:w-32">
+    @if (loadingBook()) {
+      <div class="w-full aspect-[2/3] bg-gray-100 rounded-lg animate-pulse"></div>
+    } @else if (book(); as b) {
+      <a [routerLink]="['/book-details', b.id]" class="block relative aspect-[2/3] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:scale-105">
+        <img [src]="b.imageUrl || 'assets/default-book-cover.jpg'" [alt]="b.title" class="w-full h-full object-cover">
+      </a>
+    }
+  </div>
+
+  <div class="flex-1 flex flex-col">
+    
+    <div class="flex justify-between items-start mb-2">
+      <div>
+        @if (book(); as b) {
+          <h3 class="text-xl font-bold font-serif text-gray-900 leading-tight mb-1">
+            <a [routerLink]="['/book-details', b.id]" class="hover:text-primary transition-colors">
+              {{ b.title }}
+            </a>
+          </h3>
+          <p class="text-sm text-gray-500">by {{ b.author?.name }}</p>
+        } @else {
+           <div class="h-6 w-48 bg-gray-100 rounded animate-pulse mb-1"></div>
+           <div class="h-4 w-24 bg-gray-100 rounded animate-pulse"></div>
+        }
+      </div>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="text-gray-400 hover:text-gray-600 -mr-2">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="edit()">
+          <mat-icon>edit</mat-icon>
+          <span>Edit Review</span>
+        </button>
+        <button mat-menu-item class="text-red-600" (click)="delete()">
+          <mat-icon color="warn">delete</mat-icon>
+          <span>Delete</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="flex items-center gap-3 mb-4 mt-2">
+      <div class="flex text-yellow-400">
+        @for (_ of [1,2,3,4,5]; track $index) {
+          <mat-icon class="!w-5 !h-5 !text-[20px]">
+            {{ $index < review().rating ? 'star' : 'star_border' }}
+          </mat-icon>
+        }
+      </div>
+      <span class="text-xs text-gray-400 font-medium px-2 py-1 bg-gray-50 rounded-full border border-gray-100">
+        {{ review().createdAt | date:'mediumDate' }}
+      </span>
+    </div>
+
+    <p class="text-gray-700 leading-relaxed text-base line-clamp-3 group-hover:line-clamp-none transition-all">
+      {{ review().text }}
+    </p>
+    
+    @if (!review().text) {
+        <p class="text-gray-400 italic text-sm">No written review provided.</p>
+    }
+
+  </div>
+</div>

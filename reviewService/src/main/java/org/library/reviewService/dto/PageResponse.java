@@ -10,7 +10,7 @@ import java.util.List;
 public class PageResponse<ResponseType> {
 
     private int size;
-    private int total;
+    private long total;
     private int pageNumber;
     private List<ResponseType> items;
 

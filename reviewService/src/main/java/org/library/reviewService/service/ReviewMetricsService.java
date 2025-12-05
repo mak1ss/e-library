@@ -40,7 +40,7 @@ public class ReviewMetricsService extends AbstractService<ReviewMetrics> {
          return getOne(new Query(Criteria.where("bookId").is(bookId)));
     }
 
-    public void updateMetrics(Integer bookId, Integer reviewRating) {
+    public void addReviewMetrics(Integer bookId, Integer reviewRating) {
         ReviewMetrics metrics = getByBookId(bookId).orElse(new ReviewMetrics());
         if(metrics.getBookId() == null) {
             metrics.setBookId(bookId);
@@ -53,6 +53,50 @@ public class ReviewMetricsService extends AbstractService<ReviewMetrics> {
         metrics.setAverageRating(calculateAverageRating(metrics));
 
         update(metrics);
+    }
+
+    public void updateMetricsAfterEdit(Integer bookId, Integer oldRating, Integer newRating) {
+        if (oldRating.equals(newRating)) return;
+
+        ReviewMetrics metrics = getByBookId(bookId).orElseThrow(
+            () -> new IllegalStateException("Metrics not found for book " + bookId));
+
+        Map<String, Integer> counts = metrics.getReviewCountsRating();
+
+        String oldKey = oldRating.toString();
+        if (counts.containsKey(oldKey)) {
+            int currentCount = counts.get(oldKey);
+            if (currentCount > 0) {
+                counts.put(oldKey, currentCount - 1);
+            }
+        }
+
+        String newKey = newRating.toString();
+        counts.putIfAbsent(newKey, 0);
+        counts.put(newKey, counts.get(newKey) + 1);
+
+        metrics.setAverageRating(calculateAverageRating(metrics));
+
+        update(metrics);
+    }
+
+    public void removeReviewMetrics(Integer bookId, Integer rating) {
+        getByBookId(bookId).ifPresent(metrics -> {
+            if (metrics.getTotalReviews() > 0) {
+                metrics.setTotalReviews(metrics.getTotalReviews() - 1);
+            }
+
+            String key = rating.toString();
+            if (metrics.getReviewCountsRating().containsKey(key)) {
+                int count = metrics.getReviewCountsRating().get(key);
+                if (count > 0) {
+                    metrics.getReviewCountsRating().put(key, count - 1);
+                }
+            }
+
+            metrics.setAverageRating(calculateAverageRating(metrics));
+            update(metrics);
+        });
     }
 
     private Double calculateAverageRating(ReviewMetrics metrics) {

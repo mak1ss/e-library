@@ -21,42 +21,47 @@ public class OpenAPIConfig {
     @Value("${openapi.api-docs.token-uri}")
     private String keycloakTokenUrl;
 
-    private String passwordSecurityScheme = "passwordFlow";
+    @Value("${openapi.api-docs.auth-uri}")
+    private String keycloakAuthCodeUrl;
 
     private String clientCredentialsSecurityScheme = "clientCredentialsFlow";
+
+    private final String standardSecurityScheme = "standardFlow";
 
     @Bean
     public OpenAPI configureOpenAPI() {
         Server server = new Server().url("http://localhost:" + port);
         return new OpenAPI()
-                .servers(List.of(server))
-                .info(new Info().title("Book API")
-                        .description("API for Book Service")
-                        .version("0.1")
-                        .license(new License().name("Apache 2.0")))
-                .components(new Components()
-                        .addSecuritySchemes(passwordSecurityScheme, passwordFlowScheme())
-                        .addSecuritySchemes(clientCredentialsSecurityScheme, clientCredentialsScheme()))
-                .addSecurityItem(new SecurityRequirement()
-                        .addList(passwordSecurityScheme)
-                        .addList(clientCredentialsSecurityScheme));
+            .servers(List.of(server))
+            .info(new Info().title("Book API")
+                .description("API for Book Service")
+                .version("0.1")
+                .license(new License().name("Apache 2.0")))
+            .components(new Components()
+                .addSecuritySchemes(standardSecurityScheme, standardFlowScheme())
+                .addSecuritySchemes(clientCredentialsSecurityScheme, clientCredentialsScheme()))
+            .addSecurityItem(new SecurityRequirement()
+                .addList(standardSecurityScheme)
+                .addList(clientCredentialsSecurityScheme));
     }
 
-    private SecurityScheme passwordFlowScheme() {
+    private SecurityScheme standardFlowScheme() {
         return new SecurityScheme()
-                .type(SecurityScheme.Type.OAUTH2)
-                .description("Resource Owner Password Flow")
-                .flows(new OAuthFlows()
-                        .password(new OAuthFlow()
-                                .tokenUrl(keycloakTokenUrl)));
+            .type(SecurityScheme.Type.OAUTH2)
+            .description("Keycloak Authorization Code Flow")
+            .flows(new OAuthFlows()
+                .authorizationCode(new OAuthFlow()
+                    .authorizationUrl(keycloakAuthCodeUrl)
+                    .tokenUrl(keycloakTokenUrl)
+                    .scopes(new Scopes().addString("openid", "openid scope"))));
     }
 
     private SecurityScheme clientCredentialsScheme() {
         return new SecurityScheme()
-                .type(SecurityScheme.Type.OAUTH2)
-                .description("Client Credentials Flow")
-                .flows(new OAuthFlows()
-                        .clientCredentials(new OAuthFlow()
-                                .tokenUrl(keycloakTokenUrl)));
+            .type(SecurityScheme.Type.OAUTH2)
+            .description("Client Credentials Flow")
+            .flows(new OAuthFlows()
+                .clientCredentials(new OAuthFlow()
+                    .tokenUrl(keycloakTokenUrl)));
     }
 }

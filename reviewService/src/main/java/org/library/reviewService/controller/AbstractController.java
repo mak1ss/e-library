@@ -36,7 +36,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Slf4j
-@SecurityRequirement(name = "passwordFlow")
+@SecurityRequirement(name = "standardFlow")
 @SecurityRequirement(name = "clientCredentialsFlow")
 public abstract class AbstractController<DocumentType extends Identifiable, RequestType extends AbstractRequest,
         ResponseType extends AbstractResponse> {
@@ -71,7 +71,7 @@ public abstract class AbstractController<DocumentType extends Identifiable, Requ
         Page<DocumentType> responseList = getService().getAll(query, PageRequest.of(pageIndex, pageSize, parsedSort));
         return ResponseEntity.ok(PageResponse.<ResponseType>builder()
                 .size(responseList.getSize())
-                .total(responseList.getTotalPages())
+                .total(responseList.getTotalElements())
                 .pageNumber(responseList.getNumber())
                 .items(getMapper().entityToResponseList(responseList.getContent()))
                 .build());

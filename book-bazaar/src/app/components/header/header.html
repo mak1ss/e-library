@@ -1,44 +1,51 @@
-<section class="p-4 bg-primary text-white"> <div class="flex items-center justify-between pl-20 pr-20">
+<section class="p-4 bg-primary text-white">
+  <div class="flex items-center justify-between pl-20 pr-20">
     <div class="flex items-center max-w-2/5">
       <a [routerLink]="['/']" class="w-3xs h-15">
         <img class="w-full h-full object-cover object-center" src="collage.png" alt="Logo">
       </a>
-      <a [routerLink]="['/search']" class="h-15 pt-3 ml-4" >
+      <a [routerLink]="['/search']" class="h-15 pt-3 ml-4">
         <div class="text-secondary text-xl hover:text-secondary-trans font-medium">Search</div>
       </a>
     </div>
 
     <div>
       @if (userService.isLoggedIn()) {
-        <button [matMenuTriggerFor]="userMenu" class="flex items-center gap-2 cursor-pointer focus:outline-none">
-          <span class="text-lg font-medium mr-2">
-            {{ userService.userProfile()?.firstName }}
-          </span>
-          
-          <div class="w-10 h-10 rounded-full overflow-hidden bg-gray-200 border-2 border-white flex justify-center items-center">
-            @if (userService.avatarUrl()) {
-              <img [src]="userService.avatarUrl()" alt="Avatar" class="w-full h-full object-cover" referrerpolicy="no-referrer">
-            } @else {
-              <mat-icon class="text-gray-500 scale-125">person</mat-icon>
-            }
-          </div>
-        </button>
+      <button [matMenuTriggerFor]="userMenu" class="flex items-center gap-2 cursor-pointer focus:outline-none">
+        <span class="text-lg font-medium mr-2">
+          {{ userService.userProfile()?.firstName }}
+        </span>
 
-        <mat-menu #userMenu="matMenu">
-          <button mat-menu-item disabled>
-            <span>{{ userService.userProfile()?.email }}</span>
-          </button>
-          <button mat-menu-item (click)="userService.logout()">
-            <mat-icon>logout</mat-icon>
-            <span>Log out</span>
-          </button>
-        </mat-menu>
+        <div
+          class="w-10 h-10 rounded-full overflow-hidden bg-gray-200 border-2 border-white flex justify-center items-center">
+          @if (userService.avatarUrl()) {
+          <img [src]="userService.avatarUrl()" alt="Avatar" class="w-full h-full object-cover"
+            referrerpolicy="no-referrer">
+          } @else {
+          <mat-icon class="text-gray-500 scale-125">person</mat-icon>
+          }
+        </div>
+      </button>
+
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item disabled>
+          <span>{{ userService.userProfile()?.email }}</span>
+        </button>
+        <button mat-menu-item routerLink="/my-reviews">
+          <mat-icon>rate_review</mat-icon>
+          <span>My Reviews</span>
+        </button>
+        <button mat-menu-item (click)="userService.logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Log out</span>
+        </button>
+      </mat-menu>
 
       } @else {
-        <div class="flex gap-2">
-           <button matButton (click)="userService.login()">Log In</button>
-           <button mat-raised-button color="accent" (click)="userService.register()">Sign Up</button>
-        </div>
+      <div class="flex gap-2">
+        <button matButton (click)="userService.login()">Log In</button>
+        <button mat-raised-button color="accent" (click)="userService.register()">Sign Up</button>
+      </div>
       }
     </div>
   </div>
