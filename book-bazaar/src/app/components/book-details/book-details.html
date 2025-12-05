@@ -49,7 +49,7 @@
                 {{ (metrics()?.averageRating | number:'1.1-1') || '0.0' }}
             </span>
             <span class="text-gray-400 mx-1">•</span>
-            <span class="text-gray-600 border-b border-dashed border-gray-400 cursor-pointer hover:text-primary hover:border-primary transition-colors">
+            <span (click)="scrollToTarget()" class="text-gray-600 border-b border-dashed border-gray-400 cursor-pointer hover:text-primary hover:border-primary transition-colors">
                 {{ metrics()?.totalReviews || 0 }} ratings
             </span>
           </div>
@@ -109,7 +109,7 @@
 
     <mat-divider class="mb-16"></mat-divider>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12" id="reviews">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-10" id="reviews">
       
       <div class="lg:col-span-4 space-y-8">
         <div>
@@ -160,8 +160,12 @@
         </div>
 
         <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 text-center shadow-sm">
-            <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">What do you think?</h4>
-            <p class="text-sm text-gray-500 mb-6">Share your opinion with the community</p>
+            <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">
+                {{ currentUserReview() ? 'Your Review' : 'What do you think?' }}
+            </h4>
+            <p class="text-sm text-gray-500 mb-6">
+                {{ currentUserReview() ? 'You have already rated this book' : 'Share your opinion with the community' }}
+            </p>
             
             <div class="flex justify-center gap-1 mb-6" (mouseleave)="clearHoverRating()">
                 @for (star of [1,2,3,4,5]; track star) {
@@ -178,7 +182,7 @@
             </div>
 
             <button mat-flat-button color="primary" class="w-full !rounded-full !h-12 !text-base" (click)="writeReview()">
-                Write a Review
+                {{ currentUserReview() ? 'Edit Review' : 'Write a Review' }}
             </button>
         </div>
       </div>
@@ -198,14 +202,33 @@
                 }
             </h3>
             
-            <mat-form-field appearance="outline" class="w-full sm:w-48 subscript-hidden dense-form-field">
-                <mat-select [value]="currentSort()" (selectionChange)="onSortChange($event.value)">
-                    <mat-option value="createdAt,desc">Newest first</mat-option>
-                    <mat-option value="createdAt,asc">Oldest first</mat-option>
-                    <mat-option value="rating,desc">Highest rated</mat-option>
-                    <mat-option value="rating,asc">Lowest rated</mat-option>
-                </mat-select>
-            </mat-form-field>
+            <div class="relative">
+            <button mat-stroked-button [matMenuTriggerFor]="sortMenu"
+                class="!rounded-full !border-gray-300 !text-gray-700 !px-4">
+                <mat-icon class="text-gray-500 mr-2">sort</mat-icon>
+                <span class="font-normal text-gray-500 mr-1">Sort by:</span>
+                <span class="font-bold text-gray-900">{{ getSortLabel(currentSort()) }}</span>
+                <mat-icon iconPositionEnd class="text-gray-500 ml-1">expand_more</mat-icon>
+            </button>
+
+            <mat-menu #sortMenu="matMenu" xPosition="before" class="mt-2">
+                <button mat-menu-item (click)="onSortChange('createdAt,desc')"
+                    [class.bg-blue-50]="currentSort() === 'createdAt,desc'">
+                    <span [class.font-bold]="currentSort() === 'createdAt,desc'">Newest first</span>
+                </button>
+                <button mat-menu-item (click)="onSortChange('createdAt,asc')"
+                    [class.bg-blue-50]="currentSort() === 'createdAt,asc'">
+                    <span [class.font-bold]="currentSort() === 'createdAt,asc'">Oldest first</span>
+                </button>
+                <button mat-menu-item (click)="onSortChange('rating,desc')"
+                    [class.bg-blue-50]="currentSort() === 'rating,desc'">
+                    <span [class.font-bold]="currentSort() === 'rating,desc'">Highest rated</span>
+                </button>
+                <button mat-menu-item (click)="onSortChange('rating,asc')" [class.bg-blue-50]="currentSort() === 'rating,asc'">
+                    <span [class.font-bold]="currentSort() === 'rating,asc'">Lowest rated</span>
+                </button>
+            </mat-menu>
+        </div>
         </div>
 
         @if (reviewsLoading()) {

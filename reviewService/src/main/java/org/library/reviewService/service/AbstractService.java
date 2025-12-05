@@ -34,11 +34,11 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
 
     public Page<DocumentType> getAll(Query query, Pageable pageable, boolean includeArchived) {
         return PageableExecutionUtils.getPage(getMongoOperations()
-                        .find(query.with(pageable)
-                                .addCriteria(addArchivedCriteria(includeArchived))
-                                .addCriteria(addAdditionalCriteriaForGetAll()), getEntityClass()),
-                pageable,
-                () -> getMongoOperations().count(Query.of(query).limit(-1).skip(-1), getEntityClass()));
+                .find(query.with(pageable)
+                    .addCriteria(addArchivedCriteria(includeArchived))
+                    .addCriteria(addAdditionalCriteriaForGetAll()), getEntityClass()),
+            pageable,
+            () -> getMongoOperations().count(Query.of(query).limit(-1).skip(-1), getEntityClass()));
     }
 
     protected Criteria addArchivedCriteria(boolean includeArchived) {
@@ -54,7 +54,16 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
     }
 
     public Optional<DocumentType> getOne(Query query) {
-        return Optional.ofNullable(getMongoOperations().findOne(query, getEntityClass()));
+        return getOneDocumentByQuery(query, true);
+    }
+
+    public Optional<DocumentType> getOne(Query query, boolean includeArchived) {
+        return getOneDocumentByQuery(query, includeArchived);
+    }
+
+    private Optional<DocumentType> getOneDocumentByQuery(Query query, boolean includeArchived) {
+        return Optional.ofNullable(getMongoOperations()
+            .findOne(query.addCriteria(addArchivedCriteria(includeArchived)), getEntityClass()));
     }
 
     public DocumentType create(DocumentType entity) {
@@ -102,6 +111,9 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
     protected void beforeDelete(DocumentType entity) {
     }
 
+    protected void afterDelete(DocumentType entity) {
+    }
+
     public void deleteById(String id) {
         DocumentType entity = getRepository().findById(id).orElseThrow();
 
@@ -113,6 +125,8 @@ public abstract class AbstractService<DocumentType extends Identifiable> {
         } else {
             deleteById(id, true);
         }
+
+        afterDelete(entity);
     }
 
     public void deleteById(String id, boolean ignorePermissions) {

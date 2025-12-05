@@ -1,0 +1,73 @@
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <div
+        class="flex flex-col sm:flex-row justify-between items-end sm:items-center gap-4 mb-8 border-b border-gray-100 pb-6">
+        <div>
+            <h1 class="text-3xl font-serif font-bold text-gray-900 mb-1">My Reviews</h1>
+            <p class="text-gray-500">
+                You have written <span class="font-bold text-primary">{{ totalReviews() }}</span> reviews
+            </p>
+        </div>
+
+        <div class="relative">
+            <button mat-stroked-button [matMenuTriggerFor]="sortMenu"
+                class="!rounded-full !border-gray-300 !text-gray-700 !px-4">
+                <mat-icon class="text-gray-500 mr-2">sort</mat-icon>
+                <span class="font-normal text-gray-500 mr-1">Sort by:</span>
+                <span class="font-bold text-gray-900">{{ getSortLabel(sort()) }}</span>
+                <mat-icon iconPositionEnd class="text-gray-500 ml-1">expand_more</mat-icon>
+            </button>
+
+            <mat-menu #sortMenu="matMenu" xPosition="before" class="mt-2">
+                <button mat-menu-item (click)="onSortChange('createdAt,desc')"
+                    [class.bg-blue-50]="sort() === 'createdAt,desc'">
+                    <span [class.font-bold]="sort() === 'createdAt,desc'">Newest first</span>
+                </button>
+                <button mat-menu-item (click)="onSortChange('createdAt,asc')"
+                    [class.bg-blue-50]="sort() === 'createdAt,asc'">
+                    <span [class.font-bold]="sort() === 'createdAt,asc'">Oldest first</span>
+                </button>
+                <button mat-menu-item (click)="onSortChange('rating,desc')"
+                    [class.bg-blue-50]="sort() === 'rating,desc'">
+                    <span [class.font-bold]="sort() === 'rating,desc'">Highest rated</span>
+                </button>
+                <button mat-menu-item (click)="onSortChange('rating,asc')" [class.bg-blue-50]="sort() === 'rating,asc'">
+                    <span [class.font-bold]="sort() === 'rating,asc'">Lowest rated</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+
+    <div class="min-h-[400px]">
+
+        @if (loading()) {
+        <div class="flex justify-center items-center py-20">
+            <mat-spinner diameter="40"></mat-spinner>
+        </div>
+        }
+
+        @else if (reviews().length === 0) {
+        <div class="text-center py-20 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+            <mat-icon class="text-gray-300 scale-150 mb-4 text-6xl">rate_review</mat-icon>
+            <h3 class="text-xl font-bold text-gray-700 mb-2">No reviews yet</h3>
+            <p class="text-gray-500 mb-6">Start reading and share your thoughts with the world!</p>
+            <a routerLink="/search" mat-flat-button color="primary">Browse Books</a>
+        </div>
+        }
+
+        @else {
+        <div class="flex flex-col gap-6">
+            @for (review of reviews(); track review.id) {
+            <app-user-review-card [review]="review" (onEdit)="handleEdit($event)" (onDelete)="handleDelete($event)">
+            </app-user-review-card>
+            }
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-gray-100">
+            <mat-paginator [length]="totalReviews()" [pageSize]="pageSize()" [pageIndex]="pageIndex()"
+                [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)" showFirstLastButtons>
+            </mat-paginator>
+        </div>
+        }
+    </div>
+</div>

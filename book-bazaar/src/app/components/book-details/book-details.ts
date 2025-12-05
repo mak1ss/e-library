@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../services/book/book-service';
 import { Book } from '../../model/book';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,8 +13,11 @@ import { ReviewMetrics } from '../../model/review-metric';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { MatFormField } from "@angular/material/input";
 import { MatOption } from "@angular/material/core";
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { DatePipe, CurrencyPipe, NgClass, DecimalPipe } from '@angular/common'
+import { UserService } from '../../services/user/userService';
+import { ReviewRequest } from '../../model/review-request';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-book-details',
@@ -32,18 +35,23 @@ import { DatePipe, CurrencyPipe, NgClass, DecimalPipe } from '@angular/common'
     MatOption,
     MatSelectModule,
     DecimalPipe,
-    NgClass
-],
+    NgClass,
+    MatMenuModule
+  ],
   templateUrl: './book-details.html',
   styleUrl: './book-details.css',
 })
 export class BookDetails implements OnInit {
+  protected router = inject(Router);
   private route = inject(ActivatedRoute);
   private bookService = inject(BookService);
   private reviewService = inject(ReviewService);
-  
+
   book = signal<Book | null>(null);
   loading = signal<boolean>(true);
+
+  userService = inject(UserService); // Інжект юзера
+  currentUserReview = signal<Review | null>(null);
 
   reviews = signal<Review[]>([]);
   metrics = signal<ReviewMetrics | null>(null);
@@ -65,6 +73,7 @@ export class BookDetails implements OnInit {
       this.loadBook(bookId);
       this.loadMetrics(bookId);
       this.loadReviews(bookId);
+      this.checkUserReview(bookId);
     }
   }
 
@@ -81,7 +90,7 @@ export class BookDetails implements OnInit {
       }
     });
   }
-  
+
   private loadMetrics(id: number) {
     this.reviewService.getBookMetrics(id).subscribe({
       next: (data) => this.metrics.set(data),
@@ -92,9 +101,9 @@ export class BookDetails implements OnInit {
   loadReviews(bookId: number) {
     this.reviewsLoading.set(true);
     this.reviewService.getReviews(
-      bookId, 
-      this.pageIndex(), 
-      this.pageSize(), 
+      bookId,
+      this.pageIndex(),
+      this.pageSize(),
       this.currentSort(),
       this.selectedRatingFilter()
     ).subscribe({
@@ -108,6 +117,23 @@ export class BookDetails implements OnInit {
         this.reviewsLoading.set(false);
       }
     });
+  }
+
+  private checkUserReview(bookId: number) {
+    if (this.userService.isLoggedIn()) {
+      const user = this.userService.userProfile();
+      if (user) {
+        const userId = user.id;
+        this.reviewService.getUserReview(bookId, userId!).subscribe({
+          next: (review) => {
+            this.currentUserReview.set(review);
+            if (review) {
+              this.userRating.set(review.rating); // Встановлюємо зірки
+            }
+          }
+        });
+      }
+    }
   }
 
   onPageChange(event: PageEvent) {
@@ -133,7 +159,7 @@ export class BookDetails implements OnInit {
     } else {
       this.selectedRatingFilter.set(star);
     }
-    
+
     this.pageIndex.set(0);
     if (this.book()) {
       this.loadReviews(this.book()!.id!);
@@ -143,7 +169,7 @@ export class BookDetails implements OnInit {
   getStarPercentage(star: number): number {
     const m = this.metrics();
     if (!m || m.totalReviews === 0) return 0;
-    
+
     const count = m.reviewCountsRating[star.toString()] || 0;
     return (count / m.totalReviews) * 100;
   }
@@ -153,7 +179,7 @@ export class BookDetails implements OnInit {
     const rounded = Math.round(rating * 2) / 2;
 
     if (rounded >= index + 1) {
-      return 'star';      
+      return 'star';
     } else if (rounded >= index + 0.5) {
       return 'star_half';
     } else {
@@ -166,8 +192,41 @@ export class BookDetails implements OnInit {
   }
 
   setRating(star: number) {
+    if (!this.userService.isLoggedIn()) {
+      this.userService.login(); // Або показати повідомлення
+      return;
+    }
+
     this.userRating.set(star);
-    console.log(`User rated: ${star}`);
+
+    const request: ReviewRequest = {
+      bookId: this.book()!.id!,
+      rating: star,
+      text: this.currentUserReview()?.text || ''
+    };
+
+    const review = this.currentUserReview();
+
+    const obs$ = review
+      ? this.reviewService.updateReview(review.id, request)
+      : this.reviewService.createReview(request);
+
+    obs$.subscribe({
+      next: (savedReview) => {
+        this.currentUserReview.set(savedReview);
+        console.log('Rating saved');
+        this.loadMetrics(this.book()!.id!);
+        this.loadReviews(this.book()!.id!)
+      }
+    });
+  }
+
+  writeReview() {
+    if (!this.userService.isLoggedIn()) {
+      this.userService.login();
+      return;
+    }
+    this.router.navigate(['/book-details', this.book()?.id, 'review']);
   }
 
   setHoverRating(star: number) {
@@ -178,7 +237,20 @@ export class BookDetails implements OnInit {
     this.hoverRating.set(0);
   }
 
-  writeReview() {
-    console.log('Open review dialog');
+  scrollToTarget(): void {
+    const element = document.getElementById('reviews');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  getSortLabel(value: string): string {
+    switch (value) {
+      case 'createdAt,desc': return 'Newest first';
+      case 'createdAt,asc': return 'Oldest first';
+      case 'rating,desc': return 'Highest rated';
+      case 'rating,asc': return 'Lowest rated';
+      default: return 'Sort by';
+    }
   }
 }

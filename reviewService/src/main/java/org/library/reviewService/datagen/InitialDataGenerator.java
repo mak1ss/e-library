@@ -52,7 +52,7 @@ public class InitialDataGenerator {
         review.setText(text);
         review.setArchived(false);
 
-        reviewMetricsService.updateMetrics(bookId, rating);
+        reviewMetricsService.addReviewMetrics(bookId, rating);
 
         return review;
     }

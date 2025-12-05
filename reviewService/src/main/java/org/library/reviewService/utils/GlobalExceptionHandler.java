@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.library.reviewService.exception.AccessDeniedException;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -80,6 +81,15 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(new ErrorMessage(message));
     }
 
+    @ExceptionHandler(DuplicateKeyException.class)
+    public ResponseEntity<ErrorMessage> handleDuplicateKeyException(
+        DuplicateKeyException ex) {
+        log.error("Conflict! Duplicated key: ", ex);
+
+        String message = "Conflict! Duplicated key:" + ex.getMessage();
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorMessage(message));
+    }
 
     @ExceptionHandler({Exception.class})
     public ResponseEntity<ErrorMessage> handleAllExceptions(Exception ex) {
