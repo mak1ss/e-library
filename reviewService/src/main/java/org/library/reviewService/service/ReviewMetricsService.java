@@ -2,6 +2,7 @@ package org.library.reviewService.service;
 
 import lombok.AllArgsConstructor;
 import org.library.reviewService.dto.reviewMetrics.ReviewMetricsResponse;
+import org.library.reviewService.integration.producer.BookRatingUpdatedProducer;
 import org.library.reviewService.model.ReviewMetrics;
 import org.library.reviewService.repository.BaseRepository;
 import org.library.reviewService.repository.ReviewMetricsRepository;
@@ -18,8 +19,8 @@ import java.util.Optional;
 public class ReviewMetricsService extends AbstractService<ReviewMetrics> {
 
     private final ReviewMetricsRepository reviewMetricsRepository;
-
     private final MongoOperations mongoOperations;
+    private final BookRatingUpdatedProducer producer;
 
     @Override
     protected BaseRepository<ReviewMetrics> getRepository() {
@@ -53,6 +54,7 @@ public class ReviewMetricsService extends AbstractService<ReviewMetrics> {
         metrics.setAverageRating(calculateAverageRating(metrics));
 
         update(metrics);
+        producer.sendBookRatingUpdatedEvent(metrics);
     }
 
     public void updateMetricsAfterEdit(Integer bookId, Integer oldRating, Integer newRating) {
@@ -78,6 +80,7 @@ public class ReviewMetricsService extends AbstractService<ReviewMetrics> {
         metrics.setAverageRating(calculateAverageRating(metrics));
 
         update(metrics);
+        producer.sendBookRatingUpdatedEvent(metrics);
     }
 
     public void removeReviewMetrics(Integer bookId, Integer rating) {
@@ -95,7 +98,9 @@ public class ReviewMetricsService extends AbstractService<ReviewMetrics> {
             }
 
             metrics.setAverageRating(calculateAverageRating(metrics));
+
             update(metrics);
+            producer.sendBookRatingUpdatedEvent(metrics);
         });
     }
 

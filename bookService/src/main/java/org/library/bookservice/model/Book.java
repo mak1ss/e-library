@@ -54,6 +54,12 @@ public class Book implements Identifiable, Archivable {
     @Column(name = "image_key")
     private String imageKey;
 
+    @Column(name = "average_rating")
+    private Double averageRating;
+
+    @Column(name = "total_reviews")
+    private Integer totalReviews;
+
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private boolean archived;
 }

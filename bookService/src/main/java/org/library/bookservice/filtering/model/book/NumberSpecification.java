@@ -9,7 +9,7 @@ import org.library.bookservice.filtering.SearchCriteria;
 import org.springframework.data.jpa.domain.Specification;
 
 @AllArgsConstructor
-public class PriceSpecification<EntityType> implements Specification<EntityType> {
+public class NumberSpecification<EntityType> implements Specification<EntityType> {
 
     private SearchCriteria criteria;
 

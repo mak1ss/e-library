@@ -16,6 +16,8 @@ export class Book {
     public price?: number,
     public bookGenres?: Genre[],
     public imageUrl?: string,
+    public averageRating?: number,
+    public totalReviews?: number
   ) {
   }
 
@@ -32,6 +34,8 @@ export class Book {
       book.price,
       book.bookGenres,
       book.imageUrl,
+      book.averageRating,
+      book.totalReviews,
     );
   }
 }

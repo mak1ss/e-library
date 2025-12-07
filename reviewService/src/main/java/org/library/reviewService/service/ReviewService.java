@@ -104,6 +104,7 @@ public class ReviewService extends AbstractService<Review> {
     @Override
     protected void afterCreate(Review entity) {
         metricsService.addReviewMetrics(entity.getBookId(), entity.getRating());
+
     }
 
     @Override
