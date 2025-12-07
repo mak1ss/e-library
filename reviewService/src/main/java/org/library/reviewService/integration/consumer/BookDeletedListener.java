@@ -1,4 +1,4 @@
-package org.library.reviewService.eventListener;
+package org.library.reviewService.integration.consumer;
 
 import event.BookDeletedEvent;
 import lombok.AllArgsConstructor;

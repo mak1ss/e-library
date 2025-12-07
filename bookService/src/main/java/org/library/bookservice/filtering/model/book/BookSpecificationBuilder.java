@@ -24,10 +24,14 @@ public class BookSpecificationBuilder implements EntityFilterSpecificationBuilde
                     NameInEntitySpecificationBuilder.SUPPORTED_OPERATORS),
             new FilterableProperty<>("releaseDate", String.class, new DateSpecificationBuilder<>(),
                     DateSpecificationBuilder.SUPPORTED_OPERATORS),
-            new FilterableProperty<>("price", Double.class, new PriceSpecificationBuilder<>(),
-                    PriceSpecificationBuilder.SUPPORTED_OPERATORS),
+            new FilterableProperty<>("price", Double.class, new NumberSpecificationBuilder<>(),
+                    NumberSpecificationBuilder.SUPPORTED_OPERATORS),
             new FilterableProperty<>("genres", String.class, new GenreSpecificationBuilder(),
-                    GenreSpecificationBuilder.SUPPORTED_OPERATORS)
+                    GenreSpecificationBuilder.SUPPORTED_OPERATORS),
+            new FilterableProperty<>("averageRating", Double.class, new NumberSpecificationBuilder<>(),
+                    NumberSpecificationBuilder.SUPPORTED_OPERATORS),
+            new FilterableProperty<>("totalReviews", Double.class, new NumberSpecificationBuilder<>(),
+                    NumberSpecificationBuilder.SUPPORTED_OPERATORS)
     );
 
     @Override

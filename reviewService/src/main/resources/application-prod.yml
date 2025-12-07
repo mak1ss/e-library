@@ -11,6 +11,11 @@ spring:
         schema:
           registry:
             url: http://schema-registry:8082
+    producer:
+      properties:
+        schema:
+          registry:
+            url: http://schema-registry:8082
 
   security:
     oauth2:
@@ -23,3 +28,7 @@ book-service:
   url: http://book-service:8080
 gateway:
   url: http://api-gateway:9000
+
+data:
+  seeding:
+    folder: "/app/data/seeding/"

@@ -18,10 +18,11 @@ export class BookService {
    * @param page - номер сторінки (починаючи з 0)
    * @param size - розмір сторінки
    */
-  getBooks(filters: Record<string, any> = {}, page: number = 0, size: number = 10): Observable<PageResponse<Book>> {
+  getBooks(filters: Record<string, any> = {}, page: number = 0, size: number = 10, sort: string = 'title,asc'): Observable<PageResponse<Book>> {
     let params = new HttpParams()
       .set('pageIndex', page)
-      .set('pageSize', size);
+      .set('pageSize', size)
+      .set('sort', sort);
 
     const searchCriteria: string[] = [];
 
@@ -55,6 +56,20 @@ export class BookService {
         ? filters['publisher'].join('||')
         : filters['publisher'];
       searchCriteria.push(`publisher_=${pubStr}`);
+    }
+
+    if (filters['minPrice'] !== null && filters['minPrice'] !== undefined) {
+      searchCriteria.push(`price>=${filters['minPrice']}`);
+    }
+    if (filters['maxPrice'] !== null && filters['maxPrice'] !== undefined) {
+      searchCriteria.push(`price<=${filters['maxPrice']}`);
+    }
+
+    if (filters['minRating'] !== null && filters['minRating'] !== undefined) {
+      searchCriteria.push(`averageRating>=${filters['minRating']}`);
+    }
+    if (filters['maxRating'] !== null && filters['maxRating'] !== undefined) {
+      searchCriteria.push(`averageRating<=${filters['maxRating']}`);
     }
 
     if (searchCriteria.length > 0) {

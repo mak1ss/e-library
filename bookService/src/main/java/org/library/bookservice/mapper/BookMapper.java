@@ -80,6 +80,8 @@ public class BookMapper implements Mapper<Book, BookResponse, BookRequest> {
                 .price(entity.getPrice())
                 .bookGenres(genreMapper.entitiesToListResponse(entity.getGenres()))
                 .imageUrl(buildImageUrl(entity.getImageKey()))
+                .averageRating(entity.getAverageRating())
+                .totalReviews(entity.getTotalReviews())
                 .build();
 
     }

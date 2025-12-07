@@ -1,0 +1,2502 @@
+[
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "John",
+    "lastName": "Doe",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 1,
+    "createdAt": "2023-10-15T08:30:00",
+    "rating": 5,
+    "text": "A chilling prophecy about the future. Big Brother is always watching. Orwell was a visionary."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Sarah",
+    "lastName": "Smith",
+    "avatarUrl": null,
+    "bookId": 1,
+    "createdAt": "2023-10-20T14:15:00",
+    "rating": 4,
+    "text": "Depressing but essential reading. The concept of Newspeak is fascinating and terrifying."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Michael",
+    "lastName": "Johnson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 1,
+    "createdAt": "2023-11-01T09:00:00",
+    "rating": 5,
+    "text": "One of the best dystopian novels ever written. 2+2=5."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Emily",
+    "lastName": "Brown",
+    "avatarUrl": null,
+    "bookId": 1,
+    "createdAt": "2023-11-05T18:45:00",
+    "rating": 3,
+    "text": "It was a bit slow in the middle, especially the part with 'The Book', but the ending broke me."
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "David",
+    "lastName": "Wilson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 1,
+    "createdAt": "2023-11-12T11:20:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Jessica",
+    "lastName": "Taylor",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 1,
+    "createdAt": "2023-11-20T16:10:00",
+    "rating": 4,
+    "text": "Classic. Everyone should read this at least once."
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Daniel",
+    "lastName": "Anderson",
+    "avatarUrl": null,
+    "bookId": 1,
+    "createdAt": "2023-12-01T10:05:00",
+    "rating": 5,
+    "text": "Scarily relevant to today's world."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Sophia",
+    "lastName": "Thomas",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 1,
+    "createdAt": "2023-12-10T13:30:00",
+    "rating": 2,
+    "text": "Too bleak for my taste. I prefer something with a happier ending."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "James",
+    "lastName": "Jackson",
+    "avatarUrl": null,
+    "bookId": 1,
+    "createdAt": "2023-12-15T19:20:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Olivia",
+    "lastName": "White",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 1,
+    "createdAt": "2023-12-25T08:00:00",
+    "rating": 4,
+    "text": "Winston Smith is such a tragic character."
+  },
+  {
+    "userId": "e1f2a3b4-c5d6-7890-1234-567890efabcd",
+    "firstName": "Lucas",
+    "lastName": "Harris",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e1f2a3b4",
+    "bookId": 2,
+    "createdAt": "2023-10-05T15:00:00",
+    "rating": 5,
+    "text": "The magic starts here! Absolutely loved re-reading this childhood favorite."
+  },
+  {
+    "userId": "f2a3b4c5-d6e7-8901-2345-678901fabcde",
+    "firstName": "Mia",
+    "lastName": "Martin",
+    "avatarUrl": null,
+    "bookId": 2,
+    "createdAt": "2023-10-12T11:45:00",
+    "rating": 5,
+    "text": "You're a wizard, Harry! J.K. Rowling built an incredible world."
+  },
+  {
+    "userId": "a3b4c5d6-e7f8-9012-3456-789012abcdef",
+    "firstName": "Ethan",
+    "lastName": "Thompson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a3b4c5d6",
+    "bookId": 2,
+    "createdAt": "2023-10-25T09:30:00",
+    "rating": 4,
+    "text": "Great start to the series, though the first few chapters are a bit slow."
+  },
+  {
+    "userId": "b4c5d6e7-f8a9-0123-4567-890123bcdefa",
+    "firstName": "Ava",
+    "lastName": "Garcia",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b4c5d6e7",
+    "bookId": 2,
+    "createdAt": "2023-11-03T14:20:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "c5d6e7f8-a9b0-1234-5678-901234cdefab",
+    "firstName": "Alexander",
+    "lastName": "Martinez",
+    "avatarUrl": null,
+    "bookId": 2,
+    "createdAt": "2023-11-15T17:10:00",
+    "rating": 3,
+    "text": "It's okay, but I think it's a bit overhyped. Maybe it's just not for me."
+  },
+  {
+    "userId": "d6e7f8a9-b0c1-2345-6789-012345defabc",
+    "firstName": "Charlotte",
+    "lastName": "Robinson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d6e7f8a9",
+    "bookId": 2,
+    "createdAt": "2023-11-22T12:00:00",
+    "rating": 5,
+    "text": "Hogwarts feels like home. I wish I got my letter!"
+  },
+  {
+    "userId": "e7f8a9b0-c1d2-3456-7890-123456efabcd",
+    "firstName": "Benjamin",
+    "lastName": "Clark",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e7f8a9b0",
+    "bookId": 2,
+    "createdAt": "2023-12-05T10:50:00",
+    "rating": 4,
+    "text": "A classic fantasy adventure. Easy to read and very engaging."
+  },
+  {
+    "userId": "f8a9b0c1-d2e3-4567-8901-234567fabcde",
+    "firstName": "Amelia",
+    "lastName": "Rodriguez",
+    "avatarUrl": null,
+    "bookId": 2,
+    "createdAt": "2023-12-18T16:40:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "a9b0c1d2-e3f4-5678-9012-345678abcdef",
+    "firstName": "Mason",
+    "lastName": "Lewis",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a9b0c1d2",
+    "bookId": 2,
+    "createdAt": "2024-01-02T08:15:00",
+    "rating": 4,
+    "text": "Hermione is the real hero of this story, let's be honest."
+  },
+  {
+    "userId": "b0c1d2e3-f4a5-0123-4567-890123bcdefa",
+    "firstName": "Harper",
+    "lastName": "Lee",
+    "avatarUrl": null,
+    "bookId": 2,
+    "createdAt": "2024-01-10T13:25:00",
+    "rating": 5,
+    "text": "Pure nostalgia."
+  },
+  {
+    "userId": "c1d2e3f4-a5b6-1234-5678-901234cdefab",
+    "firstName": "Elijah",
+    "lastName": "Walker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c1d2e3f4",
+    "bookId": 3,
+    "createdAt": "2023-10-01T22:00:00",
+    "rating": 5,
+    "text": "Here's Johnny! This book terrified me. Way better than the movie."
+  },
+  {
+    "userId": "d2e3f4a5-b6c7-2345-6789-012345defabc",
+    "firstName": "Evelyn",
+    "lastName": "Hall",
+    "avatarUrl": null,
+    "bookId": 3,
+    "createdAt": "2023-10-08T19:30:00",
+    "rating": 4,
+    "text": "King is the master of horror. The atmosphere at the Overlook Hotel is suffocating."
+  },
+  {
+    "userId": "e3f4a5b6-c7d8-3456-7890-123456efabcd",
+    "firstName": "Logan",
+    "lastName": "Allen",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e3f4a5b6",
+    "bookId": 3,
+    "createdAt": "2023-10-15T14:10:00",
+    "rating": 5,
+    "text": "I slept with the lights on for a week after reading this."
+  },
+  {
+    "userId": "f4a5b6c7-d8e9-4567-8901-234567fabcde",
+    "firstName": "Abigail",
+    "lastName": "Young",
+    "avatarUrl": null,
+    "bookId": 3,
+    "createdAt": "2023-10-30T11:00:00",
+    "rating": 3,
+    "text": "Good, but I found the pacing a bit slow in the beginning."
+  },
+  {
+    "userId": "a5b6c7d8-e9f0-5678-9012-345678abcdef",
+    "firstName": "Caleb",
+    "lastName": "Hernandez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a5b6c7d8",
+    "bookId": 3,
+    "createdAt": "2023-11-05T16:50:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "b6c7d8e9-f0a1-0123-4567-890123bcdefa",
+    "firstName": "Sofia",
+    "lastName": "King",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b6c7d8e9",
+    "bookId": 3,
+    "createdAt": "2023-11-12T09:40:00",
+    "rating": 4,
+    "text": "The psychological depth of Jack Torrance's descent into madness is incredible."
+  },
+  {
+    "userId": "c7d8e9f0-a1b2-1234-5678-901234cdefab",
+    "firstName": "Jackson",
+    "lastName": "Wright",
+    "avatarUrl": null,
+    "bookId": 3,
+    "createdAt": "2023-11-20T21:15:00",
+    "rating": 5,
+    "text": "REDRUM. Classic horror."
+  },
+  {
+    "userId": "d8e9f0a1-b2c3-2345-6789-012345defabc",
+    "firstName": "Avery",
+    "lastName": "Lopez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d8e9f0a1",
+    "bookId": 3,
+    "createdAt": "2023-12-02T15:30:00",
+    "rating": 2,
+    "text": "Too disturbing for me. I couldn't finish it."
+  },
+  {
+    "userId": "e9f0a1b2-c3d4-3456-7890-123456efabcd",
+    "firstName": "Henry",
+    "lastName": "Hill",
+    "avatarUrl": null,
+    "bookId": 3,
+    "createdAt": "2023-12-14T12:20:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "f0a1b2c3-d4e5-4567-8901-234567fabcde",
+    "firstName": "Ella",
+    "lastName": "Scott",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f0a1b2c3",
+    "bookId": 3,
+    "createdAt": "2024-01-05T18:00:00",
+    "rating": 5,
+    "text": "A masterpiece of suspense."
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "Sebastian",
+    "lastName": "Green",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 4,
+    "createdAt": "2023-10-10T10:00:00",
+    "rating": 5,
+    "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Grace",
+    "lastName": "Adams",
+    "avatarUrl": null,
+    "bookId": 4,
+    "createdAt": "2023-10-18T14:30:00",
+    "rating": 5,
+    "text": "Mr. Darcy is the ultimate romantic hero. Jane Austen's wit is unmatched."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Jack",
+    "lastName": "Baker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 4,
+    "createdAt": "2023-10-25T09:15:00",
+    "rating": 4,
+    "text": "Surprisingly funny. The social commentary is still relevant."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Lily",
+    "lastName": "Gonzalez",
+    "avatarUrl": null,
+    "bookId": 4,
+    "createdAt": "2023-11-02T17:40:00",
+    "rating": 3,
+    "text": "The language is a bit hard to get used to, but the story is sweet."
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "Owen",
+    "lastName": "Nelson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 4,
+    "createdAt": "2023-11-10T11:25:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Chloe",
+    "lastName": "Carter",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 4,
+    "createdAt": "2023-11-18T13:50:00",
+    "rating": 5,
+    "text": "Elizabeth Bennet is such a strong female lead. Love her!"
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Wyatt",
+    "lastName": "Mitchell",
+    "avatarUrl": null,
+    "bookId": 4,
+    "createdAt": "2023-12-05T16:10:00",
+    "rating": 4,
+    "text": "A delightful read."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Zoey",
+    "lastName": "Perez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 4,
+    "createdAt": "2023-12-12T08:30:00",
+    "rating": 2,
+    "text": "I found it boring. Just people talking in rooms."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "Julian",
+    "lastName": "Roberts",
+    "avatarUrl": null,
+    "bookId": 4,
+    "createdAt": "2023-12-20T19:45:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Mila",
+    "lastName": "Turner",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 4,
+    "createdAt": "2024-01-08T10:20:00",
+    "rating": 4,
+    "text": "Classic romance done right."
+  },
+  {
+    "userId": "e1f2a3b4-c5d6-7890-1234-567890efabcd",
+    "firstName": "Levi",
+    "lastName": "Phillips",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e1f2a3b4",
+    "bookId": 5,
+    "createdAt": "2023-10-03T12:15:00",
+    "rating": 5,
+    "text": "So we beat on, boats against the current, borne back ceaselessly into the past."
+  },
+  {
+    "userId": "f2a3b4c5-d6e7-8901-2345-678901fabcde",
+    "firstName": "Aria",
+    "lastName": "Campbell",
+    "avatarUrl": null,
+    "bookId": 5,
+    "createdAt": "2023-10-11T09:40:00",
+    "rating": 4,
+    "text": "The symbolism in this book is deep. The green light, the eyes of Dr. T.J. Eckleburg."
+  },
+  {
+    "userId": "a3b4c5d6-e7f8-9012-3456-789012abcdef",
+    "firstName": "Isaiah",
+    "lastName": "Parker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a3b4c5d6",
+    "bookId": 5,
+    "createdAt": "2023-10-20T14:55:00",
+    "rating": 3,
+    "text": "Beautifully written, but I hated all the characters. They are so shallow."
+  },
+  {
+    "userId": "b4c5d6e7-f8a9-0123-4567-890123bcdefa",
+    "firstName": "Luna",
+    "lastName": "Evans",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b4c5d6e7",
+    "bookId": 5,
+    "createdAt": "2023-10-28T18:30:00",
+    "rating": 5,
+    "text": "The tragedy of Jay Gatsby is heartbreaking. Old sport."
+  },
+  {
+    "userId": "c5d6e7f8-a9b0-1234-5678-901234cdefab",
+    "firstName": "Andrew",
+    "lastName": "Edwards",
+    "avatarUrl": null,
+    "bookId": 5,
+    "createdAt": "2023-11-05T11:10:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "d6e7f8a9-b0c1-2345-6789-012345defabc",
+    "firstName": "Ellie",
+    "lastName": "Collins",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d6e7f8a9",
+    "bookId": 5,
+    "createdAt": "2023-11-15T15:45:00",
+    "rating": 5,
+    "text": "Fitzgerald's prose is like poetry. A stunning critique of the American Dream."
+  },
+  {
+    "userId": "e7f8a9b0-c1d2-3456-7890-123456efabcd",
+    "firstName": "Asher",
+    "lastName": "Stewart",
+    "avatarUrl": null,
+    "bookId": 5,
+    "createdAt": "2023-11-25T08:50:00",
+    "rating": 2,
+    "text": "Didn't get the hype. Just rich people creating problems for themselves."
+  },
+  {
+    "userId": "f8a9b0c1-d2e3-4567-8901-234567fabcde",
+    "firstName": "Scarlett",
+    "lastName": "Sanchez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f8a9b0c1",
+    "bookId": 5,
+    "createdAt": "2023-12-08T13:20:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "a9b0c1d2-e3f4-5678-9012-345678abcdef",
+    "firstName": "Leo",
+    "lastName": "Morris",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a9b0c1d2",
+    "bookId": 5,
+    "createdAt": "2023-12-18T20:05:00",
+    "rating": 4,
+    "text": "Short but powerful. Daisy is the worst."
+  },
+  {
+    "userId": "b0c1d2e3-f4a5-0123-4567-890123bcdefa",
+    "firstName": "Layla",
+    "lastName": "Rogers",
+    "avatarUrl": null,
+    "bookId": 5,
+    "createdAt": "2024-01-03T10:00:00",
+    "rating": 4,
+    "text": "A timeless classic for a reason."
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "John",
+    "lastName": "Doe",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 6,
+    "createdAt": "2023-10-02T10:15:00",
+    "rating": 5,
+    "text": "A perfect adventure. Bilbo Baggins is the best hobbit."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Sarah",
+    "lastName": "Smith",
+    "avatarUrl": null,
+    "bookId": 6,
+    "createdAt": "2023-10-09T14:50:00",
+    "rating": 5,
+    "text": "In a hole in the ground there lived a hobbit... Iconic."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Michael",
+    "lastName": "Johnson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 6,
+    "createdAt": "2023-10-16T09:25:00",
+    "rating": 4,
+    "text": "A bit simpler than LOTR, but charming in its own way."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Emily",
+    "lastName": "Brown",
+    "avatarUrl": null,
+    "bookId": 6,
+    "createdAt": "2023-10-23T18:00:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "David",
+    "lastName": "Wilson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 6,
+    "createdAt": "2023-11-05T11:40:00",
+    "rating": 3,
+    "text": "Too many songs for my liking, but the dragon was cool."
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Jessica",
+    "lastName": "Taylor",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 6,
+    "createdAt": "2023-11-12T16:30:00",
+    "rating": 5,
+    "text": "Smaug is the greatest villain ever."
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Daniel",
+    "lastName": "Anderson",
+    "avatarUrl": null,
+    "bookId": 6,
+    "createdAt": "2023-11-20T13:10:00",
+    "rating": 4,
+    "text": "Classic fantasy."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Sophia",
+    "lastName": "Thomas",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 6,
+    "createdAt": "2023-12-01T08:55:00",
+    "rating": 5,
+    "text": "I want to live in the Shire."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "James",
+    "lastName": "Jackson",
+    "avatarUrl": null,
+    "bookId": 6,
+    "createdAt": "2023-12-15T19:20:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Olivia",
+    "lastName": "White",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 6,
+    "createdAt": "2024-01-05T10:45:00",
+    "rating": 5,
+    "text": "A masterpiece."
+  },
+  {
+    "userId": "e1f2a3b4-c5d6-7890-1234-567890efabcd",
+    "firstName": "Lucas",
+    "lastName": "Harris",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e1f2a3b4",
+    "bookId": 7,
+    "createdAt": "2023-10-04T14:20:00",
+    "rating": 5,
+    "text": "Atticus Finch is the father we all wish we had."
+  },
+  {
+    "userId": "f2a3b4c5-d6e7-8901-2345-678901fabcde",
+    "firstName": "Mia",
+    "lastName": "Martin",
+    "avatarUrl": null,
+    "bookId": 7,
+    "createdAt": "2023-10-11T09:50:00",
+    "rating": 5,
+    "text": "Powerful, moving, and important."
+  },
+  {
+    "userId": "a3b4c5d6-e7f8-9012-3456-789012abcdef",
+    "firstName": "Ethan",
+    "lastName": "Thompson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a3b4c5d6",
+    "bookId": 7,
+    "createdAt": "2023-10-25T16:00:00",
+    "rating": 4,
+    "text": "A bit slow at first, but the trial scenes are gripping."
+  },
+  {
+    "userId": "b4c5d6e7-f8a9-0123-4567-890123bcdefa",
+    "firstName": "Ava",
+    "lastName": "Garcia",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b4c5d6e7",
+    "bookId": 7,
+    "createdAt": "2023-11-02T12:30:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "c5d6e7f8-a9b0-1234-5678-901234cdefab",
+    "firstName": "Alexander",
+    "lastName": "Martinez",
+    "avatarUrl": null,
+    "bookId": 7,
+    "createdAt": "2023-11-15T08:10:00",
+    "rating": 5,
+    "text": "Should be required reading for everyone."
+  },
+  {
+    "userId": "d6e7f8a9-b0c1-2345-6789-012345defabc",
+    "firstName": "Charlotte",
+    "lastName": "Robinson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d6e7f8a9",
+    "bookId": 7,
+    "createdAt": "2023-11-25T18:40:00",
+    "rating": 4,
+    "text": "Scout's perspective is so innocent yet insightful."
+  },
+  {
+    "userId": "e7f8a9b0-c1d2-3456-7890-123456efabcd",
+    "firstName": "Benjamin",
+    "lastName": "Clark",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e7f8a9b0",
+    "bookId": 7,
+    "createdAt": "2023-12-08T11:15:00",
+    "rating": 5,
+    "text": "An American classic."
+  },
+  {
+    "userId": "f8a9b0c1-d2e3-4567-8901-234567fabcde",
+    "firstName": "Amelia",
+    "lastName": "Rodriguez",
+    "avatarUrl": null,
+    "bookId": 7,
+    "createdAt": "2023-12-20T15:55:00",
+    "rating": 3,
+    "text": "Overrated in my opinion, but still a good read."
+  },
+  {
+    "userId": "a9b0c1d2-e3f4-5678-9012-345678abcdef",
+    "firstName": "Mason",
+    "lastName": "Lewis",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a9b0c1d2",
+    "bookId": 7,
+    "createdAt": "2024-01-05T10:20:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "b0c1d2e3-f4a5-0123-4567-890123bcdefa",
+    "firstName": "Harper",
+    "lastName": "Lee",
+    "avatarUrl": null,
+    "bookId": 7,
+    "createdAt": "2024-01-12T14:00:00",
+    "rating": 5,
+    "text": "Timeless."
+  },
+  {
+    "userId": "c1d2e3f4-a5b6-1234-5678-901234cdefab",
+    "firstName": "Elijah",
+    "lastName": "Walker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c1d2e3f4",
+    "bookId": 8,
+    "createdAt": "2023-10-01T20:00:00",
+    "rating": 5,
+    "text": "The spice must flow! An epic masterpiece of sci-fi."
+  },
+  {
+    "userId": "d2e3f4a5-b6c7-2345-6789-012345defabc",
+    "firstName": "Evelyn",
+    "lastName": "Hall",
+    "avatarUrl": null,
+    "bookId": 8,
+    "createdAt": "2023-10-08T13:45:00",
+    "rating": 4,
+    "text": "Complex and dense, but rewarding if you stick with it."
+  },
+  {
+    "userId": "e3f4a5b6-c7d8-3456-7890-123456efabcd",
+    "firstName": "Logan",
+    "lastName": "Allen",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e3f4a5b6",
+    "bookId": 8,
+    "createdAt": "2023-10-15T09:10:00",
+    "rating": 5,
+    "text": "Frank Herbert created a universe like no other."
+  },
+  {
+    "userId": "f4a5b6c7-d8e9-4567-8901-234567fabcde",
+    "firstName": "Abigail",
+    "lastName": "Young",
+    "avatarUrl": null,
+    "bookId": 8,
+    "createdAt": "2023-10-28T17:30:00",
+    "rating": 2,
+    "text": "I got lost in all the terminology. Too dry for me."
+  },
+  {
+    "userId": "a5b6c7d8-e9f0-5678-9012-345678abcdef",
+    "firstName": "Caleb",
+    "lastName": "Hernandez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a5b6c7d8",
+    "bookId": 8,
+    "createdAt": "2023-11-05T12:20:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "b6c7d8e9-f0a1-0123-4567-890123bcdefa",
+    "firstName": "Sofia",
+    "lastName": "King",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b6c7d8e9",
+    "bookId": 8,
+    "createdAt": "2023-11-15T15:50:00",
+    "rating": 4,
+    "text": "Paul Atreides is a fascinating character."
+  },
+  {
+    "userId": "c7d8e9f0-a1b2-1234-5678-901234cdefab",
+    "firstName": "Jackson",
+    "lastName": "Wright",
+    "avatarUrl": null,
+    "bookId": 8,
+    "createdAt": "2023-11-25T08:40:00",
+    "rating": 5,
+    "text": "Fear is the mind-killer."
+  },
+  {
+    "userId": "d8e9f0a1-b2c3-2345-6789-012345defabc",
+    "firstName": "Avery",
+    "lastName": "Lopez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d8e9f0a1",
+    "bookId": 8,
+    "createdAt": "2023-12-10T19:00:00",
+    "rating": 5,
+    "text": "Can't wait to read the sequels."
+  },
+  {
+    "userId": "e9f0a1b2-c3d4-3456-7890-123456efabcd",
+    "firstName": "Henry",
+    "lastName": "Hill",
+    "avatarUrl": null,
+    "bookId": 8,
+    "createdAt": "2023-12-20T14:15:00",
+    "rating": 3,
+    "text": null
+  },
+  {
+    "userId": "f0a1b2c3-d4e5-4567-8901-234567fabcde",
+    "firstName": "Ella",
+    "lastName": "Scott",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f0a1b2c3",
+    "bookId": 8,
+    "createdAt": "2024-01-05T11:30:00",
+    "rating": 5,
+    "text": "Better than Star Wars."
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "Sebastian",
+    "lastName": "Green",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 9,
+    "createdAt": "2023-10-02T09:00:00",
+    "rating": 5,
+    "text": "Elementary, my dear Watson! These stories are pure genius."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Grace",
+    "lastName": "Adams",
+    "avatarUrl": null,
+    "bookId": 9,
+    "createdAt": "2023-10-10T15:20:00",
+    "rating": 4,
+    "text": "Some stories are better than others, but overall a great collection."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Jack",
+    "lastName": "Baker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 9,
+    "createdAt": "2023-10-18T12:45:00",
+    "rating": 5,
+    "text": "Sherlock Holmes is the ultimate detective."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Lily",
+    "lastName": "Gonzalez",
+    "avatarUrl": null,
+    "bookId": 9,
+    "createdAt": "2023-10-28T08:30:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "Owen",
+    "lastName": "Nelson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 9,
+    "createdAt": "2023-11-08T17:10:00",
+    "rating": 3,
+    "text": "A bit repetitive after a while, but good for short reading sessions."
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Chloe",
+    "lastName": "Carter",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 9,
+    "createdAt": "2023-11-15T13:00:00",
+    "rating": 4,
+    "text": "The Speckled Band is my favorite story."
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Wyatt",
+    "lastName": "Mitchell",
+    "avatarUrl": null,
+    "bookId": 9,
+    "createdAt": "2023-11-25T10:40:00",
+    "rating": 5,
+    "text": "Brilliant writing and clever plots."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Zoey",
+    "lastName": "Perez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 9,
+    "createdAt": "2023-12-05T16:25:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "Julian",
+    "lastName": "Roberts",
+    "avatarUrl": null,
+    "bookId": 9,
+    "createdAt": "2023-12-15T19:00:00",
+    "rating": 5,
+    "text": "I love the dynamic between Holmes and Watson."
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Mila",
+    "lastName": "Turner",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 9,
+    "createdAt": "2024-01-02T09:15:00",
+    "rating": 5,
+    "text": "A must-read for mystery fans."
+  },
+  {
+    "userId": "e1f2a3b4-c5d6-7890-1234-567890efabcd",
+    "firstName": "Levi",
+    "lastName": "Phillips",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e1f2a3b4",
+    "bookId": 10,
+    "createdAt": "2023-10-05T11:00:00",
+    "rating": 3,
+    "text": "Holden Caulfield is incredibly annoying, but I guess that's the point."
+  },
+  {
+    "userId": "f2a3b4c5-d6e7-8901-2345-678901fabcde",
+    "firstName": "Aria",
+    "lastName": "Campbell",
+    "avatarUrl": null,
+    "bookId": 10,
+    "createdAt": "2023-10-12T15:30:00",
+    "rating": 5,
+    "text": "It really captures the feeling of teenage angst and alienation."
+  },
+  {
+    "userId": "a3b4c5d6-e7f8-9012-3456-789012abcdef",
+    "firstName": "Isaiah",
+    "lastName": "Parker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a3b4c5d6",
+    "bookId": 10,
+    "createdAt": "2023-10-22T08:45:00",
+    "rating": 1,
+    "text": "I hated this book. Nothing happens, just a kid complaining."
+  },
+  {
+    "userId": "b4c5d6e7-f8a9-0123-4567-890123bcdefa",
+    "firstName": "Luna",
+    "lastName": "Evans",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b4c5d6e7",
+    "bookId": 10,
+    "createdAt": "2023-11-01T13:10:00",
+    "rating": 4,
+    "text": "Phonies everywhere! A classic coming-of-age story."
+  },
+  {
+    "userId": "c5d6e7f8-a9b0-1234-5678-901234cdefab",
+    "firstName": "Andrew",
+    "lastName": "Edwards",
+    "avatarUrl": null,
+    "bookId": 10,
+    "createdAt": "2023-11-10T17:50:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "d6e7f8a9-b0c1-2345-6789-012345defabc",
+    "firstName": "Ellie",
+    "lastName": "Collins",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d6e7f8a9",
+    "bookId": 10,
+    "createdAt": "2023-11-20T10:00:00",
+    "rating": 4,
+    "text": "The voice of the narrator is unique and memorable."
+  },
+  {
+    "userId": "e7f8a9b0-c1d2-3456-7890-123456efabcd",
+    "firstName": "Asher",
+    "lastName": "Stewart",
+    "avatarUrl": null,
+    "bookId": 10,
+    "createdAt": "2023-12-05T14:30:00",
+    "rating": 2,
+    "text": "Overrated. I don't see why it's a classic."
+  },
+  {
+    "userId": "f8a9b0c1-d2e3-4567-8901-234567fabcde",
+    "firstName": "Scarlett",
+    "lastName": "Sanchez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f8a9b0c1",
+    "bookId": 10,
+    "createdAt": "2023-12-15T09:20:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "a9b0c1d2-e3f4-5678-9012-345678abcdef",
+    "firstName": "Leo",
+    "lastName": "Morris",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a9b0c1d2",
+    "bookId": 10,
+    "createdAt": "2023-12-28T16:45:00",
+    "rating": 4,
+    "text": "It resonated with me a lot when I was younger."
+  },
+  {
+    "userId": "b0c1d2e3-f4a5-0123-4567-890123bcdefa",
+    "firstName": "Layla",
+    "lastName": "Rogers",
+    "avatarUrl": null,
+    "bookId": 10,
+    "createdAt": "2024-01-08T11:15:00",
+    "rating": 5,
+    "text": "Don't ever tell anybody anything. If you do, you start missing everybody."
+  },
+  {
+    "userId": "c1d2e3f4-a5b6-1234-5678-901234cdefab",
+    "firstName": "Elijah",
+    "lastName": "Walker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c1d2e3f4",
+    "bookId": 11,
+    "createdAt": "2023-10-05T08:00:00",
+    "rating": 5,
+    "text": "This book changed how I see the world. The cognitive revolution part is mind-blowing."
+  },
+  {
+    "userId": "d2e3f4a5-b6c7-2345-6789-012345defabc",
+    "firstName": "Evelyn",
+    "lastName": "Hall",
+    "avatarUrl": null,
+    "bookId": 11,
+    "createdAt": "2023-10-12T14:30:00",
+    "rating": 4,
+    "text": "Very insightful, although the author gets a bit preachy towards the end."
+  },
+  {
+    "userId": "e3f4a5b6-c7d8-3456-7890-123456efabcd",
+    "firstName": "Logan",
+    "lastName": "Allen",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e3f4a5b6",
+    "bookId": 11,
+    "createdAt": "2023-10-20T11:15:00",
+    "rating": 5,
+    "text": "A masterpiece of history and anthropology. Highly recommended."
+  },
+  {
+    "userId": "f4a5b6c7-d8e9-4567-8901-234567fabcde",
+    "firstName": "Abigail",
+    "lastName": "Young",
+    "avatarUrl": null,
+    "bookId": 11,
+    "createdAt": "2023-11-01T19:00:00",
+    "rating": 3,
+    "text": "Interesting concepts, but it felt a bit repetitive after the agricultural revolution."
+  },
+  {
+    "userId": "a5b6c7d8-e9f0-5678-9012-345678abcdef",
+    "firstName": "Caleb",
+    "lastName": "Hernandez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a5b6c7d8",
+    "bookId": 11,
+    "createdAt": "2023-11-10T10:45:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "b6c7d8e9-f0a1-0123-4567-890123bcdefa",
+    "firstName": "Sofia",
+    "lastName": "King",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b6c7d8e9",
+    "bookId": 11,
+    "createdAt": "2023-11-18T16:20:00",
+    "rating": 5,
+    "text": "I couldn't put it down. It connects biology and history in such a unique way."
+  },
+  {
+    "userId": "c7d8e9f0-a1b2-1234-5678-901234cdefab",
+    "firstName": "Jackson",
+    "lastName": "Wright",
+    "avatarUrl": null,
+    "bookId": 11,
+    "createdAt": "2023-12-02T09:10:00",
+    "rating": 4,
+    "text": "Thought-provoking."
+  },
+  {
+    "userId": "d8e9f0a1-b2c3-2345-6789-012345defabc",
+    "firstName": "Avery",
+    "lastName": "Lopez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d8e9f0a1",
+    "bookId": 11,
+    "createdAt": "2023-12-15T13:50:00",
+    "rating": 2,
+    "text": "Too speculative for a history book. I wanted more facts, less opinion."
+  },
+  {
+    "userId": "e9f0a1b2-c3d4-3456-7890-123456efabcd",
+    "firstName": "Henry",
+    "lastName": "Hill",
+    "avatarUrl": null,
+    "bookId": 11,
+    "createdAt": "2024-01-05T15:30:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "f0a1b2c3-d4e5-4567-8901-234567fabcde",
+    "firstName": "Ella",
+    "lastName": "Scott",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f0a1b2c3",
+    "bookId": 11,
+    "createdAt": "2024-01-12T11:00:00",
+    "rating": 5,
+    "text": "Everyone should read this to understand where we came from."
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "Sebastian",
+    "lastName": "Green",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 12,
+    "createdAt": "2023-10-01T07:30:00",
+    "rating": 5,
+    "text": "Practical and actionable. The 1% better every day concept really stuck with me."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Grace",
+    "lastName": "Adams",
+    "avatarUrl": null,
+    "bookId": 12,
+    "createdAt": "2023-10-08T12:15:00",
+    "rating": 5,
+    "text": "Best self-help book I've read in years. No fluff, just strategies."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Jack",
+    "lastName": "Baker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 12,
+    "createdAt": "2023-10-15T18:45:00",
+    "rating": 4,
+    "text": "Great advice on habit stacking. Helped me start going to the gym regularly."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Lily",
+    "lastName": "Gonzalez",
+    "avatarUrl": null,
+    "bookId": 12,
+    "createdAt": "2023-10-25T09:20:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "Owen",
+    "lastName": "Nelson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 12,
+    "createdAt": "2023-11-05T14:10:00",
+    "rating": 3,
+    "text": "Good ideas, but could have been a blog post. A bit repetitive."
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Chloe",
+    "lastName": "Carter",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 12,
+    "createdAt": "2023-11-12T10:30:00",
+    "rating": 5,
+    "text": "Clear's writing style is very engaging."
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Wyatt",
+    "lastName": "Mitchell",
+    "avatarUrl": null,
+    "bookId": 12,
+    "createdAt": "2023-11-22T16:50:00",
+    "rating": 4,
+    "text": "Solid advice on breaking bad habits."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Zoey",
+    "lastName": "Perez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 12,
+    "createdAt": "2023-12-05T08:00:00",
+    "rating": 5,
+    "text": "Life changing."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "Julian",
+    "lastName": "Roberts",
+    "avatarUrl": null,
+    "bookId": 12,
+    "createdAt": "2023-12-18T19:20:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Mila",
+    "lastName": "Turner",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 12,
+    "createdAt": "2024-01-08T11:40:00",
+    "rating": 5,
+    "text": "I bought copies for all my friends."
+  },
+  {
+    "userId": "e1f2a3b4-c5d6-7890-1234-567890efabcd",
+    "firstName": "Levi",
+    "lastName": "Phillips",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e1f2a3b4",
+    "bookId": 13,
+    "createdAt": "2023-10-03T10:00:00",
+    "rating": 5,
+    "text": "A must-read for any software developer. Uncle Bob knows his stuff."
+  },
+  {
+    "userId": "f2a3b4c5-d6e7-8901-2345-678901fabcde",
+    "firstName": "Aria",
+    "lastName": "Campbell",
+    "avatarUrl": null,
+    "bookId": 13,
+    "createdAt": "2023-10-10T14:20:00",
+    "rating": 5,
+    "text": "Even if you don't use Java, the principles are universal. Clean code matters!"
+  },
+  {
+    "userId": "a3b4c5d6-e7f8-9012-3456-789012abcdef",
+    "firstName": "Isaiah",
+    "lastName": "Parker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a3b4c5d6",
+    "bookId": 13,
+    "createdAt": "2023-10-22T09:15:00",
+    "rating": 3,
+    "text": "Some examples are a bit dated, and he is very dogmatic about certain rules."
+  },
+  {
+    "userId": "b4c5d6e7-f8a9-0123-4567-890123bcdefa",
+    "firstName": "Luna",
+    "lastName": "Evans",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b4c5d6e7",
+    "bookId": 13,
+    "createdAt": "2023-11-01T16:30:00",
+    "rating": 4,
+    "text": "Great chapters on naming and functions. The testing part is also solid."
+  },
+  {
+    "userId": "c5d6e7f8-a9b0-1234-5678-901234cdefab",
+    "firstName": "Andrew",
+    "lastName": "Edwards",
+    "avatarUrl": null,
+    "bookId": 13,
+    "createdAt": "2023-11-12T11:00:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "d6e7f8a9-b0c1-2345-6789-012345defabc",
+    "firstName": "Ellie",
+    "lastName": "Collins",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d6e7f8a9",
+    "bookId": 13,
+    "createdAt": "2023-11-25T13:45:00",
+    "rating": 5,
+    "text": "This book should be in every programmer's library."
+  },
+  {
+    "userId": "e7f8a9b0-c1d2-3456-7890-123456efabcd",
+    "firstName": "Asher",
+    "lastName": "Stewart",
+    "avatarUrl": null,
+    "bookId": 13,
+    "createdAt": "2023-12-05T09:50:00",
+    "rating": 2,
+    "text": "Too verbose. You can learn the same principles in a few blog posts."
+  },
+  {
+    "userId": "f8a9b0c1-d2e3-4567-8901-234567fabcde",
+    "firstName": "Scarlett",
+    "lastName": "Sanchez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f8a9b0c1",
+    "bookId": 13,
+    "createdAt": "2023-12-15T18:10:00",
+    "rating": 4,
+    "text": "Helped me refactor my spaghetti code."
+  },
+  {
+    "userId": "a9b0c1d2-e3f4-5678-9012-345678abcdef",
+    "firstName": "Leo",
+    "lastName": "Morris",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a9b0c1d2",
+    "bookId": 13,
+    "createdAt": "2024-01-02T10:20:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "b0c1d2e3-f4a5-0123-4567-890123bcdefa",
+    "firstName": "Layla",
+    "lastName": "Rogers",
+    "avatarUrl": null,
+    "bookId": 13,
+    "createdAt": "2024-01-10T15:00:00",
+    "rating": 4,
+    "text": "Boy Scout Rule: Always leave the campground cleaner than you found it."
+  },
+  {
+    "userId": "c1d2e3f4-a5b6-1234-5678-901234cdefab",
+    "firstName": "Carter",
+    "lastName": "Reed",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c1d2e3f4",
+    "bookId": 14,
+    "createdAt": "2023-10-05T20:30:00",
+    "rating": 4,
+    "text": "A real page-turner! Short chapters make it impossible to stop reading."
+  },
+  {
+    "userId": "d2e3f4a5-b6c7-2345-6789-012345defabc",
+    "firstName": "Hazel",
+    "lastName": "Cook",
+    "avatarUrl": null,
+    "bookId": 14,
+    "createdAt": "2023-10-12T12:45:00",
+    "rating": 3,
+    "text": "Fun thriller, but historically inaccurate. Don't take it too seriously."
+  },
+  {
+    "userId": "e3f4a5b6-c7d8-3456-7890-123456efabcd",
+    "firstName": "Nolan",
+    "lastName": "Morgan",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e3f4a5b6",
+    "bookId": 14,
+    "createdAt": "2023-10-20T09:00:00",
+    "rating": 5,
+    "text": "Robert Langdon is awesome. I loved the puzzles and codes."
+  },
+  {
+    "userId": "f4a5b6c7-d8e9-4567-8901-234567fabcde",
+    "firstName": "Aurora",
+    "lastName": "Bell",
+    "avatarUrl": null,
+    "bookId": 14,
+    "createdAt": "2023-11-01T16:15:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "a5b6c7d8-e9f0-5678-9012-345678abcdef",
+    "firstName": "Lincoln",
+    "lastName": "Murphy",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a5b6c7d8",
+    "bookId": 14,
+    "createdAt": "2023-11-10T13:30:00",
+    "rating": 5,
+    "text": "Gripping from start to finish."
+  },
+  {
+    "userId": "b6c7d8e9-f0a1-0123-4567-890123bcdefa",
+    "firstName": "Violet",
+    "lastName": "Rivera",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b6c7d8e9",
+    "bookId": 14,
+    "createdAt": "2023-11-20T19:50:00",
+    "rating": 2,
+    "text": "The writing is clumsy and the plot is full of holes."
+  },
+  {
+    "userId": "c7d8e9f0-a1b2-1234-5678-901234cdefab",
+    "firstName": "Hudson",
+    "lastName": "Cooper",
+    "avatarUrl": null,
+    "bookId": 14,
+    "createdAt": "2023-12-02T08:40:00",
+    "rating": 5,
+    "text": "Controversial but entertaining."
+  },
+  {
+    "userId": "d8e9f0a1-b2c3-2345-6789-012345defabc",
+    "firstName": "Brooklyn",
+    "lastName": "Richardson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d8e9f0a1",
+    "bookId": 14,
+    "createdAt": "2023-12-15T14:20:00",
+    "rating": 4,
+    "text": "Fast food for the brain. Enjoyable."
+  },
+  {
+    "userId": "e9f0a1b2-c3d4-3456-7890-123456efabcd",
+    "firstName": "Eli",
+    "lastName": "Cox",
+    "avatarUrl": null,
+    "bookId": 14,
+    "createdAt": "2024-01-01T11:05:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "f0a1b2c3-d4e5-4567-8901-234567fabcde",
+    "firstName": "Savannah",
+    "lastName": "Howard",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f0a1b2c3",
+    "bookId": 14,
+    "createdAt": "2024-01-10T17:30:00",
+    "rating": 5,
+    "text": "Could not guess the ending!"
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "Aaron",
+    "lastName": "Ward",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 15,
+    "createdAt": "2023-10-05T22:00:00",
+    "rating": 5,
+    "text": "Stephen King at his best. The bond between the Losers Club is amazing."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Claire",
+    "lastName": "Torres",
+    "avatarUrl": null,
+    "bookId": 15,
+    "createdAt": "2023-10-15T13:15:00",
+    "rating": 5,
+    "text": "Pennywise is the scariest monster ever. Beep beep Richie!"
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Christian",
+    "lastName": "Peterson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 15,
+    "createdAt": "2023-10-25T16:40:00",
+    "rating": 4,
+    "text": "It's very, very long. But worth it."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Skylar",
+    "lastName": "Gray",
+    "avatarUrl": null,
+    "bookId": 15,
+    "createdAt": "2023-11-05T10:00:00",
+    "rating": 3,
+    "text": "Some scenes were just too weird for me. You know which ones."
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "Hunter",
+    "lastName": "Ramirez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 15,
+    "createdAt": "2023-11-15T09:30:00",
+    "rating": 5,
+    "text": "We all float down here."
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Paisley",
+    "lastName": "James",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 15,
+    "createdAt": "2023-11-25T14:50:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Adrian",
+    "lastName": "Watson",
+    "avatarUrl": null,
+    "bookId": 15,
+    "createdAt": "2023-12-05T18:20:00",
+    "rating": 4,
+    "text": "Better than the movies."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Audrey",
+    "lastName": "Brooks",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 15,
+    "createdAt": "2023-12-15T08:10:00",
+    "rating": 5,
+    "text": "An epic coming of age story disguised as horror."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "Cameron",
+    "lastName": "Kelly",
+    "avatarUrl": null,
+    "bookId": 15,
+    "createdAt": "2024-01-02T12:00:00",
+    "rating": 2,
+    "text": "Needed an editor. Way too much filler."
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Bella",
+    "lastName": "Sanders",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 15,
+    "createdAt": "2024-01-12T15:30:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "Sebastian",
+    "lastName": "Green",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 16,
+    "createdAt": "2023-10-02T09:00:00",
+    "rating": 5,
+    "text": "Winter is coming. Martin's world-building is unparalleled. Just don't get attached to anyone."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Grace",
+    "lastName": "Adams",
+    "avatarUrl": null,
+    "bookId": 16,
+    "createdAt": "2023-10-10T15:20:00",
+    "rating": 5,
+    "text": "So much better than the show. The depth of the characters is incredible."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Jack",
+    "lastName": "Baker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 16,
+    "createdAt": "2023-10-18T12:45:00",
+    "rating": 4,
+    "text": "It's a long read, but worth every minute. Tyrion is the best character."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Lily",
+    "lastName": "Gonzalez",
+    "avatarUrl": null,
+    "bookId": 16,
+    "createdAt": "2023-10-28T08:30:00",
+    "rating": 3,
+    "text": "Too many characters to keep track of. I needed a spreadsheet."
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "Owen",
+    "lastName": "Nelson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 16,
+    "createdAt": "2023-11-08T17:10:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Chloe",
+    "lastName": "Carter",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 16,
+    "createdAt": "2023-11-15T13:00:00",
+    "rating": 5,
+    "text": "Dragons, direwolves, and political intrigue. What's not to love?"
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Wyatt",
+    "lastName": "Mitchell",
+    "avatarUrl": null,
+    "bookId": 16,
+    "createdAt": "2023-11-25T10:40:00",
+    "rating": 4,
+    "text": "The writing is dense but rewarding."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Zoey",
+    "lastName": "Perez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 16,
+    "createdAt": "2023-12-05T16:25:00",
+    "rating": 5,
+    "text": "I can't wait for The Winds of Winter (if it ever comes out)."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "Julian",
+    "lastName": "Roberts",
+    "avatarUrl": null,
+    "bookId": 16,
+    "createdAt": "2023-12-15T19:00:00",
+    "rating": 2,
+    "text": "Too violent and depressing for me."
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Mila",
+    "lastName": "Turner",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 16,
+    "createdAt": "2024-01-02T09:15:00",
+    "rating": 5,
+    "text": "An epic fantasy that sets the standard for the genre."
+  },
+  {
+    "userId": "e1f2a3b4-c5d6-7890-1234-567890efabcd",
+    "firstName": "Levi",
+    "lastName": "Phillips",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e1f2a3b4",
+    "bookId": 17,
+    "createdAt": "2023-10-05T11:00:00",
+    "rating": 5,
+    "text": "Agatha Christie is the queen of mystery. I did NOT see that ending coming!"
+  },
+  {
+    "userId": "f2a3b4c5-d6e7-8901-2345-678901fabcde",
+    "firstName": "Aria",
+    "lastName": "Campbell",
+    "avatarUrl": null,
+    "bookId": 17,
+    "createdAt": "2023-10-12T15:30:00",
+    "rating": 4,
+    "text": "A classic whodunit. Poirot is brilliant as always."
+  },
+  {
+    "userId": "a3b4c5d6-e7f8-9012-3456-789012abcdef",
+    "firstName": "Isaiah",
+    "lastName": "Parker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a3b4c5d6",
+    "bookId": 17,
+    "createdAt": "2023-10-22T08:45:00",
+    "rating": 5,
+    "text": "The perfect cozy mystery for a winter evening."
+  },
+  {
+    "userId": "b4c5d6e7-f8a9-0123-4567-890123bcdefa",
+    "firstName": "Luna",
+    "lastName": "Evans",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b4c5d6e7",
+    "bookId": 17,
+    "createdAt": "2023-11-01T13:10:00",
+    "rating": 3,
+    "text": "It was okay, but I guessed the twist halfway through."
+  },
+  {
+    "userId": "c5d6e7f8-a9b0-1234-5678-901234cdefab",
+    "firstName": "Andrew",
+    "lastName": "Edwards",
+    "avatarUrl": null,
+    "bookId": 17,
+    "createdAt": "2023-11-10T17:50:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "d6e7f8a9-b0c1-2345-6789-012345defabc",
+    "firstName": "Ellie",
+    "lastName": "Collins",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d6e7f8a9",
+    "bookId": 17,
+    "createdAt": "2023-11-20T10:00:00",
+    "rating": 4,
+    "text": "The setting on the train adds so much tension."
+  },
+  {
+    "userId": "e7f8a9b0-c1d2-3456-7890-123456efabcd",
+    "firstName": "Asher",
+    "lastName": "Stewart",
+    "avatarUrl": null,
+    "bookId": 17,
+    "createdAt": "2023-12-05T14:30:00",
+    "rating": 5,
+    "text": "Brilliantly plotted."
+  },
+  {
+    "userId": "f8a9b0c1-d2e3-4567-8901-234567fabcde",
+    "firstName": "Scarlett",
+    "lastName": "Sanchez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f8a9b0c1",
+    "bookId": 17,
+    "createdAt": "2023-12-15T09:20:00",
+    "rating": 4,
+    "text": "I loved the ensemble cast of characters."
+  },
+  {
+    "userId": "a9b0c1d2-e3f4-5678-9012-345678abcdef",
+    "firstName": "Leo",
+    "lastName": "Morris",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a9b0c1d2",
+    "bookId": 17,
+    "createdAt": "2023-12-28T16:45:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "b0c1d2e3-f4a5-0123-4567-890123bcdefa",
+    "firstName": "Layla",
+    "lastName": "Rogers",
+    "avatarUrl": null,
+    "bookId": 17,
+    "createdAt": "2024-01-08T11:15:00",
+    "rating": 5,
+    "text": "One of the best mysteries ever written."
+  },
+  {
+    "userId": "c1d2e3f4-a5b6-1234-5678-901234cdefab",
+    "firstName": "Carter",
+    "lastName": "Reed",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c1d2e3f4",
+    "bookId": 18,
+    "createdAt": "2023-10-03T10:00:00",
+    "rating": 2,
+    "text": "I found it overly simple and repetitive. 'Follow your personal legend' got old fast."
+  },
+  {
+    "userId": "d2e3f4a5-b6c7-2345-6789-012345defabc",
+    "firstName": "Hazel",
+    "lastName": "Cook",
+    "avatarUrl": null,
+    "bookId": 18,
+    "createdAt": "2023-10-10T14:20:00",
+    "rating": 5,
+    "text": "A beautiful fable about following your dreams. Truly inspiring."
+  },
+  {
+    "userId": "e3f4a5b6-c7d8-3456-7890-123456efabcd",
+    "firstName": "Nolan",
+    "lastName": "Morgan",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e3f4a5b6",
+    "bookId": 18,
+    "createdAt": "2023-10-22T09:15:00",
+    "rating": 4,
+    "text": "Short, sweet, and philosophical. A good quick read."
+  },
+  {
+    "userId": "f4a5b6c7-d8e9-4567-8901-234567fabcde",
+    "firstName": "Aurora",
+    "lastName": "Bell",
+    "avatarUrl": null,
+    "bookId": 18,
+    "createdAt": "2023-11-01T16:30:00",
+    "rating": 1,
+    "text": "It felt like a collection of clichés."
+  },
+  {
+    "userId": "a5b6c7d8-e9f0-5678-9012-345678abcdef",
+    "firstName": "Lincoln",
+    "lastName": "Murphy",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a5b6c7d8",
+    "bookId": 18,
+    "createdAt": "2023-11-12T11:00:00",
+    "rating": 5,
+    "text": "I read this at a crossroads in my life and it helped me so much."
+  },
+  {
+    "userId": "b6c7d8e9-f0a1-0123-4567-890123bcdefa",
+    "firstName": "Violet",
+    "lastName": "Rivera",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b6c7d8e9",
+    "bookId": 18,
+    "createdAt": "2023-11-25T13:45:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "c7d8e9f0-a1b2-1234-5678-901234cdefab",
+    "firstName": "Hudson",
+    "lastName": "Cooper",
+    "avatarUrl": null,
+    "bookId": 18,
+    "createdAt": "2023-12-05T09:50:00",
+    "rating": 3,
+    "text": "It's a nice story, but maybe a bit too simplistic."
+  },
+  {
+    "userId": "d8e9f0a1-b2c3-2345-6789-012345defabc",
+    "firstName": "Brooklyn",
+    "lastName": "Richardson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d8e9f0a1",
+    "bookId": 18,
+    "createdAt": "2023-12-15T18:10:00",
+    "rating": 5,
+    "text": "Magical and profound."
+  },
+  {
+    "userId": "e9f0a1b2-c3d4-3456-7890-123456efabcd",
+    "firstName": "Eli",
+    "lastName": "Cox",
+    "avatarUrl": null,
+    "bookId": 18,
+    "createdAt": "2024-01-02T10:20:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "f0a1b2c3-d4e5-4567-8901-234567fabcde",
+    "firstName": "Savannah",
+    "lastName": "Howard",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f0a1b2c3",
+    "bookId": 18,
+    "createdAt": "2024-01-10T15:00:00",
+    "rating": 5,
+    "text": "Everyone has a Personal Legend."
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "Aaron",
+    "lastName": "Ward",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 19,
+    "createdAt": "2023-10-05T20:30:00",
+    "rating": 5,
+    "text": "Scarily predictive of our obsession with screens and shallow entertainment."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Claire",
+    "lastName": "Torres",
+    "avatarUrl": null,
+    "bookId": 19,
+    "createdAt": "2023-10-12T12:45:00",
+    "rating": 5,
+    "text": "A powerful defense of literature and critical thinking."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Christian",
+    "lastName": "Peterson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 19,
+    "createdAt": "2023-10-20T09:00:00",
+    "rating": 4,
+    "text": "Bradbury's writing is poetic and intense."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Skylar",
+    "lastName": "Gray",
+    "avatarUrl": null,
+    "bookId": 19,
+    "createdAt": "2023-11-01T16:15:00",
+    "rating": 3,
+    "text": "I liked the concept more than the execution. The ending felt rushed."
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "Hunter",
+    "lastName": "Ramirez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 19,
+    "createdAt": "2023-11-10T13:30:00",
+    "rating": 5,
+    "text": "A must-read dystopian classic."
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Paisley",
+    "lastName": "James",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 19,
+    "createdAt": "2023-11-20T19:50:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Adrian",
+    "lastName": "Watson",
+    "avatarUrl": null,
+    "bookId": 19,
+    "createdAt": "2023-12-02T08:40:00",
+    "rating": 4,
+    "text": "Montag's journey is compelling."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Audrey",
+    "lastName": "Brooks",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 19,
+    "createdAt": "2023-12-15T14:20:00",
+    "rating": 5,
+    "text": "It really makes you think about censorship and technology."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "Cameron",
+    "lastName": "Kelly",
+    "avatarUrl": null,
+    "bookId": 19,
+    "createdAt": "2024-01-01T11:05:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Bella",
+    "lastName": "Sanders",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 19,
+    "createdAt": "2024-01-10T17:30:00",
+    "rating": 5,
+    "text": "Relevant now more than ever."
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "Christopher",
+    "lastName": "Bennett",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 20,
+    "createdAt": "2023-10-05T22:00:00",
+    "rating": 5,
+    "text": "That twist! I literally gasped. Amy Dunne is terrifying."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Anna",
+    "lastName": "Gray",
+    "avatarUrl": null,
+    "bookId": 20,
+    "createdAt": "2023-10-15T13:15:00",
+    "rating": 5,
+    "text": "A dark, twisted masterpiece of a thriller."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Ryan",
+    "lastName": "James",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 20,
+    "createdAt": "2023-10-25T16:40:00",
+    "rating": 4,
+    "text": "I hated both characters but couldn't stop reading."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Sarah",
+    "lastName": "Wells",
+    "avatarUrl": null,
+    "bookId": 20,
+    "createdAt": "2023-11-05T10:00:00",
+    "rating": 5,
+    "text": "Gillian Flynn is a genius."
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "Kevin",
+    "lastName": "Foster",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 20,
+    "createdAt": "2023-11-15T09:30:00",
+    "rating": 4,
+    "text": "Disturbing but brilliant."
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Laura",
+    "lastName": "Sanders",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 20,
+    "createdAt": "2023-11-25T14:50:00",
+    "rating": 3,
+    "text": "The ending was frustrating."
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Jason",
+    "lastName": "Ross",
+    "avatarUrl": null,
+    "bookId": 20,
+    "createdAt": "2023-12-05T18:20:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Megan",
+    "lastName": "Powell",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 20,
+    "createdAt": "2023-12-15T08:10:00",
+    "rating": 4,
+    "text": "Cool Girl monologue is iconic."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "Brandon",
+    "lastName": "Long",
+    "avatarUrl": null,
+    "bookId": 20,
+    "createdAt": "2024-01-02T12:00:00",
+    "rating": 5,
+    "text": "One of the best psychological thrillers ever."
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Rachel",
+    "lastName": "Patterson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 20,
+    "createdAt": "2024-01-12T15:30:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "e1f2a3b4-c5d6-7890-1234-567890efabcd",
+    "firstName": "Levi",
+    "lastName": "Phillips",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e1f2a3b4",
+    "bookId": 21,
+    "createdAt": "2023-10-03T11:20:00",
+    "rating": 5,
+    "text": "Essential reading for understanding how our brains work. System 1 vs System 2 is a concept I use daily now."
+  },
+  {
+    "userId": "f2a3b4c5-d6e7-8901-2345-678901fabcde",
+    "firstName": "Aria",
+    "lastName": "Campbell",
+    "avatarUrl": null,
+    "bookId": 21,
+    "createdAt": "2023-10-12T15:40:00",
+    "rating": 4,
+    "text": "Dense and academic, but incredibly rewarding if you take your time."
+  },
+  {
+    "userId": "a3b4c5d6-e7f8-9012-3456-789012abcdef",
+    "firstName": "Isaiah",
+    "lastName": "Parker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a3b4c5d6",
+    "bookId": 21,
+    "createdAt": "2023-10-21T09:50:00",
+    "rating": 3,
+    "text": "A bit repetitive. The core ideas could have been explained in half the pages."
+  },
+  {
+    "userId": "b4c5d6e7-f8a9-0123-4567-890123bcdefa",
+    "firstName": "Luna",
+    "lastName": "Evans",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b4c5d6e7",
+    "bookId": 21,
+    "createdAt": "2023-11-02T14:10:00",
+    "rating": 5,
+    "text": "Kahneman is a genius. This book explains so much about human error."
+  },
+  {
+    "userId": "c5d6e7f8-a9b0-1234-5678-901234cdefab",
+    "firstName": "Andrew",
+    "lastName": "Edwards",
+    "avatarUrl": null,
+    "bookId": 21,
+    "createdAt": "2023-11-15T18:30:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "d6e7f8a9-b0c1-2345-6789-012345defabc",
+    "firstName": "Ellie",
+    "lastName": "Collins",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d6e7f8a9",
+    "bookId": 21,
+    "createdAt": "2023-11-22T10:00:00",
+    "rating": 5,
+    "text": "Every chapter was an 'aha!' moment for me."
+  },
+  {
+    "userId": "e7f8a9b0-c1d2-3456-7890-123456efabcd",
+    "firstName": "Asher",
+    "lastName": "Stewart",
+    "avatarUrl": null,
+    "bookId": 21,
+    "createdAt": "2023-12-05T13:25:00",
+    "rating": 2,
+    "text": "Too dry and technical. Felt like reading a textbook."
+  },
+  {
+    "userId": "f8a9b0c1-d2e3-4567-8901-234567fabcde",
+    "firstName": "Scarlett",
+    "lastName": "Sanchez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f8a9b0c1",
+    "bookId": 21,
+    "createdAt": "2023-12-15T08:45:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "a9b0c1d2-e3f4-5678-9012-345678abcdef",
+    "firstName": "Leo",
+    "lastName": "Morris",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a9b0c1d2",
+    "bookId": 21,
+    "createdAt": "2024-01-02T16:20:00",
+    "rating": 4,
+    "text": "Changed the way I make decisions."
+  },
+  {
+    "userId": "b0c1d2e3-f4a5-0123-4567-890123bcdefa",
+    "firstName": "Layla",
+    "lastName": "Rogers",
+    "avatarUrl": null,
+    "bookId": 21,
+    "createdAt": "2024-01-10T11:15:00",
+    "rating": 5,
+    "text": "Brilliant."
+  },
+  {
+    "userId": "c1d2e3f4-a5b6-1234-5678-901234cdefab",
+    "firstName": "Carter",
+    "lastName": "Reed",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c1d2e3f4",
+    "bookId": 22,
+    "createdAt": "2023-10-04T09:30:00",
+    "rating": 5,
+    "text": "Isaacson captures the complexity of Jobs perfectly. He was a genius, but also a jerk."
+  },
+  {
+    "userId": "d2e3f4a5-b6c7-2345-6789-012345defabc",
+    "firstName": "Hazel",
+    "lastName": "Cook",
+    "avatarUrl": null,
+    "bookId": 22,
+    "createdAt": "2023-10-11T14:50:00",
+    "rating": 4,
+    "text": "Fascinating look into the history of Apple and Pixar."
+  },
+  {
+    "userId": "e3f4a5b6-c7d8-3456-7890-123456efabcd",
+    "firstName": "Nolan",
+    "lastName": "Morgan",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e3f4a5b6",
+    "bookId": 22,
+    "createdAt": "2023-10-19T12:10:00",
+    "rating": 5,
+    "text": "Inspiring and infuriating at the same time. The reality distortion field is real!"
+  },
+  {
+    "userId": "f4a5b6c7-d8e9-4567-8901-234567fabcde",
+    "firstName": "Aurora",
+    "lastName": "Bell",
+    "avatarUrl": null,
+    "bookId": 22,
+    "createdAt": "2023-11-03T08:20:00",
+    "rating": 3,
+    "text": "Well written, but Jobs is just so unlikable it was hard to get through."
+  },
+  {
+    "userId": "a5b6c7d8-e9f0-5678-9012-345678abcdef",
+    "firstName": "Lincoln",
+    "lastName": "Murphy",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a5b6c7d8",
+    "bookId": 22,
+    "createdAt": "2023-11-14T17:00:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "b6c7d8e9-f0a1-0123-4567-890123bcdefa",
+    "firstName": "Violet",
+    "lastName": "Rivera",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b6c7d8e9",
+    "bookId": 22,
+    "createdAt": "2023-11-25T11:30:00",
+    "rating": 4,
+    "text": "A comprehensive biography."
+  },
+  {
+    "userId": "c7d8e9f0-a1b2-1234-5678-901234cdefab",
+    "firstName": "Hudson",
+    "lastName": "Cooper",
+    "avatarUrl": null,
+    "bookId": 22,
+    "createdAt": "2023-12-08T19:40:00",
+    "rating": 5,
+    "text": "Stay hungry, stay foolish."
+  },
+  {
+    "userId": "d8e9f0a1-b2c3-2345-6789-012345defabc",
+    "firstName": "Brooklyn",
+    "lastName": "Richardson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d8e9f0a1",
+    "bookId": 22,
+    "createdAt": "2023-12-20T10:15:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "e9f0a1b2-c3d4-3456-7890-123456efabcd",
+    "firstName": "Eli",
+    "lastName": "Cox",
+    "avatarUrl": null,
+    "bookId": 22,
+    "createdAt": "2024-01-05T15:55:00",
+    "rating": 5,
+    "text": "The design details are amazing."
+  },
+  {
+    "userId": "f0a1b2c3-d4e5-4567-8901-234567fabcde",
+    "firstName": "Savannah",
+    "lastName": "Howard",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f0a1b2c3",
+    "bookId": 22,
+    "createdAt": "2024-01-15T09:05:00",
+    "rating": 3,
+    "text": "A bit too long."
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "Aaron",
+    "lastName": "Ward",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 23,
+    "createdAt": "2023-10-01T10:00:00",
+    "rating": 5,
+    "text": "The greatest fantasy epic of all time. Tolkien's prose is beautiful."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Claire",
+    "lastName": "Torres",
+    "avatarUrl": null,
+    "bookId": 23,
+    "createdAt": "2023-10-08T14:45:00",
+    "rating": 5,
+    "text": "One Ring to rule them all. A journey everyone should experience."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Christian",
+    "lastName": "Peterson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 23,
+    "createdAt": "2023-10-16T18:20:00",
+    "rating": 4,
+    "text": "The descriptions can be a bit lengthy (Tom Bombadil anyone?), but the story is incredible."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Skylar",
+    "lastName": "Gray",
+    "avatarUrl": null,
+    "bookId": 23,
+    "createdAt": "2023-10-25T09:10:00",
+    "rating": 5,
+    "text": "Samwise Gamgee is the true hero."
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "Hunter",
+    "lastName": "Ramirez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 23,
+    "createdAt": "2023-11-05T13:50:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Paisley",
+    "lastName": "James",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 23,
+    "createdAt": "2023-11-15T08:30:00",
+    "rating": 4,
+    "text": "A masterpiece of world-building."
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Adrian",
+    "lastName": "Watson",
+    "avatarUrl": null,
+    "bookId": 23,
+    "createdAt": "2023-11-28T16:15:00",
+    "rating": 3,
+    "text": "It's a bit dry and slow for my taste compared to modern fantasy."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Audrey",
+    "lastName": "Brooks",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 23,
+    "createdAt": "2023-12-10T11:40:00",
+    "rating": 5,
+    "text": "Simply the best."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "Cameron",
+    "lastName": "Kelly",
+    "avatarUrl": null,
+    "bookId": 23,
+    "createdAt": "2023-12-22T20:00:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Bella",
+    "lastName": "Sanders",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 23,
+    "createdAt": "2024-01-05T12:30:00",
+    "rating": 4,
+    "text": "Requires patience, but it pays off."
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "Christopher",
+    "lastName": "Bennett",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 24,
+    "createdAt": "2023-10-05T10:15:00",
+    "rating": 5,
+    "text": "Huxley saw the future more clearly than Orwell. We are amusing ourselves to death."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Anna",
+    "lastName": "Gray",
+    "avatarUrl": null,
+    "bookId": 24,
+    "createdAt": "2023-10-12T15:00:00",
+    "rating": 4,
+    "text": "A chilling vision of a 'perfect' society. Soma is scary."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Ryan",
+    "lastName": "James",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 24,
+    "createdAt": "2023-10-20T19:20:00",
+    "rating": 5,
+    "text": "The Savage Reservation part was intense. Great philosophical questions."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Sarah",
+    "lastName": "Wells",
+    "avatarUrl": null,
+    "bookId": 24,
+    "createdAt": "2023-11-01T08:50:00",
+    "rating": 3,
+    "text": "It was a bit weird and disjointed at times."
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "Kevin",
+    "lastName": "Foster",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 24,
+    "createdAt": "2023-11-10T12:10:00",
+    "rating": 5,
+    "text": "Community, Identity, Stability."
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Laura",
+    "lastName": "Sanders",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 24,
+    "createdAt": "2023-11-22T16:30:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Jason",
+    "lastName": "Ross",
+    "avatarUrl": null,
+    "bookId": 24,
+    "createdAt": "2023-12-05T09:40:00",
+    "rating": 5,
+    "text": "Still relevant today."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Megan",
+    "lastName": "Powell",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 24,
+    "createdAt": "2023-12-15T13:55:00",
+    "rating": 2,
+    "text": "I didn't like any of the characters."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "Brandon",
+    "lastName": "Long",
+    "avatarUrl": null,
+    "bookId": 24,
+    "createdAt": "2024-01-02T18:15:00",
+    "rating": 4,
+    "text": "A thought-provoking dystopian classic."
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Rachel",
+    "lastName": "Patterson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 24,
+    "createdAt": "2024-01-10T11:25:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "firstName": "Sebastian",
+    "lastName": "Green",
+    "avatarUrl": "https://i.pravatar.cc/150?u=a1b2c3d4",
+    "bookId": 25,
+    "createdAt": "2023-10-05T21:00:00",
+    "rating": 5,
+    "text": "THAT ENDING! I did not see that coming at all. Wow."
+  },
+  {
+    "userId": "b2c3d4e5-f6a7-8901-2345-678901bcdefa",
+    "firstName": "Grace",
+    "lastName": "Adams",
+    "avatarUrl": null,
+    "bookId": 25,
+    "createdAt": "2023-10-12T14:00:00",
+    "rating": 4,
+    "text": "A slow burn, but the payoff is worth it. Very psychological."
+  },
+  {
+    "userId": "c3d4e5f6-a7b8-9012-3456-789012cdefab",
+    "firstName": "Jack",
+    "lastName": "Baker",
+    "avatarUrl": "https://i.pravatar.cc/150?u=c3d4e5f6",
+    "bookId": 25,
+    "createdAt": "2023-10-20T10:30:00",
+    "rating": 5,
+    "text": "Alicia Berenson's silence is louder than words."
+  },
+  {
+    "userId": "d4e5f6a7-b8c9-0123-4567-890123defabc",
+    "firstName": "Lily",
+    "lastName": "Gonzalez",
+    "avatarUrl": null,
+    "bookId": 25,
+    "createdAt": "2023-10-30T17:40:00",
+    "rating": 3,
+    "text": "It was okay, but I guessed the twist."
+  },
+  {
+    "userId": "e5f6a7b8-c9d0-1234-5678-901234efabcd",
+    "firstName": "Owen",
+    "lastName": "Nelson",
+    "avatarUrl": "https://i.pravatar.cc/150?u=e5f6a7b8",
+    "bookId": 25,
+    "createdAt": "2023-11-08T12:50:00",
+    "rating": 5,
+    "text": "Best thriller I've read this year."
+  },
+  {
+    "userId": "f6a7b8c9-d0e1-2345-6789-012345fabcde",
+    "firstName": "Chloe",
+    "lastName": "Carter",
+    "avatarUrl": "https://i.pravatar.cc/150?u=f6a7b8c9",
+    "bookId": 25,
+    "createdAt": "2023-11-18T09:15:00",
+    "rating": 4,
+    "text": null
+  },
+  {
+    "userId": "a7b8c9d0-e1f2-3456-7890-123456abcdef",
+    "firstName": "Wyatt",
+    "lastName": "Mitchell",
+    "avatarUrl": null,
+    "bookId": 25,
+    "createdAt": "2023-11-28T15:20:00",
+    "rating": 5,
+    "text": "Impossible to put down."
+  },
+  {
+    "userId": "b8c9d0e1-f2a3-4567-8901-234567bcdefa",
+    "firstName": "Zoey",
+    "lastName": "Perez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=b8c9d0e1",
+    "bookId": 25,
+    "createdAt": "2023-12-10T08:30:00",
+    "rating": 4,
+    "text": "Theo Faber is an interesting narrator."
+  },
+  {
+    "userId": "c9d0e1f2-a3b4-5678-9012-345678cdefab",
+    "firstName": "Julian",
+    "lastName": "Roberts",
+    "avatarUrl": null,
+    "bookId": 25,
+    "createdAt": "2023-12-22T19:00:00",
+    "rating": 5,
+    "text": null
+  },
+  {
+    "userId": "d0e1f2a3-b4c5-6789-0123-456789defabc",
+    "firstName": "Mila",
+    "lastName": "Turner",
+    "avatarUrl": "https://i.pravatar.cc/150?u=d0e1f2a3",
+    "bookId": 25,
+    "createdAt": "2024-01-05T11:10:00",
+    "rating": 5,
+    "text": "Mind. Blown."
+  }
+]

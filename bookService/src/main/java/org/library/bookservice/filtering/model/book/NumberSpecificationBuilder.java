@@ -8,7 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 import java.util.List;
 
 
-public class PriceSpecificationBuilder<EntityType> implements SpecificationBuilder<EntityType> {
+public class NumberSpecificationBuilder<EntityType> implements SpecificationBuilder<EntityType> {
 
     public static final List<FilteringOperation> SUPPORTED_OPERATORS = List.of(
             FilteringOperation.EQUAL,
@@ -18,6 +18,6 @@ public class PriceSpecificationBuilder<EntityType> implements SpecificationBuild
 
     @Override
     public Specification<EntityType> build(SearchCriteria searchCriteria) {
-        return new PriceSpecification<>(searchCriteria);
+        return new NumberSpecification<>(searchCriteria);
     }
 }

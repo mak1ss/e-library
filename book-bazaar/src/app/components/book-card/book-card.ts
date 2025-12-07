@@ -6,11 +6,23 @@ import { MatChipSet, MatChip } from "@angular/material/chips";
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Category } from '../../model/category';
 import { Genre } from '../../model/genre';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-book-card',
-  imports: [MatCard, RouterModule, MatCardTitleGroup, MatCardTitle, MatCardSubtitle, MatChipSet, MatChip, MatTooltipModule, CurrencyPipe],
+  imports: [
+    MatCard,
+    RouterModule,
+    MatCardTitleGroup,
+    MatCardTitle,
+    MatCardSubtitle,
+    MatTooltipModule,
+    CurrencyPipe,
+    MatIcon,      // <---
+    DatePipe,     // <---
+    DecimalPipe
+  ],
   templateUrl: './book-card.html',
   styleUrl: './book-card.css',
 })

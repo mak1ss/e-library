@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormField, MatInput } from '@angular/material/input';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -18,9 +18,11 @@ import { Category } from '../../model/category';
 import { Author } from '../../model/author';
 import { Genre } from '../../model/genre';
 import { Publisher } from '../../model/publisher';
-import { PAGE_UP } from '@angular/cdk/keycodes';
 import { MatIcon } from "@angular/material/icon";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { MatSliderModule } from '@angular/material/slider';
+import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-books',
@@ -33,8 +35,11 @@ import { MatProgressSpinner } from "@angular/material/progress-spinner";
     BookCard,
     MatPaginatorModule,
     MatIcon,
-    MatProgressSpinner
-],
+    MatProgressSpinner,
+    MatSliderModule,
+    MatMenuModule,
+    FormsModule
+  ],
   templateUrl: './search-books.html',
   styleUrl: './search-books.css',
 })
@@ -45,6 +50,12 @@ export class SearchBooks {
   loading = signal<boolean>(false);
   pageIndex = signal<number>(0);
   pageSize = signal<number>(20);
+  currentSort = signal<string>('title,asc');
+
+  minPrice = signal<number | null>(null);
+  maxPrice = signal<number | null>(null);
+
+  minRating = signal<number | null>(null);
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -67,10 +78,20 @@ export class SearchBooks {
   });
 
   filterOptions = signal<Filter[]>([]);
+  hasAnyFilter = computed(() => {
+    const hasPrice = this.minPrice() !== null || this.maxPrice() !== null;
+    const hasRating = this.minRating() !== null;
+    
+    const currentFilters = this.selectedFilters();
+    const hasDynamicFilters = Object.values(currentFilters)
+      .some(arr => arr && arr.length > 0);
+
+    return hasPrice || hasRating || hasDynamicFilters;
+  });
 
   ngOnInit(): void {
     const filters$ = this.loadFilters();
-    
+
     const params$ = this.route.queryParamMap;
 
     combineLatest([filters$, params$]).subscribe({
@@ -80,9 +101,19 @@ export class SearchBooks {
 
         const page = Number(params.get('page') ?? 0);
         const size = Number(params.get('size') ?? 20);
-        
+        const sortParam = params.get('sort') ?? 'title,asc';
+
+        const minP = params.get('minPrice');
+        const maxP = params.get('maxPrice');
+        const minR = params.get('minRating');
+
         this.pageIndex.set(page);
         this.pageSize.set(size);
+        this.currentSort.set(sortParam);
+
+        this.minPrice.set(minP ? Number(minP) : null);
+        this.maxPrice.set(maxP ? Number(maxP) : null);
+        this.minRating.set(minR ? Number(minR) : null);
 
         this.query = params.get('query') ?? '';
         this.formGroup.patchValue({ search: this.query }, { emitEvent: false });
@@ -100,9 +131,13 @@ export class SearchBooks {
           }
         });
 
+        if (this.minPrice()) activeFilters['minPrice'] = this.minPrice();
+        if (this.maxPrice()) activeFilters['maxPrice'] = this.maxPrice();
+        if (this.minRating()) activeFilters['minRating'] = this.minRating();
+
         this.selectedFilters.set(activeFilters as Record<string, string[]>);
 
-        this.bookService.getBooks(activeFilters, page, size).subscribe({
+        this.bookService.getBooks(activeFilters, page, size, this.currentSort()).subscribe({
           next: (response) => {
             this.books.set(response.items);
             this.totalBooks.set(response.total);
@@ -132,7 +167,7 @@ export class SearchBooks {
             name: 'author',
             label: 'Author',
             options: (res.authors.items || []).map((a: Author) => a.name || ''),
-            defaultVisibleCount: 4, 
+            defaultVisibleCount: 4,
             expanded: false
           },
           {
@@ -181,9 +216,9 @@ export class SearchBooks {
     });
 
     qp['page'] = 0;
-    
+
     console.log('Navigating with query params:', output, qp);
-    
+
     if (this.query) qp['query'] = this.query;
     // merge with existing query params (and remove empty ones)
     this.router.navigate([], {
@@ -193,16 +228,66 @@ export class SearchBooks {
     });
   }
 
+  clearAllFilters(): void {
+    this.minPrice.set(null);
+    this.maxPrice.set(null);
+    this.minRating.set(null);
+    this.selectedFilters.set({});
+
+    const resetParams: Record<string, any> = {
+      minPrice: null,
+      maxPrice: null,
+      minRating: null,
+      page: 0
+    };
+
+    this.filterOptions().forEach(f => {
+      resetParams[f.name] = null;
+    });
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: resetParams,
+      queryParamsHandling: 'merge'
+    });
+  }
+
   onPageChange(event: PageEvent): void {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { 
-        page: event.pageIndex, 
-        size: event.pageSize 
+      queryParams: {
+        page: event.pageIndex,
+        size: event.pageSize
       },
       queryParamsHandling: 'merge'
     }).then(() => {
       this.scrollToResults();
+    });
+  }
+
+  updateSort(newSort: string): void {
+    this.updateQueryParams({ sort: newSort, page: 0 }); // Скидаємо на 1 сторінку при сортуванні
+  }
+
+  updatePrice(): void {
+    this.updateQueryParams({
+      minPrice: this.minPrice(),
+      maxPrice: this.maxPrice(),
+      page: 0
+    });
+  }
+
+  updateRating(rating: number | null): void {
+    // Якщо клікнули на той самий рейтинг - знімаємо фільтр
+    const newValue = this.minRating() === rating ? null : rating;
+    this.updateQueryParams({ minRating: newValue, page: 0 });
+  }
+
+  private updateQueryParams(params: Record<string, any>): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: params,
+      queryParamsHandling: 'merge' // Злиття з існуючими параметрами
     });
   }
 

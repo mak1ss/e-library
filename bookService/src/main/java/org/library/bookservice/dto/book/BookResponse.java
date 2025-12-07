@@ -29,4 +29,6 @@ public class BookResponse extends AbstractResponse {
     private BigDecimal price;
     private String imageUrl;
     private List<GenreResponse> bookGenres;
+    private Double averageRating;
+    private Integer totalReviews;
 }

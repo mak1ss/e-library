@@ -1,59 +1,95 @@
 package org.library.reviewService.datagen;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.library.reviewService.model.Review;
 import org.library.reviewService.repository.ReviewRepository;
 import org.library.reviewService.service.ReviewMetricsService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class InitialDataGenerator {
 
     private final ReviewRepository reviewRepository;
     private final ReviewMetricsService reviewMetricsService;
+    private final ObjectMapper objectMapper;
+
+    @Value("${data.seeding.folder}")
+    private String seedingFolder;
+
+    @Value("${data.seeding.reviews}")
+    private String reviewsFile;
 
     @PostConstruct
-    public void initialize() {
-        if (!reviewRepository.findAll().isEmpty()) {
-            log.info("Skipped data generation. Database already contains data.");
+    public void initializeDbWithTestData() {
+        if (reviewRepository.count() > 0) {
+            log.info("Database already initialized. Skipping data seeding.");
             return;
         }
-        List<Review> reviews = Arrays.asList(
-                createReview("id-1", 1, 5, "Amazing book! Must read.", reviewMetricsService),
-                createReview("id-2", 1, 4, "Very good, but a little slow in places.", reviewMetricsService),
-                createReview("id-3", 2, 3, "An average read.", reviewMetricsService),
-                createReview("id-4", 2, 4, "Interesting, but not extraordinary.", reviewMetricsService),
-                createReview("id-5", 3, 2, "Not what I expected.", reviewMetricsService),
-                createReview("id-6", 3, 1, "Quite disappointing.", reviewMetricsService),
-                createReview("id-7", 4, 4, "Enjoyed the storyline.", reviewMetricsService),
-                createReview("id-8", 4, 5, "Fantastic! Couldn't put it down.", reviewMetricsService),
-                createReview("id-9", 5, 3, "It was okay, nothing special.", reviewMetricsService),
-                createReview("id-10", 5, 2, "Not a fan of the writing style.", reviewMetricsService)
-        );
 
-        reviewRepository.saveAll(reviews);
-        log.info("Saved {} reviews.", reviewRepository.count());
+        try {
+            log.info("Starting data seeding from folder: {}", seedingFolder);
+
+            List<ReviewSeedDto> reviewDtos = loadData(reviewsFile, new TypeReference<>() {
+            });
+            List<Review> reviews = new ArrayList<>();
+
+            for (ReviewSeedDto dto : reviewDtos) {
+                Review review = new Review();
+                review.setUserId(dto.getUserId());
+                review.setFirstName(dto.getFirstName());
+                review.setLastName(dto.getLastName());
+                review.setAvatarUrl(dto.getAvatarUrl());
+                review.setBookId(dto.getBookId());
+                review.setRating(dto.getRating());
+                review.setText(dto.getText());
+                review.setArchived(false);
+
+                if (dto.getCreatedAt() != null) {
+                    review.setCreatedAt(LocalDateTime.parse(dto.getCreatedAt()));
+                } else {
+                    review.setCreatedAt(LocalDateTime.now());
+                }
+
+                reviews.add(review);
+            }
+
+            reviews.forEach(r -> {
+                reviewRepository.save(r);
+                reviewMetricsService.addReviewMetrics(r.getBookId(), r.getRating());
+            });
+            log.info("Successfully loaded {} reviews into database", reviews.size());
+
+        } catch (IOException e) {
+            log.error("Failed to seed data: {}", e.getMessage(), e);
+            throw new RuntimeException("Data seeding failed", e);
+        }
     }
 
-    private Review createReview(String userId, Integer bookId, Integer rating, String text, ReviewMetricsService reviewMetricsService) {
-        Review review = new Review();
-        review.setUserId(userId);
-        review.setBookId(bookId);
-        review.setCreatedAt(LocalDateTime.now());
-        review.setRating(rating);
-        review.setText(text);
-        review.setArchived(false);
+    /**
+     * Helper method to read JSON files.
+     */
+    private <T> List<T> loadData(String fileName, TypeReference<List<T>> typeReference) throws IOException {
+        String fullPath = Paths.get(seedingFolder, fileName).toString();
 
-        reviewMetricsService.addReviewMetrics(bookId, rating);
+        log.debug("Reading data from file: {}", fullPath);
 
-        return review;
+        try (InputStream inputStream = new FileInputStream(fullPath)) {
+            return objectMapper.readValue(inputStream, typeReference);
+        }
     }
 }

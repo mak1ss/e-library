@@ -19,8 +19,17 @@ spring:
         schema:
           registry:
             url: http://localhost:8082
+    producer:
+      properties:
+        schema:
+          registry:
+            url: http://localhost:8082
 
 book-service:
   url: http://localhost:8080
 gateway:
   url: http://localhost:9000
+
+data:
+  seeding:
+    folder: "../data/seeding/"
