@@ -31,7 +31,9 @@ public class BookSpecificationBuilder implements EntityFilterSpecificationBuilde
             new FilterableProperty<>("averageRating", Double.class, new NumberSpecificationBuilder<>(),
                     NumberSpecificationBuilder.SUPPORTED_OPERATORS),
             new FilterableProperty<>("totalReviews", Double.class, new NumberSpecificationBuilder<>(),
-                    NumberSpecificationBuilder.SUPPORTED_OPERATORS)
+                    NumberSpecificationBuilder.SUPPORTED_OPERATORS),
+            new FilterableProperty<>("q", String.class, new FullTextSpecificationBuilder(),
+                    FullTextSpecificationBuilder.SUPPORTED_OPERATORS)
     );
 
     @Override
