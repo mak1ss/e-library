@@ -9,7 +9,10 @@
     "category": "Fiction",
     "publisher": "Penguin Books",
     "author": "George Orwell",
-    "genres": ["Dystopian", "Science Fiction"]
+    "genres": [
+      "Dystopian",
+      "Science Fiction"
+    ]
   },
   {
     "title": "Harry Potter and the Sorcerer's Stone",
@@ -21,19 +24,25 @@
     "category": "Fiction",
     "publisher": "Bloomsbury",
     "author": "J.K. Rowling",
-    "genres": ["Fantasy", "Adventure"]
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ]
   },
   {
     "title": "The Shining",
     "isbn": "9780307743657",
     "description": "Jack Torrance's new job at the Overlook Hotel is the perfect chance for a fresh start.",
     "releaseDate": "1977-01-28",
-    "price": 18.50,
+    "price": 18.5,
     "imageKey": "the_shining.jpg",
     "category": "Fiction",
     "publisher": "Doubleday",
     "author": "Stephen King",
-    "genres": ["Horror", "Thriller"]
+    "genres": [
+      "Horror",
+      "Thriller"
+    ]
   },
   {
     "title": "Pride and Prejudice",
@@ -45,7 +54,10 @@
     "category": "Fiction",
     "publisher": "Penguin Books",
     "author": "Jane Austen",
-    "genres": ["Romance", "Classic"]
+    "genres": [
+      "Romance",
+      "Classic"
+    ]
   },
   {
     "title": "The Great Gatsby",
@@ -57,19 +69,25 @@
     "category": "Fiction",
     "publisher": "Scribner",
     "author": "F. Scott Fitzgerald",
-    "genres": ["Classic", "Romance"]
+    "genres": [
+      "Classic",
+      "Romance"
+    ]
   },
   {
     "title": "The Hobbit",
     "isbn": "9780547928227",
     "description": "A timeless classic of all-age fantasy.",
     "releaseDate": "1937-09-21",
-    "price": 15.00,
+    "price": 15.0,
     "imageKey": "the_hobbit.jpg",
     "category": "Fiction",
     "publisher": "George Allen & Unwin",
     "author": "J.R.R. Tolkien",
-    "genres": ["Fantasy", "Adventure"]
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ]
   },
   {
     "title": "To Kill a Mockingbird",
@@ -81,7 +99,10 @@
     "category": "Fiction",
     "publisher": "J. B. Lippincott & Co.",
     "author": "Harper Lee",
-    "genres": ["Classic", "Thriller"]
+    "genres": [
+      "Classic",
+      "Thriller"
+    ]
   },
   {
     "title": "Dune",
@@ -93,7 +114,10 @@
     "category": "Fiction",
     "publisher": "Chilton Books",
     "author": "Frank Herbert",
-    "genres": ["Science Fiction", "Adventure"]
+    "genres": [
+      "Science Fiction",
+      "Adventure"
+    ]
   },
   {
     "title": "The Adventures of Sherlock Holmes",
@@ -105,31 +129,39 @@
     "category": "Fiction",
     "publisher": "Penguin Books",
     "author": "Arthur Conan Doyle",
-    "genres": ["Mystery", "Classic"]
+    "genres": [
+      "Mystery",
+      "Classic"
+    ]
   },
   {
     "title": "The Catcher in the Rye",
     "isbn": "9780316769488",
     "description": "A story about adolescent alienation.",
     "releaseDate": "1951-07-16",
-    "price": 13.50,
+    "price": 13.5,
     "imageKey": "catcher_rye.jpg",
     "category": "Fiction",
     "publisher": "Little, Brown and Company",
     "author": "J.D. Salinger",
-    "genres": ["Classic"]
+    "genres": [
+      "Classic"
+    ]
   },
   {
     "title": "Sapiens: A Brief History of Humankind",
     "isbn": "9780062316097",
     "description": "The history of humankind from the Stone Age to the twenty-first century.",
     "releaseDate": "2011-01-01",
-    "price": 22.00,
+    "price": 22.0,
     "imageKey": "sapiens.jpg",
     "category": "Non-Fiction",
     "publisher": "HarperCollins",
     "author": "Yuval Noah Harari",
-    "genres": ["Education", "Psychology"]
+    "genres": [
+      "Education",
+      "Psychology"
+    ]
   },
   {
     "title": "Atomic Habits",
@@ -141,19 +173,25 @@
     "category": "Non-Fiction",
     "publisher": "Penguin Books",
     "author": "James Clear",
-    "genres": ["Self-Help", "Psychology"]
+    "genres": [
+      "Self-Help",
+      "Psychology"
+    ]
   },
   {
     "title": "Clean Code",
     "isbn": "9780132350884",
     "description": "A Handbook of Agile Software Craftsmanship.",
     "releaseDate": "2008-08-01",
-    "price": 45.00,
+    "price": 45.0,
     "imageKey": "clean_code.jpg",
     "category": "Technology",
     "publisher": "Prentice Hall",
     "author": "Robert C. Martin",
-    "genres": ["Education", "Technical"]
+    "genres": [
+      "Education",
+      "Technical"
+    ]
   },
   {
     "title": "The Da Vinci Code",
@@ -165,7 +203,10 @@
     "category": "Fiction",
     "publisher": "Doubleday",
     "author": "Dan Brown",
-    "genres": ["Thriller", "Mystery"]
+    "genres": [
+      "Thriller",
+      "Mystery"
+    ]
   },
   {
     "title": "It",
@@ -177,19 +218,24 @@
     "category": "Fiction",
     "publisher": "Penguin Books",
     "author": "Stephen King",
-    "genres": ["Horror"]
+    "genres": [
+      "Horror"
+    ]
   },
   {
     "title": "A Game of Thrones",
     "isbn": "9780553103540",
     "description": "The first book in A Song of Ice and Fire.",
     "releaseDate": "1996-08-01",
-    "price": 25.00,
+    "price": 25.0,
     "imageKey": "game_of_thrones.jpg",
     "category": "Fiction",
     "publisher": "Celadon Books",
     "author": "George R.R. Martin",
-    "genres": ["Fantasy", "Adventure"]
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ]
   },
   {
     "title": "Murder on the Orient Express",
@@ -201,19 +247,25 @@
     "category": "Fiction",
     "publisher": "HarperCollins",
     "author": "Agatha Christie",
-    "genres": ["Mystery", "Classic"]
+    "genres": [
+      "Mystery",
+      "Classic"
+    ]
   },
   {
     "title": "The Alchemist",
     "isbn": "9780062315007",
     "description": "A novel about following your dream.",
     "releaseDate": "1988-01-01",
-    "price": 16.50,
+    "price": 16.5,
     "imageKey": "alchemist.jpg",
     "category": "Fiction",
     "publisher": "HarperCollins",
     "author": "Paulo Coelho",
-    "genres": ["Adventure", "Self-Help"]
+    "genres": [
+      "Adventure",
+      "Self-Help"
+    ]
   },
   {
     "title": "Fahrenheit 451",
@@ -225,67 +277,85 @@
     "category": "Fiction",
     "publisher": "Random House",
     "author": "Ray Bradbury",
-    "genres": ["Dystopian", "Science Fiction"]
+    "genres": [
+      "Dystopian",
+      "Science Fiction"
+    ]
   },
   {
     "title": "Gone Girl",
     "isbn": "9780307588371",
     "description": "A thriller about a woman who disappears on her fifth wedding anniversary.",
     "releaseDate": "2012-06-05",
-    "price": 14.00,
+    "price": 14.0,
     "imageKey": "gone_girl.jpg",
     "category": "Fiction",
     "publisher": "Random House",
     "author": "Gillian Flynn",
-    "genres": ["Thriller", "Mystery"]
+    "genres": [
+      "Thriller",
+      "Mystery"
+    ]
   },
   {
     "title": "Thinking, Fast and Slow",
     "isbn": "9780374275631",
     "description": "The two systems that drive the way we think.",
     "releaseDate": "2011-10-25",
-    "price": 20.00,
+    "price": 20.0,
     "imageKey": "thinking_fast.jpg",
     "category": "Non-Fiction",
     "publisher": "Little, Brown and Company",
     "author": "Daniel Kahneman",
-    "genres": ["Psychology", "Education"]
+    "genres": [
+      "Psychology",
+      "Education"
+    ]
   },
   {
     "title": "Steve Jobs",
     "isbn": "9781451648539",
     "description": "The biography of the co-founder of Apple Inc.",
     "releaseDate": "2011-10-24",
-    "price": 30.00,
+    "price": 30.0,
     "imageKey": "steve_jobs.jpg",
     "category": "Biography",
     "publisher": "Random House",
     "author": "Walter Isaacson",
-    "genres": ["Education", "Technical"]
+    "genres": [
+      "Education",
+      "Technical"
+    ]
   },
   {
     "title": "The Lord of the Rings",
     "isbn": "9780618640157",
     "description": "High fantasy novel.",
     "releaseDate": "1954-07-29",
-    "price": 35.00,
+    "price": 35.0,
     "imageKey": "lotr.jpg",
     "category": "Fiction",
     "publisher": "George Allen & Unwin",
     "author": "J.R.R. Tolkien",
-    "genres": ["Fantasy", "Adventure"]
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ]
   },
   {
     "title": "Brave New World",
     "isbn": "9780060850524",
     "description": "A dystopian social science fiction novel.",
     "releaseDate": "1932-01-01",
-    "price": 14.50,
+    "price": 14.5,
     "imageKey": "brave_new_world.jpg",
     "category": "Fiction",
     "publisher": "J. B. Lippincott & Co.",
     "author": "Aldous Huxley",
-    "genres": ["Dystopian", "Science Fiction"]
+    "genres": [
+      "Dystopian",
+      "Science Fiction"
+    ]
   },
   {
     "title": "The Silent Patient",
@@ -297,6 +367,928 @@
     "category": "Fiction",
     "publisher": "Celadon Books",
     "author": "Alex Michaelides",
-    "genres": ["Thriller", "Mystery"]
+    "genres": [
+      "Thriller",
+      "Mystery"
+    ]
+  },
+  {
+    "title": "Alice's Adventures in Wonderland",
+    "isbn": "9781533043528",
+    "description": "Alice's Adventures in Wonderland (commonly Alice in Wonderland) is an 1865 English children's novel by Lewis Carroll. A young girl named Alice falls through a rabbit hole into a fantasy world of anthropomorphic creatures. It is seen as an example of the literary nonsense genre.\r\n\r\nOne of the best-known works of Victorian literature, its narrative, structure, characters and imagery have had huge influence on popular culture and literature, especially in the fantasy genre....",
+    "releaseDate": "1865-04-26",
+    "price": 48.93,
+    "imageKey": "9781533043528.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Lewis Carroll",
+    "genres": [
+      "Fantasy",
+      "Science Fiction"
+    ]
+  },
+  {
+    "title": "The Wonderful Wizard of Oz",
+    "isbn": "0893759910",
+    "description": "Over a century after its initial publication, The Wonderful Wizard of Oz is still captivating the hearts of countless readers. Come adventure with Dorothy and her three friends: the Scarecrow, the Tin Woodman, and the Cowardly Lion, as they follow the Yellow Brick Road to the Emerald City for an audience with the Great Oz, the mightiest Wizard in the land, and the only one that can return Dorothy to her home in Kansas....",
+    "releaseDate": "1899-06-27",
+    "price": 34.19,
+    "imageKey": "0893759910.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "L. Frank Baum",
+    "genres": [
+      "Fantasy",
+      "Science Fiction"
+    ]
+  },
+  {
+    "title": "Treasure Island",
+    "isbn": "0448054698",
+    "description": "Traditionally considered a coming-of-age story, Treasure Island is an adventure tale known for its atmosphere, characters and action, and also as a wry commentary on the ambiguity of morality — as seen in Long John Silver — unusual for children's literature then and now. It is one of the most frequently dramatized of all novels. The influence of Treasure Island on popular perceptions of pirates is enormous, including treasure maps marked with an \"X\", schooners, the Black Spot, tropical isla...",
+    "releaseDate": "1880-12-16",
+    "price": 24.82,
+    "imageKey": "0448054698.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Robert Louis Stevenson",
+    "genres": [
+      "Fantasy",
+      "Thriller",
+      "Education"
+    ]
+  },
+  {
+    "title": "A Midsummer Night's Dream",
+    "isbn": "9780321436795",
+    "description": "One night two young couples run into an enchanted forest in an attempt to escape their problems. But these four humans do not realize that the forest is filled with fairies and hobgoblins who love making mischief. When Oberon, the Fairy King, and his loyal hobgoblin servant, Puck, intervene in human affairs, the fate of these young couples is magically and hilariously transformed. Like a classic fairy tale, this retelling of William Shakespeare's most beloved comedy is perfect for older rea...",
+    "releaseDate": "1600-12-21",
+    "price": 42.9,
+    "imageKey": "9780321436795.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "William Shakespeare",
+    "genres": [
+      "Fantasy",
+      "Education"
+    ]
+  },
+  {
+    "title": "The Prince",
+    "isbn": "9784003400319",
+    "description": "The Prince (Italian: Il Principe [il ˈprintʃipe]; Latin: De Principatibus) is a 16th-century political treatise written by Italian diplomat and political theorist Niccolò Machiavelli as an instruction guide for new princes and royals. The general theme of The Prince is of accepting that the aims of princes – such as glory and survival – can justify the use of immoral means to achieve those ends.\r\n\r\nFrom Machiavelli's correspondence, a version appears to have been distributed in 1513, using ...",
+    "releaseDate": "1515-11-07",
+    "price": 26.09,
+    "imageKey": "9784003400319.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Niccolò Machiavelli",
+    "genres": [
+      "Fantasy",
+      "Psychology"
+    ]
+  },
+  {
+    "title": "Through the Looking-Glass",
+    "isbn": "9788420666808",
+    "description": "*Through the Looking-Glass, and What Alice Found There* (1871) is a work of children's literature by Lewis Carroll (Charles Lutwidge Dodgson), generally categorized in the fairy tale genre. It is the sequel to *Alice's Adventures in Wonderland* (1865). Although it makes no reference to the events in the earlier book, the themes and settings of *Through the Looking-Glass* make it a kind of mirror image of Wonderland: the first book begins outdoors, in the warm month of May, uses frequent cha...",
+    "releaseDate": "1865-05-04",
+    "price": 35.55,
+    "imageKey": "9788420666808.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Lewis Carroll",
+    "genres": [
+      "Fantasy"
+    ]
+  },
+  {
+    "title": "The Marvelous Land of Oz",
+    "isbn": "9780554023502",
+    "description": "Tip and his creation, Jack Pumpkin, run away to Oz, where they save the city after it is captured by girls....",
+    "releaseDate": "1904-01-08",
+    "price": 38.56,
+    "imageKey": "9780554023502.jpg",
+    "category": "Fiction",
+    "publisher": "Open Library Edition",
+    "author": "L. Frank Baum",
+    "genres": [
+      "Fantasy"
+    ]
+  },
+  {
+    "title": "Le petit prince",
+    "isbn": "9780547978840",
+    "description": "*Le Petit Prince* est une œuvre de langue française, la plus connue d'Antoine de Saint-Exupéry. Publié en 1943 à New York simultanément à sa traduction anglaise, c'est une œuvre poétique et philosophique sous l'apparence d'un conte pour enfants.\r\n\r\nTraduit en quatre cent cinquante-sept langues et dialectes, *Le Petit Prince* est le deuxième ouvrage le plus traduit au monde après la Bible.\r\n\r\nLe langage, simple et dépouillé, parce qu'il est destiné à être compris par des enfants, est en réal...",
+    "releaseDate": "1943-07-20",
+    "price": 46.3,
+    "imageKey": "9780547978840.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Antoine de Saint-Exupéry",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ]
+  },
+  {
+    "title": "The Emerald City of Oz",
+    "isbn": "9780786284061",
+    "description": "From the book:Perhaps I should admit on the title page that this book is \"By L. Frank Baum and his correspondents,\" for I have used many suggestions conveyed to me in letters from children. Once on a time I really imagined myself \"an author of fairy tales,\" but now I am merely an editor or private secretary for a host of youngsters whose ideas I am requestsed to weave into the thread of my stories. These ideas are often clever. They are also logical and interesting. So I have used them when...",
+    "releaseDate": "1910-02-03",
+    "price": 37.94,
+    "imageKey": "9780786284061.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "L. Frank Baum",
+    "genres": [
+      "Fantasy",
+      "Science Fiction"
+    ]
+  },
+  {
+    "title": "Dorothy and the Wizard in Oz",
+    "isbn": "9780345341686",
+    "description": "Dorothy and the Wizard in Oz is the fourth book in Baum's Oz series. The series chronicles the further adventures of Dorothy both in and out of Oz, as she deals with the characters, situations and desires which continue to spill over from her first fateful adventure....",
+    "releaseDate": "1908-12-20",
+    "price": 50.86,
+    "imageKey": "9780345341686.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "L. Frank Baum",
+    "genres": [
+      "Fantasy",
+      "Science Fiction"
+    ]
+  },
+  {
+    "title": "Alice's Adventures in Wonderland / Through the Looking Glass",
+    "isbn": "9780749805609",
+    "description": "A very real little girl named Alice follows a remarkable rabbit down a rabbit hole and steps through a looking-glass to come face to face with some of the strangest adventures and some of the oddest characters in all literature. The crusty Duchess, the Mad Hatter, the weeping Mock Turtle, the diabolical Queen of Hearts, the Cheshire-Cat, Tweedledum and Tweedledee--each one is more eccentric, and more entertaining, than the last. And all of them could only have come from the pen of Lewis Car...",
+    "releaseDate": "1889-11-26",
+    "price": 28.79,
+    "imageKey": "9780749805609.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Lewis Carroll",
+    "genres": [
+      "Fantasy"
+    ]
+  },
+  {
+    "title": "The Time Machine",
+    "isbn": "0449308375",
+    "description": "The Time Traveller, a dreamer obsessed with traveling through time, builds himself a time machine and, much to his surprise, travels over 800,000 years into the future. He lands in the year 802701: the world has been transformed by a society living in apparent harmony and bliss, but as the Traveler stays in the future he discovers a hidden barbaric and depraved subterranean class. Wells's transparent commentary on the capitalist society was an instant bestseller and launched the time-travel...",
+    "releaseDate": "1895-02-03",
+    "price": 37.29,
+    "imageKey": "0449308375.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "H. G. Wells",
+    "genres": [
+      "Dystopian",
+      "Science Fiction"
+    ]
+  },
+  {
+    "title": "Dracula",
+    "isbn": "9780439154116",
+    "description": "Na história, um casal e seus amigos são atormentados por Conde Drácula, uma entidade sobrenatural e hematófoga que, presa em uma maldição contagiosa, pretende se mudar de seu recluso castelo na Transilvânia para a efervescente Londres do século XIX. Com a ajuda do professor Van Helsing, o grupo de amigos pretende enfrentar o morto-vivo, mesmo com todos os perigos que a ofensiva trará....",
+    "releaseDate": "1897-10-08",
+    "price": 24.44,
+    "imageKey": "9780439154116.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Bram Stoker",
+    "genres": [
+      "Fantasy",
+      "Horror",
+      "Science Fiction",
+      "Thriller"
+    ]
+  },
+  {
+    "title": "The Invisible Man",
+    "isbn": "9780812504675",
+    "description": "This book is the story of Griffin, a scientist who creates a serum to render himself invisible, and his descent into madness that follows....",
+    "releaseDate": "0-05-21",
+    "price": 26.54,
+    "imageKey": "9780812504675.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "H. G. Wells",
+    "genres": [
+      "Science Fiction"
+    ]
+  },
+  {
+    "title": "Le Tour du Monde en Quatre-Vingts Jours",
+    "isbn": "9780965079341",
+    "description": "Phileas Fogg, a very punctual man had broken into an argument while conversing about the recent bank robbery. To keep his word of proving that he would travel around the world in 80 days and win the bet, he sets on a long trip, where he is joined by a few other people on the way. A wonderful adventure is about to begin!...",
+    "releaseDate": "1872-05-25",
+    "price": 42.47,
+    "imageKey": "9780965079341.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Jules Verne",
+    "genres": [
+      "Fantasy",
+      "Science Fiction",
+      "Thriller",
+      "Adventure"
+    ]
+  },
+  {
+    "title": "News from nowhere, or, An epoch of rest, being some chapters from a utopian romance",
+    "isbn": "9781440468711",
+    "description": "\"Written in 1890, at the close of William Morris's most intense period of political activism, News from Nowhere is a compelling articulation of his mature views on art, work, community, family, and the nature and structure of the ideal society. A utopian narrative of a future society, it is also an immensely entertaining novel.\".\r\n\r\n\"This Broadview edition includes a wide variety of contextualizing documents, including portions of Morris's essays, lectures, and journalism; excerpts from pre...",
+    "releaseDate": "1890-08-19",
+    "price": 28.17,
+    "imageKey": "9781440468711.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "William Morris",
+    "genres": [
+      "Fantasy",
+      "Science Fiction"
+    ]
+  },
+  {
+    "title": "The Mayor of Casterbridge",
+    "isbn": "9781371375379",
+    "description": "<p>Like many of <a href=\"https://standardebooks.org/ebooks/thomas-hardy\">Hardy’s</a> novels, <i>The Mayor of Casterbridge</i> is set in the fictional county of Wessex in the mid 1800s. It begins with Michael Henchard, a young hay-trusser, drunk on rum, auctioning off his wife and baby daughter at a village fair. The next day, overcome with remorse, Henchard resolves to turn his life around. When we meet Henchard eighteen years later, temperance and hard work have made him wealthy and respec...",
+    "releaseDate": "1800-06-21",
+    "price": 44.95,
+    "imageKey": "9781371375379.jpg",
+    "category": "Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Thomas Hardy",
+    "genres": [
+      "Horror",
+      "Romance",
+      "Psychology"
+    ]
+  },
+  {
+    "title": "The Turn of the Screw",
+    "isbn": "9780817220273",
+    "description": "The governess of two enigmatic children fears their souls are in danger from the ghosts of the previous governess and her sinister lover....",
+    "releaseDate": "1898-04-16",
+    "price": 28.49,
+    "imageKey": "9780817220273.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Henry James",
+    "genres": [
+      "Fantasy",
+      "Horror"
+    ]
+  },
+  {
+    "title": "Carrie",
+    "isbn": "9780340922842",
+    "description": "The story of misfit high-school girl, Carrie White, who gradually discovers that she has telekinetic powers. Repressed by a domineering, ultra-religious mother and tormented by her peers at school, her efforts to fit in lead to a dramatic confrontation during the senior prom. \r\n([source][1])\r\n\r\n\r\n----------\r\nAlso contained in:\r\n\r\n - [The Shining / 'Salem's Lot / Night Shift / Carrie][2]\r\n\r\n\r\n----------\r\nSee also:\r\n\r\n - [Selected from Carrie][3]\r\n\r\n\r\n  [1]: https://stephenking.com/library/no...",
+    "releaseDate": "1974-08-25",
+    "price": 39.25,
+    "imageKey": "9780340922842.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Stephen King",
+    "genres": [
+      "Horror",
+      "Thriller"
+    ]
+  },
+  {
+    "title": "Wuthering Heights",
+    "isbn": "9781402797026",
+    "description": "Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff. The novel was influenced by Romanticism and Gothic fiction....",
+    "releaseDate": "1846-06-04",
+    "price": 49.28,
+    "imageKey": "9781402797026.jpg",
+    "category": "Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Emily Brontë",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "Emma",
+    "isbn": "9781905716890",
+    "description": "Emma, by Jane Austen, is a novel about youthful hubris and the perils of misconstrued romance. The novel was first published in December 1815. As in her other novels, Austen explores the concerns and difficulties of genteel women living in Georgian-Regency England; she also creates a lively comedy of manners among her characters. Before she began the novel, Austen wrote, \"I am going to take a heroine whom no one but myself will much like.\" In the very first sentence she introduces the title...",
+    "releaseDate": "1815-07-19",
+    "price": 27.61,
+    "imageKey": "9781905716890.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Jane Austen",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "Sense and Sensibility",
+    "isbn": "9787560008974",
+    "description": "When Mr. Dashwood dies, he must leave the bulk of his estate to the son by his first marriage, which leaves his second wife and three daughters (Elinor, Marianne, and Margaret) in straitened circumstances. They are taken in by a kindly cousin, but their lack of fortune affects the marriageability of both practical Elinor and romantic Marianne. When Elinor forms an attachment for the wealthy Edward Ferrars, his family disapproves and separates them. And though Mrs. Jennings tries to match th...",
+    "releaseDate": "1811-11-21",
+    "price": 48.7,
+    "imageKey": "9787560008974.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Jane Austen",
+    "genres": [
+      "Romance",
+      "Classic"
+    ]
+  },
+  {
+    "title": "Little Women",
+    "isbn": "1841001503",
+    "description": "Louisa May Alcotts classic novel, set during the Civil War, has always captivated even the most reluctant readers. Little girls, especially, love following the adventures of the four March sisters--Meg, Beth, Amy, and most of all, the tomboy Jo--as they experience the joys and disappointments, tragedies and triumphs, of growing up. This simpler version captures all the charm and warmth of the original....",
+    "releaseDate": "1848-07-10",
+    "price": 35.6,
+    "imageKey": "1841001503.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Louisa May Alcott",
+    "genres": [
+      "Romance",
+      "Classic"
+    ]
+  },
+  {
+    "title": "Анна Каренина",
+    "isbn": "9780760706138",
+    "description": "Described by William Faulkner as the best novel ever written and by Fyodor Dostoevsky as “flawless,” Anna Karenina tells of the doomed love affair between the sensuous and rebellious Anna and the dashing officer, Count Vronsky. Tragedy unfolds as Anna rejects her passionless marriage and thereby exposes herself to the hypocrisies of society. Set against a vast and richly textured canvas of nineteenth-century Russia, the novel's seven major characters create a dynamic imbalance, playing out ...",
+    "releaseDate": "1876-11-09",
+    "price": 43.83,
+    "imageKey": "9780760706138.jpg",
+    "category": "Biography",
+    "publisher": "Open Library Edition",
+    "author": "Лев Толстой",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "Jane Eyre",
+    "isbn": "9780312142025",
+    "description": "The novel is set somewhere in the north of England. Jane's childhood at Gateshead Hall, where she is emotionally and physically abused by her aunt and cousins; her education at Lowood School, where she acquires friends and role models but also suffers privations and oppression; her time as the governess of Thornfield Hall, where she falls in love with her Byronic employer, Edward Rochester; her time with the Rivers family, during which her earnest but cold clergyman cousin, St John Rivers, ...",
+    "releaseDate": "1847-12-03",
+    "price": 33.39,
+    "imageKey": "9780312142025.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Charlotte Brontë",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "Northanger Abbey",
+    "isbn": "9781503080287",
+    "description": "Northanger Abbey is both a perfectly aimed literary parody and a withering satire of the commercial aspects of marriage among the English gentry at the turn of the nineteenth century. But most of all, it is the story of the initiation into life of its naïve but sweetly appealing heroine, Catherine Morland, a willing victim of the contemporary craze for Gothic literature who is determined to see herself as the heroine of a dark and thrilling romance.\r\n\r\nWhen Catherine is invited to Northange...",
+    "releaseDate": "1818-03-27",
+    "price": 46.7,
+    "imageKey": "9781503080287.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Jane Austen",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "Ethan Frome",
+    "isbn": "9788831758659",
+    "description": "*Edith Wharton wrote Ethan Frome as a frame story — meaning that the prologue and epilogue constitute a \"frame\" around the main story*\r\n\r\n**How It All Goes Down**\r\nIt's winter. A nameless engineer is in Starkfield, Massachusetts on business and he first sees Ethan Frome at the post office. Ethan is a man in his early fifties who is obviously strong, and obviously crippled. The man becomes fascinated with Ethan and wants to know his story. When Ethan begins giving him occasional rides to the...",
+    "releaseDate": "1910-06-03",
+    "price": 31.87,
+    "imageKey": "9788831758659.jpg",
+    "category": "Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Edith Wharton",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "Le Comte de Monte Cristo",
+    "isbn": "9781145233584",
+    "description": "Thrown in prison for a crime he has not committed, Edmond Dantes is confined to the grim fortress of If. There he learns of a great hoard of treasure hidden on the Isle of Monte Cristo and becomes determined not only to escape but to unearth the treasure and use it to plot the destruction of the three men responsible for his incarceration. A huge popular success when it was first serialized in the 1840s, Dumas was inspired by a real-life case of wrongful imprisonment when writing his epic t...",
+    "releaseDate": "1830-07-06",
+    "price": 35.87,
+    "imageKey": "9781145233584.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Alexandre Dumas",
+    "genres": [
+      "Romance",
+      "Classic",
+      "Adventure"
+    ]
+  },
+  {
+    "title": "Riders of the Purple Sage",
+    "isbn": "9781438287409",
+    "description": "Riders of the Purple Sage is a novel that tells the story of a woman by the name of Jane Withersteen and her battle to overcome persecution by members of  her polygamous Mormon fundamentalist church. A leader of the church, Elder Tull, wants to marry her, but she has evaded him for years. Things get complicated when Bern Venters and Lassiter, a famous gunman and killer of Mormons help her look after her cattle and horses. She is blinded by her faith to see that her church men are the ones h...",
+    "releaseDate": "1912-11-25",
+    "price": 31.41,
+    "imageKey": "9781438287409.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Zane Grey",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "A Room with a View",
+    "isbn": "1566191440",
+    "description": "Lucy has her rigid, middle-class life mapped out for her, until she visits Florence with her uptight cousin Charlotte, and finds her neatly ordered existence thrown off balance. Her eyes are opened by the unconventional characters she meets at the Pension Bertolini: flamboyant romantic novelist Eleanor Lavish, the Cockney Signora, curious Mr Emerson and, most of all, his passionate son George.\r\nLucy finds herself torn between the intensity of life in Italy and the repressed morals of Edward...",
+    "releaseDate": "1905-02-02",
+    "price": 40.18,
+    "imageKey": "1566191440.jpg",
+    "category": "Fiction",
+    "publisher": "Open Library Edition",
+    "author": "E. M. Forster",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "Uncle Tom's Cabin",
+    "isbn": "9780060806187",
+    "description": "This unforgettable novel tells the story of Tom, a devoutly Christian slave who chooses not to escape bondage for fear of embarrassing his master. However, he is soon sold to a slave trader and sent down the Mississippi, where he must endure brutal treatment. This is a powerful tale of the extreme cruelties of slavery, as well as the price of loyalty and morality. When first published, it helped to solidify the anti-slavery sentiments of the North, and it remains today as the book that help...",
+    "releaseDate": "1850-04-17",
+    "price": 53.26,
+    "imageKey": "9780060806187.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Harriet Beecher Stowe",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "Women in Love",
+    "isbn": "0670825859",
+    "description": "Dark, but filled with bright genius, Women in Love is a prophetic masterpiece steeped in eroticism, filled with perceptions about sexual power and obsession that have proven to be timeless and true....",
+    "releaseDate": "1877-02-04",
+    "price": 34.16,
+    "imageKey": "0670825859.jpg",
+    "category": "Fiction",
+    "publisher": "Open Library Edition",
+    "author": "D. H. Lawrence",
+    "genres": [
+      "Fantasy",
+      "Romance"
+    ]
+  },
+  {
+    "title": "Heart of Darkness",
+    "isbn": "9780786249169",
+    "description": "Heart of Darkness (1899) is a novella by Polish-English novelist Joseph Conrad, about a voyage up the Congo River into the Congo Free State, in the heart of Africa, by the story's narrator Charles Marlow. Marlow tells his story to friends aboard a boat anchored on the River Thames. Joseph Conrad is one of the greatest English writers, and Heart of Darkness is considered his best.  His readers are brought to face our psychological selves to answer, ‘Who is the true savage?’. Originally publi...",
+    "releaseDate": "1899-09-22",
+    "price": 49.28,
+    "imageKey": "9780786249169.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Joseph Conrad",
+    "genres": [
+      "Romance",
+      "Mystery"
+    ]
+  },
+  {
+    "title": "Howards End",
+    "isbn": "9781420956498",
+    "description": "Howards End is a novel by E. M. Forster about social conventions, codes of conduct and relationships in turn-of-the-century England. A strong-willed and intelligent woman refuses to allow the pretensions of her husband's smug English family to ruin her life. Howards End is considered by some to be Forster's masterpiece...",
+    "releaseDate": "1910-05-22",
+    "price": 24.63,
+    "imageKey": "9781420956498.jpg",
+    "category": "Fiction",
+    "publisher": "Open Library Edition",
+    "author": "E. M. Forster",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "The Portrait of a Lady",
+    "isbn": "9780760702352",
+    "description": "Young American Isabel Archer charms European society, but falls prey to the machinations of a calculating older woman....",
+    "releaseDate": "1881-03-07",
+    "price": 46.15,
+    "imageKey": "9780760702352.jpg",
+    "category": "Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Henry James",
+    "genres": [
+      "Romance"
+    ]
+  },
+  {
+    "title": "A Christmas Carol",
+    "isbn": "9781556701610",
+    "description": "A retelling of the story about a miser whose life is changed by Christmas....",
+    "releaseDate": "1843-12-03",
+    "price": 39.0,
+    "imageKey": "9781556701610.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Charles Dickens",
+    "genres": [
+      "Fantasy"
+    ]
+  },
+  {
+    "title": "Adventures of Huckleberry Finn",
+    "isbn": "9781475256451",
+    "description": "Adventures of Huckleberry Finn or as it is known in more recent editions, The Adventures of Huckleberry Finn, is a novel by American author Mark Twain, which was first published in the United Kingdom in December 1884 and in the United States in February 1885.\r\n\r\nCommonly named among the Great American Novels, the work is among the first in major American literature to be written throughout in vernacular English, characterized by local color regionalism. It is told in the first person by Huc...",
+    "releaseDate": "1876-02-07",
+    "price": 50.68,
+    "imageKey": "9781475256451.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Mark Twain",
+    "genres": [
+      "Adventure",
+      "Classic"
+    ]
+  },
+  {
+    "title": "Robinson Crusoe",
+    "isbn": "9780590432856",
+    "description": "During one of his several adventurous voyages in the 1600's, an Englishman becomes the sole survivor of a shipwreck and lives for nearly thirty years on a deserted island....",
+    "releaseDate": "1686-07-17",
+    "price": 21.64,
+    "imageKey": "9780590432856.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Daniel Defoe",
+    "genres": [
+      "Adventure"
+    ]
+  },
+  {
+    "title": "Hamlet",
+    "isbn": "9780671463960",
+    "description": "In this quintessential Shakespeare tragedy, a young prince's halting pursuit of revenge for the murder of his father unfolds in a series of highly charged confrontations that have held audiences spellbound for nearly four centuries. Those fateful exchanges, and the anguished soliloquies that precede and follow them, probe depths of human feeling rarely sounded in any art. \r\n\r\nThe title role of Hamlet, perhaps the most demanding in all of Western drama, has provided generations of leading ac...",
+    "releaseDate": "1603-10-01",
+    "price": 36.95,
+    "imageKey": "9780671463960.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "William Shakespeare",
+    "genres": [
+      "Classic"
+    ]
+  },
+  {
+    "title": "Macbeth",
+    "isbn": "9780671743949",
+    "description": "The play concerns a trusted general who secretly lusts for power. Encouraged by the prophecies of three witches and urged on by his ambitious wife Macbeth commits regicide. Left fearful and superstitious by this desperate act he is driven to a spiralling course of murder and outrage, almost inevitably culminating in his own death. One of Shakespeare’s most popular tragedies, Macbeth is ostensibly based on the Scottish king although the story represented in the play bears no relation to hist...",
+    "releaseDate": "1508-04-01",
+    "price": 25.75,
+    "imageKey": "9780671743949.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "William Shakespeare",
+    "genres": []
+  },
+  {
+    "title": "Les Robots",
+    "isbn": "9780329143558",
+    "description": "I, Robot is a fixup novel of science fiction short stories or essays by American writer Isaac Asimov. The stories originally appeared in the American magazines Super Science Stories and Astounding Science Fiction between 1940 and 1950 and were then compiled into a book for stand-alone publication by Gnome Press in 1950, in an initial edition of 5,000 copies. The stories are woven together by a framing narrative in which the fictional Dr. Susan Calvin tells each story to a reporter (who serv...",
+    "releaseDate": "1950-11-22",
+    "price": 50.54,
+    "imageKey": "9780329143558.jpg",
+    "category": "Technology",
+    "publisher": "Open Library Edition",
+    "author": "Isaac Asimov",
+    "genres": [
+      "Science Fiction",
+      "Thriller"
+    ]
+  },
+  {
+    "title": "Artemis Fowl",
+    "isbn": "9781423124528",
+    "description": "Artemis Fowl is the first of a series of semi-realist novels produced by Eoin Colfer. They document the adventures of a precocious prodigal child of the criminal empire, Artemis Fowl. In this book, accompanied by his huge and loyal bodyguard/sidekick/advisor Butler, Artemis engages in a series of surreal activities; the absence of his missing father and the mental disorder of his mother allow him to pursue the unlikely position of a criminal mastermind. However, Artemis soon encounters more...",
+    "releaseDate": "1999-06-11",
+    "price": 53.71,
+    "imageKey": "9781423124528.jpg",
+    "category": "Technology",
+    "publisher": "Open Library Edition",
+    "author": "Eoin Colfer",
+    "genres": [
+      "Fantasy"
+    ]
+  },
+  {
+    "title": "The Internet for Dummies",
+    "isbn": "9780764568190",
+    "description": "Covers hardware, software, servers, e-mail, search engines, online shopping and auctions, resources for children, parental guidance, and privacy....",
+    "releaseDate": "1993-10-07",
+    "price": 41.17,
+    "imageKey": "9780764568190.jpg",
+    "category": "Technology",
+    "publisher": "Open Library Edition",
+    "author": "John R. Levine",
+    "genres": []
+  },
+  {
+    "title": "Stormbreaker",
+    "isbn": "9780439425933",
+    "description": "They told him his uncle died in a car accident. Fourteen-year-old Alex knows that's a lie, and the bullet holes in his uncle's windshield confirm his suspicions. But nothing prepares him for the news that the uncle he always thought he knew was really a spy for MI6—Britain's top secret intelligence agency. Recruited to find his uncle's killers and complete his final mission, Alex suddenly finds himself caught in a deadly game of cat and mouse....",
+    "releaseDate": "2000-07-28",
+    "price": 50.48,
+    "imageKey": "9780439425933.jpg",
+    "category": "Technology",
+    "publisher": "Open Library Edition",
+    "author": "Anthony Horowitz",
+    "genres": [
+      "Mystery",
+      "Thriller"
+    ]
+  },
+  {
+    "title": "Upgrading and repairing PCs",
+    "isbn": "9780789720955",
+    "description": "Runaway best-selling PC hardware book of all time and one of the best-selling computer books ever! \r\n    * Written by the all-time bestselling PC hardware author in history! \r\n    * Has earned more than any other Que book in existence in gross profit since the 5th Edition was published in 1995, placing it among the Pearson Technology Group elite!...",
+    "releaseDate": "1988-08-11",
+    "price": 48.97,
+    "imageKey": "9780789720955.jpg",
+    "category": "Technology",
+    "publisher": "Open Library Edition",
+    "author": "Scott Mueller",
+    "genres": []
+  },
+  {
+    "title": "Artificial intelligence",
+    "isbn": "9788177583670",
+    "description": "A comprehensive, up-to-date introduction to the theory and practice of artificial intelligence....",
+    "releaseDate": "1994-11-02",
+    "price": 38.21,
+    "imageKey": "9788177583670.jpg",
+    "category": "Technology",
+    "publisher": "Open Library Edition",
+    "author": "Stuart J. Russell",
+    "genres": []
+  },
+  {
+    "title": "Computer Concepts",
+    "isbn": "9780619017323",
+    "description": "No description available....",
+    "releaseDate": "1996-11-18",
+    "price": 27.72,
+    "imageKey": "9780619017323.jpg",
+    "category": "Technology",
+    "publisher": "Open Library Edition",
+    "author": "June Jamrich Parsons",
+    "genres": []
+  },
+  {
+    "title": "Mona Lisa Overdrive",
+    "isbn": "9785237022681",
+    "description": "Mona Lisa Overdrive is the final novel of the William Gibson's cyberpunk Sprawl trilogy.\r\n\r\nLiving in the vast computer landscape of cyberspace, young Mona taps into the mind of world-famous Sense/Net star Angie Mitchell who deciphers cyperspace plans, including those devised by Japanese underworld....",
+    "releaseDate": "1987-10-24",
+    "price": 54.55,
+    "imageKey": "9785237022681.jpg",
+    "category": "Technology",
+    "publisher": "Open Library Edition",
+    "author": "William Gibson",
+    "genres": [
+      "Science Fiction"
+    ]
+  },
+  {
+    "title": "C++",
+    "isbn": "9788120343399",
+    "description": "*Publisher's description:* For Introduction to Programming (CS1) and other more intermediate courses covering programming in C++. Also appropriate as a supplement for upper-level courses where the instructor uses a book as a reference for the C++ language. This best-selling comprehensive text is aimed at readers with little or no programming experience. It teaches programming by presenting the concepts in the context of full working programs and takes and early objects approach. The text ha...",
+    "releaseDate": "1996-05-07",
+    "price": 44.33,
+    "imageKey": "9788120343399.jpg",
+    "category": "Technology",
+    "publisher": "Open Library Edition",
+    "author": "Paul J. Deitel",
+    "genres": []
+  },
+  {
+    "title": "Julius Caesar",
+    "isbn": "0471005118",
+    "description": "Presents the original text of Shakespeare's play side by side with a modern version, discusses the author and the theater of his time, and provides quizzes and other study activities....",
+    "releaseDate": "1656-02-28",
+    "price": 36.18,
+    "imageKey": "0471005118.jpg",
+    "category": "Biography",
+    "publisher": "Open Library Edition",
+    "author": "William Shakespeare",
+    "genres": [
+      "Education"
+    ]
+  },
+  {
+    "title": "Narrative of the life of Frederick Douglass",
+    "isbn": "9781480282254",
+    "description": "This book is an autobiographical account by runaway slave Frederick Douglass that chronicles his experiences with his owners and overseers and discusses how slavery affected both slaves and slaveholders....",
+    "releaseDate": "1845-10-17",
+    "price": 44.83,
+    "imageKey": "9781480282254.jpg",
+    "category": "Biography",
+    "publisher": "Open Library Edition",
+    "author": "Frederick Douglass",
+    "genres": []
+  },
+  {
+    "title": "Twelve years a slave",
+    "isbn": "9781496138422",
+    "description": "Twelve Years a Slave is a harrowing memoir about one of the darkest periods in American history. It recounts how Solomon Northup, born a free man in New York, was lured to Washington, D.C., in 1841 with the promise of fast money, then drugged and beaten and sold into slavery. He spent the next twelve years of his life in captivity on a Louisiana cotton plantation....",
+    "releaseDate": "1853-08-22",
+    "price": 45.25,
+    "imageKey": "9781496138422.jpg",
+    "category": "Biography",
+    "publisher": "Open Library Edition",
+    "author": "Solomon Northup",
+    "genres": []
+  },
+  {
+    "title": "My Ántonia",
+    "isbn": "9781169283244",
+    "description": "My Antonia, first published 1918, is one of Willa Cather's greatest works. It is the last novel in the Prairie trilogy, preceded by O Pioneers! and The Song of the Lark.My Antonia tells the stories of several immigrant families who move out to rural Nebraska to start new lives in America, with a particular focus on a Bohemian family, the Shimerdas, whose eldest daughter is named Antonia. The book's narrator, Jim Burden, arrives in the fictional town of Black Hawk, Nebraska, on the same trai...",
+    "releaseDate": "1818-07-14",
+    "price": 46.0,
+    "imageKey": "9781169283244.jpg",
+    "category": "Biography",
+    "publisher": "Open Library Edition",
+    "author": "Willa Cather",
+    "genres": []
+  },
+  {
+    "title": "The Canterbury Tales",
+    "isbn": "9780140424386",
+    "description": "A collection of stories written in Middle English by Geoffrey Chaucer at the end of the 14th century. The tales (mostly in verse, although some are in prose) are told as part of a story-telling contest by a group of pilgrims as they travel together on a journey from Southwark to the shrine of Saint Thomas Becket at Canterbury Cathedral. In a long list of works, including Troilus and Criseyde, House of Fame, and Parliament of Fowls, The Canterbury Tales was Chaucer's magnum opus. He uses the...",
+    "releaseDate": "1478-10-16",
+    "price": 21.07,
+    "imageKey": "9780140424386.jpg",
+    "category": "Biography",
+    "publisher": "Open Library Edition",
+    "author": "Geoffrey Chaucer",
+    "genres": []
+  },
+  {
+    "title": "Sonnets",
+    "isbn": "9789706665591",
+    "description": "\"I feel that I have spent half my career with one or another Pelican Shakespeare in my back pocket. Convenience, however, is the least important aspect of the new Pelican Shakespeare series. Here is an elegant and clear text for either the study or the rehearsal room, notes where you need them and the distinguished scholarship of the general editors, Stephen Orgel and A. R. Braunmuller who understand that these are plays for performance as well as great texts for contemplation.\" (Patrick St...",
+    "releaseDate": "1609-11-28",
+    "price": 48.65,
+    "imageKey": "9789706665591.jpg",
+    "category": "Biography",
+    "publisher": "Open Library Edition",
+    "author": "William Shakespeare",
+    "genres": []
+  },
+  {
+    "title": "An autobiography",
+    "isbn": "9780486245935",
+    "description": "Gandhi's non-violent struggles against racism, violence, and colonialism in South Africa and India had brought him to such a level of notoriety, adulation that when asked to write an autobiography midway through his career, he took it as an opportunity to explain himself. He feared the enthusiasm for his ideas tended to exceed a deeper understanding of his quest for truth rooted in devotion to God. His attempts to get closer to this divine power led him to seek purity through simple living,...",
+    "releaseDate": "1927-07-02",
+    "price": 26.64,
+    "imageKey": "9780486245935.jpg",
+    "category": "Biography",
+    "publisher": "Open Library Edition",
+    "author": "Mohandas Karamchand Gandhi",
+    "genres": []
+  },
+  {
+    "title": "The Secret Garden",
+    "isbn": "9781403795052",
+    "description": "A ten-year-old orphan comes to live in a lonely house on the Yorkshire moors where she discovers an invalid cousin and the mysteries of a locked garden....",
+    "releaseDate": "1911-03-16",
+    "price": 39.61,
+    "imageKey": "9781403795052.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Frances Hodgson Burnett",
+    "genres": [
+      "Fantasy",
+      "Classic"
+    ]
+  },
+  {
+    "title": "Madame Bovary",
+    "isbn": "9780393053197",
+    "description": "Charles Bovary, médecin de campagne, veuf d'une mégère, fait lors d'une tournée la rencontre du père Rouault et de sa fille, Emma. Après leur mariage, Emma reste insatisfaite et rêve d'une nouvelle vie. Son premier amant lui donne le goût du luxe et fait miroiter un avenir à deux avant de l'abandonner. Une fois remise, Emma continue à faire de folles dépenses, qui peu à peu la mènent à la ruine et au déshonneur. (Résumé par Nadine)\r\n\r\n\r\n----------\r\nSee also:\r\n\r\n - [Madame Bovary: 1/2](https...",
+    "releaseDate": "1856-08-08",
+    "price": 41.29,
+    "imageKey": "9780393053197.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Gustave Flaubert",
+    "genres": []
+  },
+  {
+    "title": "The Art of War",
+    "isbn": "9781403774644",
+    "description": "The Art of War is an ancient Chinese military treatise dating from the Late Spring and Autumn Period. The work, which is attributed to the ancient Chinese military strategist Sun Tzu...",
+    "releaseDate": "1900-09-24",
+    "price": 20.72,
+    "imageKey": "9781403774644.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "孙武",
+    "genres": []
+  },
+  {
+    "title": "Записки изъ подполья",
+    "isbn": "9780679423157",
+    "description": "Its nameless hero is a profoundly alienated individual in whose brooding self-analysis there is a search for the true and the good in a world of relative values and few absolutes. Moreover, the novel introduces themes — moral, religious, political and social — that dominated Dostoyevsky's later works....",
+    "releaseDate": "1864-10-26",
+    "price": 24.81,
+    "imageKey": "9780679423157.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Фёдор Михайлович Достоевский",
+    "genres": []
+  },
+  {
+    "title": "πολιτεία",
+    "isbn": "9789706274236",
+    "description": "The Republic is Plato's most famous work and one of the seminal texts of Western philosophy and politics. The characters in this Socratic dialogue - including Socrates himself - discuss whether the just or unjust man is happier. They are the philosopher-kings of imagined cities and they also discuss the nature of philosophy and the soul among other things....",
+    "releaseDate": "1554-05-20",
+    "price": 53.46,
+    "imageKey": "9789706274236.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Πλάτων",
+    "genres": [
+      "Education"
+    ]
+  },
+  {
+    "title": "Tao te Ching",
+    "isbn": "9780895295064",
+    "description": "\"Within ancient Chinese, a sole character possesses a broad, and sometimes contradictory, range of meanings. Moreover, the Tao Te Ching is rife with terms and expressions that have no exact counterpart in English. So while the Tao Te Ching ranks behind only the Bible as the most widely translated book in the world, it remains one of the least understood.\".\r\n\r\n\"Jonathan Star's Tao Te Ching: The Definitive Edition helps remedy this situation. The distinction of this new edition is that it sup...",
+    "releaseDate": "1842-10-25",
+    "price": 42.16,
+    "imageKey": "9780895295064.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "老子",
+    "genres": []
+  },
+  {
+    "title": "Also sprach Zarathustra",
+    "isbn": "9789706665539",
+    "description": "A landmark work of philosophy and of literature, Thus Spoke Zarathustra is the fullest expression of Nietzche's belief that \"the object of mankind should lie in its highest individuals.\" In his thirtieth year Zarathustra - the archetypal Ubermensch representative of supreme passion and creativity - abandons his home for the mountains, where he lives, literally and figuratively, on a level of experience far above the conventional standards of good and evil. The exuberant, poetic testimony of...",
+    "releaseDate": "1883-10-18",
+    "price": 22.3,
+    "imageKey": "9789706665539.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "Friedrich Nietzsche",
+    "genres": [
+      "Classic"
+    ]
+  },
+  {
+    "title": "Romeo and Juliet",
+    "isbn": "9784102020012",
+    "description": "Romeo and Juliet is a tragedy written by William Shakespeare early in his career about two young Italian star-crossed lovers whose deaths ultimately reconcile their feuding families. It was among Shakespeare's most popular plays during his lifetime and, along with Hamlet, is one of his most frequently performed plays. Today, the title characters are regarded as archetypal young lovers....",
+    "releaseDate": "1597-05-27",
+    "price": 52.69,
+    "imageKey": "9784102020012.jpg",
+    "category": "Non-Fiction",
+    "publisher": "Open Library Edition",
+    "author": "William Shakespeare",
+    "genres": []
+  },
+  {
+    "title": "Two years before the mast",
+    "isbn": "9781582871363",
+    "description": "*Two Years before the Mast* is but an episode in the life of Richard Henry Dana, Jr., yet the narrative in which he details the experiences of that period is, perhaps, his chief claim to a wide remembrance. \r\n\r\nHis services in fields other than literary occupied the greater part of his life. Dana was a well known and respected lawyer, a stalwart abolitionist, and an advocate for the rights of common sailors. He and his wife, Sarah, had many friends among New England's cultural elite, includ...",
+    "releaseDate": "1000-01-21",
+    "price": 28.87,
+    "imageKey": "9781582871363.jpg",
+    "category": "Biography",
+    "publisher": "Open Library Edition",
+    "author": "Richard Henry Dana",
+    "genres": []
+  },
+  {
+    "title": "Principles of Anatomy and Physiology",
+    "isbn": "9780060467043",
+    "description": "This is a classic text book sought after by nurses at all stages of their careers. The manual guides nurses in the clinical application of the latest research findings, ensuring that theory and practice are integrated...",
+    "releaseDate": "1975-09-21",
+    "price": 26.87,
+    "imageKey": "9780060467043.jpg",
+    "category": "Technology",
+    "publisher": "Open Library Edition",
+    "author": "Gerard J. Tortora",
+    "genres": [
+      "Education"
+    ]
   }
 ]
