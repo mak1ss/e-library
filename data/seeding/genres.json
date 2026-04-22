@@ -10,5 +10,7 @@
   { "name": "Adventure", "description": "Stories featuring exciting and dangerous journeys." },
   { "name": "Self-Help", "description": "Books written to instruct on solving personal problems." },
   { "name": "Psychology", "description": "Study of mind and behavior." },
-  { "name": "Education", "description": "Textbooks and learning materials." }
+  { "name": "Education", "description": "Textbooks and learning materials." },
+  { "name": "Technology", "description": "Technical topics and computer science." },
+  { "name": "Drama", "description": "Theatrical performances and dramatic works." }
 ]

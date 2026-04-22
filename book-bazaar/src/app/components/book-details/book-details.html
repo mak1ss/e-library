@@ -109,9 +109,56 @@
 
     <mat-divider class="mb-16"></mat-divider>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-10" id="reviews">
+    <div class="flex gap-12 pt-10" id="reviews">
       
-      <div class="lg:col-span-4 space-y-8">
+      <!-- Similar Books Sidebar - Fixed Width -->
+      <div class="w-72 shrink-0">
+        <div class="sticky top-24">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6 font-serif">Similar Books</h2>
+          
+          @if (isLoadingSimilar()) {
+            <div class="flex justify-center py-8">
+              <mat-spinner diameter="40"></mat-spinner>
+            </div>
+          } @else if (similarBooks().length === 0) {
+            <p class="text-gray-500 text-center py-8">No similar books found.</p>
+          } @else {
+            <div class="space-y-4 max-h-[calc(100vh-280px)] overflow-y-auto pr-2 similar-books-scroll">
+              @for (book of similarBooks(); track book.id) {
+                <div class="group" 
+                     [matTooltip]="getSimilarityReason(book)"
+                     matTooltipPosition="above"
+                     class="cursor-pointer rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                  <div [routerLink]="['/book-details', book.id]"
+                       class="h-48 rounded-lg overflow-hidden mb-3 bg-gray-100 hover:scale-105 transition-transform">
+                    <img [src]="book.imageUrl || 'assets/default-book-cover.jpg'" 
+                         [alt]="book.title" 
+                         class="w-full h-full object-cover">
+                  </div>
+                  <h4 class="font-semibold text-sm text-gray-900 line-clamp-2 group-hover:text-primary transition-colors">
+                    {{ book.title }}
+                  </h4>
+                  <p class="text-xs text-gray-600 truncate">{{ book.author?.name }}</p>
+                  <div class="mt-2 flex items-center justify-between">
+                    <span class="text-xs font-medium text-yellow-500 flex items-center gap-1">
+                      <mat-icon class="!w-4 !h-4 !text-[16px]">star</mat-icon>
+                      {{ book.averageRating?.toFixed(1) }}
+                    </span>
+                    <span class="text-xs text-gray-500">({{ book.totalReviews }})</span>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Main Content Area - Full Width -->
+      <div class="flex-1">
+        <!-- Reviews and Metrics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <!-- Community Reviews Stats -->
+          <div class="md:col-span-5 space-y-8">
         <div>
           <h3 class="text-2xl font-bold text-book-dark-gray font-serif mb-6">Community Reviews</h3>
           
@@ -185,11 +232,11 @@
                 {{ currentUserReview() ? 'Edit Review' : 'Write a Review' }}
             </button>
         </div>
-      </div>
+        </div>
 
-      <div class="lg:col-span-8">
-        
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 border-b border-gray-100 pb-4">
+        <!-- Reviews List -->
+        <div class="md:col-span-7">
+        <!-- Reviews Section -->
             <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
                 Reviews 
                 @if(selectedRatingFilter()) {
@@ -228,7 +275,6 @@
                     <span [class.font-bold]="currentSort() === 'rating,asc'">Lowest rated</span>
                 </button>
             </mat-menu>
-        </div>
         </div>
 
         @if (reviewsLoading()) {
@@ -301,6 +347,8 @@
             </div>
         }
 
+      </div>
+    </div>
       </div>
     </div>
   </div>

@@ -571,7 +571,7 @@
     "title": "The Invisible Man",
     "isbn": "9780812504675",
     "description": "This book is the story of Griffin, a scientist who creates a serum to render himself invisible, and his descent into madness that follows....",
-    "releaseDate": "0-05-21",
+    "releaseDate": "1897-05-21",
     "price": 26.54,
     "imageKey": "9780812504675.jpg",
     "category": "Non-Fiction",
@@ -956,7 +956,7 @@
     "category": "Non-Fiction",
     "publisher": "Open Library Edition",
     "author": "William Shakespeare",
-    "genres": []
+    "genres": ["Classic", "Drama"]
   },
   {
     "title": "Les Robots",
@@ -997,7 +997,7 @@
     "category": "Technology",
     "publisher": "Open Library Edition",
     "author": "John R. Levine",
-    "genres": []
+    "genres": ["Technology", "Education"]
   },
   {
     "title": "Stormbreaker",
@@ -1024,7 +1024,7 @@
     "category": "Technology",
     "publisher": "Open Library Edition",
     "author": "Scott Mueller",
-    "genres": []
+    "genres": ["Technology", "Education"]
   },
   {
     "title": "Artificial intelligence",
@@ -1036,7 +1036,7 @@
     "category": "Technology",
     "publisher": "Open Library Edition",
     "author": "Stuart J. Russell",
-    "genres": []
+    "genres": ["Technology", "Science Fiction"]
   },
   {
     "title": "Computer Concepts",
@@ -1048,7 +1048,7 @@
     "category": "Technology",
     "publisher": "Open Library Edition",
     "author": "June Jamrich Parsons",
-    "genres": []
+    "genres": ["Technology", "Education"]
   },
   {
     "title": "Mona Lisa Overdrive",
@@ -1074,7 +1074,7 @@
     "category": "Technology",
     "publisher": "Open Library Edition",
     "author": "Paul J. Deitel",
-    "genres": []
+    "genres": ["Technology", "Education"]
   },
   {
     "title": "Julius Caesar",
@@ -1100,7 +1100,7 @@
     "category": "Biography",
     "publisher": "Open Library Edition",
     "author": "Frederick Douglass",
-    "genres": []
+    "genres": ["Classic", "Education"]
   },
   {
     "title": "Twelve years a slave",
@@ -1112,7 +1112,7 @@
     "category": "Biography",
     "publisher": "Open Library Edition",
     "author": "Solomon Northup",
-    "genres": []
+    "genres": ["Classic", "Education"]
   },
   {
     "title": "My Ántonia",
@@ -1124,7 +1124,7 @@
     "category": "Biography",
     "publisher": "Open Library Edition",
     "author": "Willa Cather",
-    "genres": []
+    "genres": ["Classic", "Romance"]
   },
   {
     "title": "The Canterbury Tales",
@@ -1136,7 +1136,7 @@
     "category": "Biography",
     "publisher": "Open Library Edition",
     "author": "Geoffrey Chaucer",
-    "genres": []
+    "genres": ["Classic", "Adventure"]
   },
   {
     "title": "Sonnets",
@@ -1148,7 +1148,7 @@
     "category": "Biography",
     "publisher": "Open Library Edition",
     "author": "William Shakespeare",
-    "genres": []
+    "genres": ["Classic", "Drama"]
   },
   {
     "title": "An autobiography",
@@ -1160,7 +1160,7 @@
     "category": "Biography",
     "publisher": "Open Library Edition",
     "author": "Mohandas Karamchand Gandhi",
-    "genres": []
+    "genres": ["Classic", "Psychology"]
   },
   {
     "title": "The Secret Garden",
@@ -1187,7 +1187,7 @@
     "category": "Non-Fiction",
     "publisher": "Open Library Edition",
     "author": "Gustave Flaubert",
-    "genres": []
+    "genres": ["Classic", "Romance"]
   },
   {
     "title": "The Art of War",
@@ -1199,7 +1199,7 @@
     "category": "Non-Fiction",
     "publisher": "Open Library Edition",
     "author": "孙武",
-    "genres": []
+    "genres": ["Education", "Psychology"]
   },
   {
     "title": "Записки изъ подполья",
@@ -1211,7 +1211,7 @@
     "category": "Non-Fiction",
     "publisher": "Open Library Edition",
     "author": "Фёдор Михайлович Достоевский",
-    "genres": []
+    "genres": ["Classic", "Psychology"]
   },
   {
     "title": "πολιτεία",
@@ -1237,7 +1237,7 @@
     "category": "Non-Fiction",
     "publisher": "Open Library Edition",
     "author": "老子",
-    "genres": []
+    "genres": ["Education", "Psychology"]
   },
   {
     "title": "Also sprach Zarathustra",
@@ -1263,7 +1263,7 @@
     "category": "Non-Fiction",
     "publisher": "Open Library Edition",
     "author": "William Shakespeare",
-    "genres": []
+    "genres": ["Classic", "Drama"]
   },
   {
     "title": "Two years before the mast",
@@ -1275,7 +1275,7 @@
     "category": "Biography",
     "publisher": "Open Library Edition",
     "author": "Richard Henry Dana",
-    "genres": []
+    "genres": ["Adventure", "Classic"]
   },
   {
     "title": "Principles of Anatomy and Physiology",

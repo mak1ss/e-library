@@ -3,3 +3,8 @@ docker
 .idea
 
 .codemie
+
+.vscode
+
+data/ml_models/
+phase1_datasets/

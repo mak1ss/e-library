@@ -111,4 +111,13 @@ public class ReviewService extends AbstractService<Review> {
     protected void afterDelete(Review entity) {
         metricsService.removeReviewMetrics(entity.getBookId(), entity.getRating());
     }
+
+    /**
+     * Get all reviews created by a specific user
+     * Used for generating personalized recommendations
+     */
+    public List<Review> getUserReviews(String userId) {
+        Query query = new Query(Criteria.where("userId").is(userId));
+        return mongoOperations.find(query, Review.class);
+    }
 }

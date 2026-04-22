@@ -1,0 +1,16 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+numpy==1.24.3
+scipy==1.11.2
+scikit-learn==1.3.1
+joblib==1.3.2
+pydantic==2.4.2
+python-dotenv==1.0.0
+# Semantic text embeddings for review relevance scoring (Task 1.9)
+# Version 5.4.1: Latest stable with compatibility for torch 2.x and transformers 4.x
+# Used to generate 384-dimensional embeddings for reviews and book descriptions
+# Auto-caches downloaded models in ~/.cache/huggingface/
+sentence-transformers>=3.0.0
+# Kafka event streaming and schema management
+aiokafka>=0.10.0
+confluent-kafka[avro]>=2.0.0
