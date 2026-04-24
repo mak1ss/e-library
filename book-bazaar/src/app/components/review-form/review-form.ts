@@ -5,19 +5,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-// 👇 Додаємо Tooltip
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BookService } from '../../services/book/book-service';
 import { UserService } from '../../services/user/userService';
 import { Review } from '../../model/review';
 import { Book } from '../../model/book';
-import { NgClass } from '@angular/common';
+import { NgClass, Location } from '@angular/common';
 import { ReviewService } from '../../services/review/review-service';
 
 @Component({
   selector: 'app-review-form',
   standalone: true,
-  // 👇 Додаємо MatTooltipModule та NgClass
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatTooltipModule, NgClass],
   templateUrl: './review-form.html',
 })
@@ -28,7 +26,8 @@ export class ReviewForm implements OnInit {
   private reviewService = inject(ReviewService);
   private bookService = inject(BookService);
   private userService = inject(UserService);
-
+  private location = inject(Location);
+  
   bookId = signal<number>(0);
   book = signal<Book | null>(null);
   existingReview = signal<Review | null>(null);
@@ -38,7 +37,6 @@ export class ReviewForm implements OnInit {
     text: ['', [Validators.maxLength(1000)]]
   });
 
-  // 👇 Допоміжний гетер для тексту оцінки
   get ratingLabel(): string {
     const rating = this.form.value.rating || 0;
     switch (rating) {
@@ -101,13 +99,13 @@ export class ReviewForm implements OnInit {
       : this.reviewService.createReview(request);
 
     obs$.subscribe({
-      next: () => this.router.navigate(['/book-details', this.bookId()]),
+      next: () => this.location.back(),
       error: (err) => console.error('Failed to save review', err)
     });
   }
 
   cancel() {
-    this.router.navigate(['/book-details', this.bookId()]);
+    this.location.back();
   }
 
   get hasUnsavedChanges(): boolean {

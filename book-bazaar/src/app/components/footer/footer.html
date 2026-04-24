@@ -1,30 +1,77 @@
-<section class="flex h-fit p-5 justify-between items-center bg-dark h-2/5 font-sans text-secondary-trans font-medium text-lg">
-  <div class="w-full">
-    <div class="flex items-center">
-      <div class="h-40">
-        <a [routerLink]="['/']">
-          <img class="w-full h-full object-cover object-center" src="BookBazaar-logo-transparent.png" alt="BookBazaar">
+<footer class="bg-white border-t border-gray-100 pt-16 pb-8 font-sans relative z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+      
+      <div class="lg:col-span-4 flex flex-col gap-6">
+        <a [routerLink]="['/']" class="flex items-center gap-2 group no-underline w-fit">
+          <div class="w-10 h-10 bg-gradient-to-br from-primary to-tertiary rounded-xl flex items-center justify-center text-white shadow-sm">
+             <span class="material-icons scale-110">local_library</span>
+          </div>
+          <span class="font-serif text-2xl font-bold text-gray-900 tracking-tight">
+            Book<span class="text-primary">Bazaar</span>
+          </span>
         </a>
-      </div>
-      <div class="text-wrap">
-        <p class="hover:text-secondary">
-          Your digital gateway to endless literary adventures. Discover, read, and review thousands of books.
+
+        <p class="text-gray-500 leading-relaxed text-sm max-w-sm">
+          Your digital gateway to endless literary adventures. Discover, read, and review thousands of books in our curated digital library.
         </p>
-        <div class="flex">
-          <a class="pl-0 social-link">
-            <img src="icons8-instagram-50.png" alt="Inst"/>
+
+        <div class="flex items-center gap-4 mt-2">
+          <a href="#" class="social-btn group">
+            <img src="icons8-instagram-50.png" alt="Instagram" class="w-5 h-5 opacity-60 group-hover:opacity-100 transition-opacity">
           </a>
-          <a class="social-link">
-            <img src="icons8-x-50.png" alt="X"/>
+          <a href="#" class="social-btn group">
+            <img src="icons8-x-50.png" alt="X (Twitter)" class="w-5 h-5 opacity-60 group-hover:opacity-100 transition-opacity">
           </a>
         </div>
       </div>
+
+      <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-8">
+        
+        <div>
+          <h3 class="font-serif font-bold text-gray-900 mb-4">Discover</h3>
+          <ul class="space-y-3">
+            <li><a routerLink="/search" class="footer-link">Bestsellers</a></li>
+            <li><a routerLink="/search" class="footer-link">New Releases</a></li>
+            <li><a routerLink="/search" class="footer-link">Authors</a></li>
+            <li><a routerLink="/search" class="footer-link">Genres</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-serif font-bold text-gray-900 mb-4">Community</h3>
+          <ul class="space-y-3">
+            <li><a routerLink="/my-reviews" class="footer-link">My Reviews</a></li>
+            <li><a href="#" class="footer-link">Discussion Forums</a></li>
+            <li><a href="#" class="footer-link">Book Clubs</a></li>
+            <li><a href="#" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-serif font-bold text-gray-900 mb-4">Support</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Contact Us</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+            <li><a href="#" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
     </div>
 
-    <div class="flex flex-col"></div>
-    <div class="flex flex-col"></div>
-    <div class="flex flex-col"></div>
-    <hr>
-    <p class="text-center p-10 text-sm font-light pb-0">© 2025 BookBazaar. All rights reserved.</p>
+    <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-400 text-sm font-light">
+        © 2025 BookBazaar. All rights reserved.
+      </p>
+      <div class="flex gap-6">
+        <a href="#" class="text-xs text-gray-400 hover:text-primary transition-colors">Privacy</a>
+        <a href="#" class="text-xs text-gray-400 hover:text-primary transition-colors">Terms</a>
+        <a href="#" class="text-xs text-gray-400 hover:text-primary transition-colors">Cookies</a>
+      </div>
+    </div>
+
   </div>
-</section>
+</footer>

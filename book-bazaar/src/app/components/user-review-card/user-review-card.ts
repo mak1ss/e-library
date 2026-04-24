@@ -8,6 +8,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Review } from '../../model/review';
 import { Book } from '../../model/book';
 import { BookService } from '../../services/book/book-service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialog } from '../dialog/confirm-dialog';
 
 @Component({
   selector: 'app-user-review-card',
@@ -19,7 +21,8 @@ import { BookService } from '../../services/book/book-service';
     MatIconModule, 
     MatButtonModule, 
     MatMenuModule,
-    DatePipe
+    DatePipe,
+    MatDialogModule
   ],
   templateUrl: './user-review-card.html'
 })
@@ -34,6 +37,7 @@ export class UserReviewCard implements OnInit {
   
   book = signal<Book | null>(null);
   loadingBook = signal<boolean>(true);
+  private dialog = inject(MatDialog);
 
   ngOnInit() {
     this.bookService.getBookById(this.review().bookId).subscribe({
@@ -46,11 +50,22 @@ export class UserReviewCard implements OnInit {
   }
 
   delete() {
-    if (confirm('Are you sure you want to delete this review?')) {
-      this.onDelete.emit(this.review().id);
-    }
-  }
+    // 5. Викликаємо діалог замість confirm()
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '400px',
+      enterAnimationDuration: '200ms',
+      exitAnimationDuration: '200ms',
+      // panelClass дозволяє нам стилізувати контейнер діалогу глобально (див. Крок 3)
+      panelClass: 'custom-dialog-container' 
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onDelete.emit(this.review().id);
+      }
+    });
+  }
+  
   edit() {
     this.onEdit.emit(this.review());
   }
