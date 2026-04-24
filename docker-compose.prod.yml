@@ -20,6 +20,7 @@ services:
     build: /bookService
     environment:
       - SPRING_PROFILES_ACTIVE=prod
+      - RECOMMENDER_SERVICE_URL=http://recommender-service:8082
     container_name: book-service
     ports: 
       - "8080:8080"
@@ -27,6 +28,8 @@ services:
       - ./data:/app/data
     depends_on:
       mysql:
+        condition: service_healthy
+      recommender-service:
         condition: service_healthy
     networks:
       - e-library-network
@@ -73,6 +76,29 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8085
     networks:
       - e-library-network
+
+  recommender-service:
+    build:
+      context: ./recommenderService
+      dockerfile: Dockerfile
+    container_name: recommender-service
+    ports:
+      - "8082:8082"
+    environment:
+      - ML_MODELS_DIR=/mnt/models
+      - LOG_LEVEL=INFO
+      - RECOMMENDER_SERVICE_PORT=8082
+      - ENVIRONMENT=production
+    volumes:
+      - ./data/ml_models:/mnt/models
+    networks:
+      - e-library-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/api/v1/recommendations/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
 
   prometheus:
     container_name: prometheus

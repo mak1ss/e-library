@@ -14,16 +14,16 @@ spring:
 
   kafka:
     bootstrap-servers: localhost:9092
-    # Schema registry URL for local development (overrides default from application.properties)
-    properties:
-      schema:
-        registry:
-          url: http://localhost:8085
-
-kafka:
-  topics:
-    review-scoring-request: review-scoring-requests
-    review-scoring-result: review-scoring-results
+    consumer:
+      properties:
+        schema:
+          registry:
+            url: http://localhost:8085
+    producer:
+      properties:
+        schema:
+          registry:
+            url: http://localhost:8085
 
 book-service:
   url: http://localhost:8080

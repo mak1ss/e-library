@@ -9,9 +9,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-import java.util.List;
-
 @Configuration
 public class SecurityConfig {
 
@@ -36,19 +33,42 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(freeResourceUrls).permitAll()
                         .anyRequest().authenticated())
-                .cors(corsConfigurer -> corsConfigurer.configurationSource(corsConfigurationSource()))
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .build();
     }
+
+    /**
+     * CORS configuration for API Gateway.
+     * Frontend makes requests to the gateway, which proxies to internal services.
+     * Swagger UI on the gateway also needs to be allowed.
+     * Services do NOT need their own CORS config - this is the single point of CORS handling.
+     */
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
+        
+        // Allow frontend origins
+        configuration.setAllowedOriginPatterns(java.util.List.of(
+                "http://localhost:4200",      // Angular dev
+                "http://127.0.0.1:4200"
+        ));
+        
+        // Allow all HTTP methods
+        configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+        
+        // Allow all headers (including Authorization for JWT)
+        configuration.setAllowedHeaders(java.util.List.of("*"));
+        
+        // CRITICAL: Allow credentials (JWT tokens in Authorization header)
+        configuration.setAllowCredentials(true);
+        
+        // Cache preflight for 1 hour
+        configuration.setMaxAge(3600L);
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

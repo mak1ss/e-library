@@ -10,5 +10,6 @@
   { "name": "Little, Brown and Company", "address": "Boston, USA" },
   { "name": "Random House", "address": "New York, USA" },
   { "name": "Prentice Hall", "address": "New Jersey, USA" },
-  { "name": "Celadon Books", "address": "New York, USA" }
+  { "name": "Celadon Books", "address": "New York, USA" },
+  { "name": "Open Library Edition", "address": "New York, USA" }
 ]

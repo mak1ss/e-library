@@ -10,12 +10,12 @@ spring:
       properties:
         schema:
           registry:
-            url: http://schema-registry:8082
+            url: http://schema-registry:8085
     producer:
       properties:
         schema:
           registry:
-            url: http://schema-registry:8082
+            url: http://schema-registry:8085
 
   security:
     oauth2:
@@ -23,10 +23,27 @@ spring:
         jwt:
           issuer-uri: http://keycloak:8080/realms/e-library
           token-uri: http://keycloak:8080/realms/e-library/protocol/openid-connect/token
+
 gateway:
   url: http://api-gateway:9000
+
 review-service:
   url: http://review-service:8081
+
+recommender-service:
+  url: http://recommender-service:8082
+
+feign:
+  client:
+    config:
+      recommender-service:
+        connectTimeout: 5000
+        readTimeout: 10000
+        loggerLevel: FULL
+      review-service:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: FULL
 
 data:
   book:

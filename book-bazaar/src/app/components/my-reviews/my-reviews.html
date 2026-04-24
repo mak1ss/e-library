@@ -18,7 +18,7 @@
                 <mat-icon iconPositionEnd class="text-gray-500 ml-1">expand_more</mat-icon>
             </button>
 
-            <mat-menu #sortMenu="matMenu" xPosition="before" class="mt-2">
+            <mat-menu #sortMenu="matMenu" xPosition="before" class="mt-2 custom-user-menu">
                 <button mat-menu-item (click)="onSortChange('createdAt,desc')"
                     [class.bg-blue-50]="sort() === 'createdAt,desc'">
                     <span [class.font-bold]="sort() === 'createdAt,desc'">Newest first</span>
@@ -63,7 +63,7 @@
             }
         </div>
 
-        <div class="mt-8 pt-4 border-t border-gray-100">
+        <div class="mt-12 !bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             <mat-paginator [length]="totalReviews()" [pageSize]="pageSize()" [pageIndex]="pageIndex()"
                 [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)" showFirstLastButtons>
             </mat-paginator>

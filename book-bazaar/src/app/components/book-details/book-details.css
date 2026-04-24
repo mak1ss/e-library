@@ -32,6 +32,29 @@
     outline: none;
 }
 
+/* Scrollable similar books container */
+.similar-books-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.similar-books-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.similar-books-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.similar-books-scroll::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+}
+
+.similar-books-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(107, 114, 128, 0.7);
+}
+
 /* Тінь для книги */
 .book-cover-container {
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
@@ -42,4 +65,19 @@
     height: auto;
     width: auto;
     font-size: 24px; 
+}
+
+::ng-deep .custom-user-menu {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  min-width: 220px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.01) !important;
+  margin-top: 8px !important;
+  
+  /* ДОДАНО: Примусовий білий фон */
+  background-color: white !important; 
+}
+
+::ng-deep .mat-mdc-paginator {
+  background-color: white !important;
 }

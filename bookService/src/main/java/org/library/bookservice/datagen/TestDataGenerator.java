@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -85,7 +86,10 @@ public class TestDataGenerator {
             Map<String, Publisher> publisherMap = publishers.stream()
                 .collect(Collectors.toMap(Publisher::getName, Function.identity()));
             Map<String, Author> authorMap = authors.stream()
-                .collect(Collectors.toMap(Author::getName, Function.identity()));
+                .collect(Collectors.toMap(
+                    author -> normalizeString(author.getName()),
+                    Function.identity()
+                ));
 
             List<BookSeedDto> bookDtos = loadData(booksFile, new TypeReference<>() {
             });
@@ -112,8 +116,8 @@ public class TestDataGenerator {
                     log.warn("Publisher not found: {}", dto.getPublisher());
                 }
 
-                if (authorMap.containsKey(dto.getAuthor())) {
-                    book.setAuthor(authorMap.get(dto.getAuthor()));
+                if (authorMap.containsKey(normalizeString(dto.getAuthor()))) {
+                    book.setAuthor(authorMap.get(normalizeString(dto.getAuthor())));
                 } else {
                     log.warn("Author not found: {}", dto.getAuthor());
                 }
@@ -150,5 +154,16 @@ public class TestDataGenerator {
         try (InputStream inputStream = new FileInputStream(fullPath)) {
             return objectMapper.readValue(inputStream, typeReference);
         }
+    }
+
+    /**
+     * Normalize Unicode strings to NFC form to handle special characters like ë, é, etc.
+     * Prevents lookup failures due to Unicode normalization differences.
+     */
+    private String normalizeString(String input) {
+        if (input == null) {
+            return null;
+        }
+        return Normalizer.normalize(input, Normalizer.Form.NFC);
     }
 }

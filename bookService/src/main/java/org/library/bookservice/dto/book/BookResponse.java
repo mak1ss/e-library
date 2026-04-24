@@ -8,6 +8,7 @@ import org.library.bookservice.dto.author.AuthorResponse;
 import org.library.bookservice.dto.category.CategoryResponse;
 import org.library.bookservice.dto.genre.GenreResponse;
 import org.library.bookservice.dto.publisher.PublisherResponse;
+import org.library.bookservice.dto.recommender.ExplanationDetails;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -31,4 +32,10 @@ public class BookResponse extends AbstractResponse {
     private List<GenreResponse> bookGenres;
     private Double averageRating;
     private Integer totalReviews;
+    
+    /**
+     * Optional: Explanation for recommendation (for similar books / personalized recommendations)
+     */
+    @Builder.Default
+    private ExplanationDetails explanation = null;
 }

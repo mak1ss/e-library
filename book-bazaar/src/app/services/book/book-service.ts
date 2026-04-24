@@ -27,7 +27,7 @@ export class BookService {
     const searchCriteria: string[] = [];
 
     if (filters['query']) {
-      searchCriteria.push(`title:${filters['query']}`);
+      searchCriteria.push(`q:${filters['query']}`);
     }
 
     if (filters['genre'] && filters['genre'].length > 0) {
@@ -83,4 +83,25 @@ export class BookService {
   getBookById(id: number): Observable<Book> {
     return this.http.get<Book>(`${this.baseUrl}/${id}`);
   }
+
+  /**
+   * Get similar books for a given book (content-based filtering)
+   * @param bookId - Book ID to find similar books for
+   * @param topK - Number of recommendations (default: 10)
+   */
+  getSimilarBooks(bookId: number, topK: number = 10): Observable<PageResponse<Book>> {
+    let params = new HttpParams().set('topK', topK.toString());
+    return this.http.get<PageResponse<Book>>(`${this.baseUrl}/${bookId}/similar`, { params });
+  }
+
+  /**
+   * Get personalized recommendations for authenticated user (collaborative filtering)
+   * Falls back to popular books if user has no review history
+   * @param topK - Number of recommendations (default: 10)
+   */
+  getPersonalizedRecommendations(topK: number = 10): Observable<PageResponse<Book>> {
+    let params = new HttpParams().set('topK', topK.toString());
+    return this.http.get<PageResponse<Book>>(`${this.baseUrl}/recommendations/personal`, { params });
+  }
 }
+
