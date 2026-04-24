@@ -45,7 +45,7 @@ services:
     ports:
       - "27018:27017"
     volumes: 
-      - mongodb-dev_data:/data/db
+      - ./docker/mongodb-dev/data:/data/db
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
     networks:
@@ -63,6 +63,7 @@ services:
       KC_DB_PASSWORD: password
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      JAVA_OPTS_APPEND: -Djboss.as.management.blocking.timeout=3600
     ports:
       - "8181:8080"
     volumes:
@@ -108,11 +109,17 @@ services:
     depends_on:
       - broker
     ports:
-      - "8082:8082"
+      - "8085:8085"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:29092'
-      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8082
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8085
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/subjects"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     networks:
       - e-library-network
   
@@ -127,10 +134,34 @@ services:
     environment:
       KAFKA_CLUSTERS_NAME: local
       KAFKA_CLUSTERS_BOOTSTRAPSERVERS: broker:29092
-      KAFKA_CLUSTERS_SCHEMAREGISTRY: http://schema-registry:8082
+      KAFKA_CLUSTERS_SCHEMAREGISTRY: http://schema-registry:8085
       DYNAMIC_CONFIG_ENABLED: 'true'
     networks:
       - e-library-network
+
+  recommender-service:
+    build:
+      context: ./recommenderService
+      dockerfile: Dockerfile
+    container_name: recommender-service
+    ports:
+      - "8082:8082"
+    environment:
+      - ML_MODELS_DIR=/mnt/models
+      - LOG_LEVEL=INFO
+      - RECOMMENDER_SERVICE_PORT=8082
+      - KAFKA_BOOTSTRAP_SERVERS=broker:29092
+      - KAFKA_SCHEMA_REGISTRY_URL=http://schema-registry:8085
+    volumes:
+      - ./data/ml_models:/mnt/models
+    networks:
+      - e-library-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/api/v1/recommendations/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
 
   prometheus:
     container_name: prometheus
@@ -169,4 +200,3 @@ networks:
 volumes:
   mysql-dev_data:
   kc-mysql_data:
-  mongodb-dev_data:

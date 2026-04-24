@@ -168,10 +168,10 @@ export class SearchBooks {
 
   private loadFilters(): Observable<Filter[]> {
     return forkJoin({
-      authors: this.authorService.getAuthors(0, 20),
-      genres: this.genreService.getGenres(0, 20),
-      categories: this.categoryService.getCategories(0, 20),
-      publishers: this.publisherService.getPublishers(0, 20)
+      authors: this.authorService.getAuthors(0, 100),
+      genres: this.genreService.getGenres(0, 100),
+      categories: this.categoryService.getCategories(0, 100),
+      publishers: this.publisherService.getPublishers(0, 100)
     }).pipe(
       map((res: { authors: { items: any; }; genres: { items: any; }; categories: { items: any; }; publishers: { items: any; }; }) => {
         return [

@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -110,5 +111,14 @@ public class ReviewService extends AbstractService<Review> {
     @Override
     protected void afterDelete(Review entity) {
         metricsService.removeReviewMetrics(entity.getBookId(), entity.getRating());
+    }
+
+    /**
+     * Get all reviews created by a specific user
+     * Used for generating personalized recommendations
+     */
+    public List<Review> getUserReviews(String userId) {
+        Query query = new Query(Criteria.where("userId").is(userId));
+        return mongoOperations.find(query, Review.class);
     }
 }
