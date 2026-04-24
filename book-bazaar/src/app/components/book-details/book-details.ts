@@ -77,7 +77,7 @@ export class BookDetails {
 
   pageIndex = signal<number>(0);
   pageSize = signal<number>(10);
-  currentSort = signal<string>('createdAt,desc');
+  currentSort = signal<string>('scoringResult.score,desc');
   selectedRatingFilter = signal<number | undefined>(undefined);
 
   userRating = signal<number>(0);
@@ -287,6 +287,7 @@ export class BookDetails {
       case 'createdAt,asc': return 'Oldest first';
       case 'rating,desc': return 'Highest rated';
       case 'rating,asc': return 'Lowest rated';
+      case 'scoringResult.score,desc': return 'Most relevant';
       default: return 'Sort by';
     }
   }

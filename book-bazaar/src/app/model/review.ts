@@ -8,4 +8,5 @@ export interface Review {
   createdAt: string;
   rating: number;
   text: string;
+  relevanceScore?: number;
 }

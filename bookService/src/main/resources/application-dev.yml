@@ -25,6 +25,11 @@ spring:
           jwk-set-uri: http://localhost:8181/realms/e-library/protocol/openid-connect/certs
           token-uri: http://localhost:8181/realms/e-library/protocol/openid-connect/token
 
+kafka:
+  topics:
+    book-deleted: book-deleted
+    book-rating-updated: book-rating-updated
+
 gateway:
   url: http://localhost:9000
 

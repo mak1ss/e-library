@@ -4,12 +4,17 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.library.reviewService.client.BookServiceClient;
+import org.library.reviewService.client.response.BookResponse;
+import org.library.reviewService.integration.producer.ReviewScoringRequestProducer;
 import org.library.reviewService.model.Review;
 import org.library.reviewService.repository.ReviewRepository;
 import org.library.reviewService.service.ReviewMetricsService;
+import org.library.reviewService.util.BookMetadataAggregator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +24,9 @@ import java.io.InputStream;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +36,9 @@ public class InitialDataGenerator {
     private final ReviewRepository reviewRepository;
     private final ReviewMetricsService reviewMetricsService;
     private final ObjectMapper objectMapper;
+    private final BookServiceClient bookServiceClient;
+    private final ReviewScoringRequestProducer reviewScoringRequestProducer;
+    private final BookMetadataAggregator bookMetadataAggregator;
 
     @Value("${data.seeding.folder}")
     private String seedingFolder;
@@ -79,9 +89,12 @@ public class InitialDataGenerator {
                 reviews.add(review);
             }
 
+            Map<Integer, String> bookMetadataCache = new HashMap<>();
+
             reviews.forEach(r -> {
                 reviewRepository.save(r);
                 reviewMetricsService.addReviewMetrics(r.getBookId(), r.getRating());
+                triggerRelevanceScoring(r, bookMetadataCache);
             });
             log.info("Successfully loaded {} reviews into database", reviews.size());
 
@@ -91,9 +104,21 @@ public class InitialDataGenerator {
         }
     }
 
-    /**
-     * Helper method to read JSON files.
-     */
+    private void triggerRelevanceScoring(Review review, Map<Integer, String> bookMetadataCache) {
+        try {
+            String bookMetadata = bookMetadataCache.computeIfAbsent(review.getBookId(), bookId -> {
+                ResponseEntity<BookResponse> response = bookServiceClient.getById(bookId);
+                return response.hasBody()
+                        ? bookMetadataAggregator.aggregateMetadata(response.getBody())
+                        : "{}";
+            });
+            reviewScoringRequestProducer.publishReviewScoringRequest(review, bookMetadata);
+        } catch (Exception e) {
+            log.warn("Failed to trigger relevance scoring for seeded review {}: {}",
+                    review.getId(), e.getMessage());
+        }
+    }
+
     private <T> List<T> loadData(String fileName, TypeReference<List<T>> typeReference) throws IOException {
         String fullPath = Paths.get(seedingFolder, fileName).toString();
 

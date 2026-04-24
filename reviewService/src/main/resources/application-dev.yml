@@ -25,6 +25,13 @@ spring:
           registry:
             url: http://localhost:8085
 
+kafka:
+  topics:
+    book-deleted: book-deleted
+    book-rating-updated: book-rating-updated
+    review-scoring-request: review-scoring-requests
+    review-scoring-result: review-scoring-results
+
 book-service:
   url: http://localhost:8080
 gateway:

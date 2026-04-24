@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -107,6 +108,20 @@ public class ReviewService extends AbstractService<Review> {
         Review saved = super.update(entity);
 
         metricsService.updateMetricsAfterEdit(saved.getBookId(), oldRating, newRating);
+
+        if (!Objects.equals(oldReview.getText(), saved.getText())) {
+            try {
+                ResponseEntity<?> bookResponse = bookClient.getById(saved.getBookId());
+                if (bookResponse.hasBody()) {
+                    String bookMetadata = bookMetadataAggregator.aggregateMetadata(
+                            (BookResponse) bookResponse.getBody());
+                    reviewScoringRequestProducer.publishReviewScoringRequest(saved, bookMetadata);
+                }
+            } catch (Exception e) {
+                log.warn("Failed to trigger review scoring for updated review {}: {}",
+                        saved.getId(), e.getMessage());
+            }
+        }
 
         return saved;
     }
