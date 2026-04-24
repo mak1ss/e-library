@@ -7,6 +7,7 @@ spring:
   kafka:
     bootstrap-servers: broker:29092
     consumer:
+      group-id: review-service-group
       properties:
         schema:
           registry:
@@ -23,6 +24,11 @@ spring:
         jwt:
           issuer-uri: http://keycloak:8080/realms/e-library
         token-uri: http://keycloak:8080/realms/e-library/protocol/openid-connect/token
+
+kafka:
+  topics:
+    review-scoring-request: review-scoring-requests
+    review-scoring-result: review-scoring-results
 
 book-service:
   url: http://book-service:8080

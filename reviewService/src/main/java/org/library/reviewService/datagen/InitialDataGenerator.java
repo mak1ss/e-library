@@ -2,13 +2,15 @@ package org.library.reviewService.datagen;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.library.reviewService.model.Review;
 import org.library.reviewService.repository.ReviewRepository;
 import org.library.reviewService.service.ReviewMetricsService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
@@ -34,8 +36,17 @@ public class InitialDataGenerator {
     @Value("${data.seeding.reviews}")
     private String reviewsFile;
 
-    @PostConstruct
-    public void initializeDbWithTestData() {
+    @EventListener(ApplicationReadyEvent.class)
+    @Async
+    public void onApplicationReady() {
+        try {
+            // Add a small delay to ensure Schema Registry and other services are ready
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            log.warn("Data seeding sleep was interrupted", e);
+        }
+
         if (reviewRepository.count() > 0) {
             log.info("Database already initialized. Skipping data seeding.");
             return;

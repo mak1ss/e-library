@@ -1,0 +1,73 @@
+{
+  "type": "record",
+  "name": "ReviewScoringResult",
+  "namespace": "org.library.reviewService.event",
+  "doc": "Result of semantic relevance scoring for a book review",
+  "fields": [
+    {
+      "name": "reviewId",
+      "type": "string",
+      "doc": "Unique identifier of the review that was scored"
+    },
+    {
+      "name": "score",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Normalized relevance score [0.0, 1.0], null if scoring failed"
+    },
+    {
+      "name": "modelVersion",
+      "type": "string",
+      "doc": "Version of the semantic model used (e.g., 'all-MiniLM-L6-v2@3.0.0')"
+    },
+    {
+      "name": "rawCosineSimilarity",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Raw cosine similarity [-1.0, 1.0] before normalization (debug info)"
+    },
+    {
+      "name": "confidence",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Confidence score [0.0, 1.0] based on text quality and model certainty"
+    },
+    {
+      "name": "errorCode",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Error code if scoring failed (e.g., 'EMPTY_REVIEW', 'GIBBERISH_TEXT')"
+    },
+    {
+      "name": "errorMessage",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Descriptive error message if scoring failed"
+    },
+    {
+      "name": "timestamp",
+      "type": "long",
+      "doc": "Unix timestamp (milliseconds) when scoring completed"
+    },
+    {
+      "name": "processingTimeMs",
+      "type": "long",
+      "doc": "Time taken to score the review in milliseconds"
+    }
+  ]
+}
