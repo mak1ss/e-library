@@ -1,0 +1,105 @@
+<section class="bg-gradient-to-br from-primary/10 via-white to-tertiary/10 py-16 px-4">
+  <div class="max-w-7xl mx-auto text-center">
+    <h1 class="font-serif text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+      Discover <span class="text-primary">Authors</span>
+    </h1>
+    <p class="text-gray-500 text-lg mb-8">Explore the minds behind your favourite books</p>
+
+    <div class="max-w-xl mx-auto relative">
+      <mat-icon class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</mat-icon>
+      <input
+        [formControl]="searchControl"
+        type="text"
+        placeholder="Search authors by name…"
+        class="w-full pl-12 pr-4 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/30 text-gray-800 text-sm transition-all"
+      />
+    </div>
+  </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <div class="flex items-center justify-between mb-6">
+    <p class="text-sm text-gray-500">
+      @if (!loading()) {
+        <span class="font-semibold text-gray-800">{{ totalAuthors() }}</span> author{{ totalAuthors() !== 1 ? 's' : '' }} found
+      }
+    </p>
+
+    <button mat-stroked-button [matMenuTriggerFor]="sortMenu" class="!rounded-full !text-sm !text-gray-600 !border-gray-200">
+      <mat-icon class="scale-90">sort</mat-icon>
+      Sort: {{ sortLabel() }}
+      <mat-icon class="scale-75">expand_more</mat-icon>
+    </button>
+
+    <mat-menu #sortMenu="matMenu">
+      <button mat-menu-item (click)="updateSort('name,asc')">
+        <mat-icon>arrow_upward</mat-icon>
+        <span>A – Z</span>
+      </button>
+      <button mat-menu-item (click)="updateSort('name,desc')">
+        <mat-icon>arrow_downward</mat-icon>
+        <span>Z – A</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  @if (loading()) {
+    <div class="flex justify-center items-center py-32">
+      <mat-spinner diameter="48" color="primary" />
+    </div>
+  } @else if (authors().length === 0) {
+    <div class="flex flex-col items-center justify-center py-32 text-center text-gray-400 gap-4">
+      <mat-icon class="!text-6xl !w-16 !h-16">person_search</mat-icon>
+      <p class="text-lg font-medium">No authors found</p>
+      <p class="text-sm">Try a different search term</p>
+    </div>
+  } @else {
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      @for (author of authors(); track author.id) {
+        <div
+          class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col p-6 gap-4 group cursor-pointer"
+          (click)="openDetails(author)">
+
+          <div class="flex items-center gap-4">
+            <div
+              class="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-xl shrink-0 shadow-sm"
+              [style]="getAvatarStyle(author.name)">
+              {{ getInitials(author.name) }}
+            </div>
+            <div class="min-w-0">
+              <h3 class="font-semibold text-gray-900 text-base leading-tight truncate">{{ author.name }}</h3>
+            </div>
+          </div>
+
+          <p class="text-gray-500 text-sm leading-relaxed line-clamp-3 flex-1">
+            {{ author.bio || 'No biography available.' }}
+          </p>
+
+          <button
+            mat-stroked-button
+            color="primary"
+            class="!rounded-full !text-sm w-full !border-primary/30 group-hover:!bg-primary group-hover:!text-white transition-all"
+            (click)="$event.stopPropagation(); viewBooks(author)">
+            <mat-icon class="scale-90">menu_book</mat-icon>
+            View Books
+          </button>
+        </div>
+      }
+    </div>
+
+    @if (totalAuthors() > pageSize()) {
+      <div class="flex justify-center mt-10">
+        <mat-paginator
+          [length]="totalAuthors()"
+          [pageSize]="pageSize()"
+          [pageIndex]="pageIndex()"
+          [pageSizeOptions]="[12, 24, 48]"
+          (page)="onPageChange($event)"
+          showFirstLastButtons
+          aria-label="Select page of authors">
+        </mat-paginator>
+      </div>
+    }
+  }
+</main>

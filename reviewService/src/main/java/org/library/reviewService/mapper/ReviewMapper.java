@@ -64,6 +64,11 @@ public class ReviewMapper implements IMapper<Review, ReviewRequest, ReviewRespon
                 .createdAt(entity.getCreatedAt())
                 .rating(entity.getRating())
                 .text(entity.getText())
+                .relevanceScore(
+                    entity.getScoringResult() != null && entity.getScoringResult().isSuccessful()
+                        ? entity.getScoringResult().getScore()
+                        : null
+                )
                 .build();
     }
 

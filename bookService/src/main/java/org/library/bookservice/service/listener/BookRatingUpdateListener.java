@@ -15,7 +15,7 @@ public class BookRatingUpdateListener {
 
     private final BookService bookService;
 
-    @KafkaListener(topics = "book-rating-updated", groupId = "book-service-group")
+    @KafkaListener(topics = "${kafka.topics.book-rating-updated:book-rating-updated}", groupId = "${spring.kafka.consumer.group-id}")
     @Transactional
     public void handleBookRatingUpdate(BookRatingUpdatedEvent event) {
         log.info("Received rating update for book {}: {}", event.getBookId(), event.getAverageRating());

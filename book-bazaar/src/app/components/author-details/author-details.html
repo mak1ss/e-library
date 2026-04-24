@@ -1,0 +1,90 @@
+@if (loading()) {
+  <div class="flex justify-center items-center h-[80vh]">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+} @else if (author(); as author) {
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-primary/10 via-white to-tertiary/10 py-12 px-4">
+    <div class="max-w-5xl mx-auto">
+
+      <a routerLink="/authors"
+        class="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-primary transition-colors mb-8 no-underline">
+        <mat-icon class="scale-90">chevron_left</mat-icon>
+        All Authors
+      </a>
+
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+
+        <div
+          class="w-28 h-28 rounded-full flex items-center justify-center text-white font-bold text-4xl shrink-0 shadow-lg"
+          [style]="getAvatarStyle(author.name)">
+          {{ getInitials(author.name) }}
+        </div>
+
+        <div class="flex-1 text-center sm:text-left">
+          <h1 class="font-serif text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+            {{ author.name }}
+          </h1>
+
+          @if (author.bio) {
+            <p class="text-gray-600 text-base leading-relaxed max-w-2xl mb-6">
+              {{ author.bio }}
+            </p>
+          } @else {
+            <p class="text-gray-400 italic mb-6">No biography available.</p>
+          }
+
+          <button mat-stroked-button color="primary" class="!rounded-full" (click)="browseAllBooks()">
+            <mat-icon>search</mat-icon>
+            Browse all books by {{ author.name }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Books grid -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <div class="flex items-baseline gap-3 mb-8">
+      <h2 class="font-serif text-2xl font-bold text-gray-900">Books</h2>
+      @if (!booksLoading()) {
+        <span class="text-sm text-gray-400">{{ totalBooks() }} title{{ totalBooks() !== 1 ? 's' : '' }}</span>
+      }
+    </div>
+
+    @if (booksLoading()) {
+      <div class="flex justify-center py-24">
+        <mat-spinner diameter="44" color="primary"></mat-spinner>
+      </div>
+    } @else if (books().length === 0) {
+      <div class="flex flex-col items-center justify-center py-24 text-center text-gray-400 gap-4">
+        <mat-icon class="!text-6xl !w-16 !h-16">auto_stories</mat-icon>
+        <p class="text-lg font-medium">No books found for this author.</p>
+      </div>
+    } @else {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        @for (book of books(); track book.id) {
+          <app-book-card [book]="book" />
+        }
+      </div>
+
+      @if (totalBooks() > pageSize()) {
+        <div class="flex justify-center mt-10">
+          <mat-paginator
+            [length]="totalBooks()"
+            [pageSize]="pageSize()"
+            [pageIndex]="pageIndex()"
+            [pageSizeOptions]="[12, 24, 48]"
+            (page)="onPageChange($event)"
+            showFirstLastButtons
+            aria-label="Select page of books">
+          </mat-paginator>
+        </div>
+      }
+    }
+
+  </main>
+}

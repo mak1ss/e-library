@@ -29,4 +29,6 @@ public class ReviewResponse extends AbstractResponse {
     private Integer rating;
 
     private String text;
+
+    private Double relevanceScore;
 }

@@ -16,7 +16,7 @@ public class BookDeletedListener {
 
     private ReviewService reviewService;
 
-    @KafkaListener(topics = "book-deleted")
+    @KafkaListener(topics = "${kafka.topics.book-deleted:book-deleted}")
     public void listener(BookDeletedEvent message) {
         log.info("Book deleted event fired: {}", message);
         reviewService.deleteByQuery(new Query(Criteria.where("bookId").is(message.getBookId())));

@@ -24,6 +24,11 @@ spring:
           issuer-uri: http://keycloak:8080/realms/e-library
           token-uri: http://keycloak:8080/realms/e-library/protocol/openid-connect/token
 
+kafka:
+  topics:
+    book-deleted: book-deleted
+    book-rating-updated: book-rating-updated
+
 gateway:
   url: http://api-gateway:9000
 

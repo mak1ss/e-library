@@ -9,13 +9,17 @@ import { Book } from '../../model/book';
 import { BookService } from '../../services/book/book-service';
 import { BookCard } from "../book-card/book-card";
 import { GenreService } from '../../services/genre/genre-service';
-import { debounceTime, distinctUntilChanged, switchMap, filter, tap, catchError } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, filter, tap, catchError, map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { of } from 'rxjs';
-import { CurrencyPipe, DecimalPipe } from '@angular/common';
+import { forkJoin, of } from 'rxjs';
+import { CurrencyPipe, DecimalPipe, DatePipe } from '@angular/common';
 import { MatIcon } from "@angular/material/icon";
 import { UserService } from '../../services/user/userService';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ReviewService } from '../../services/review/review-service';
+import { Review } from '../../model/review';
+
+type ReviewWithBook = Review & { bookTitle?: string; bookImageUrl?: string; bookAuthor?: string };
 
 @Component({
   selector: 'app-home',
@@ -26,6 +30,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     BookCard,
     CurrencyPipe,
     DecimalPipe,
+    DatePipe,
     RouterModule,
     MatIcon,
     MatTooltipModule,
@@ -39,6 +44,7 @@ export class Home implements OnInit {
   protected bookService = inject(BookService);
   protected genreService = inject(GenreService);
   protected userService = inject(UserService);
+  protected reviewService = inject(ReviewService);
 
   protected formGroup: FormGroup = new FormGroup(
     {
@@ -57,14 +63,20 @@ export class Home implements OnInit {
   protected liveSearchResults = signal<Book[]>([]);
   protected showDropdown = signal<boolean>(false);
 
+  protected topReviews = signal<ReviewWithBook[]>([]);
+  protected isLoadingTopReviews = signal<boolean>(false);
+
   constructor() {
     this.setupLiveSearch();
   }
 
   ngOnInit() {
     this.loadRecommendations();
+    this.loadTopRelevantReviews();
     this.genreService.getGenres(0, 6)
       .subscribe(page => this.browsingGenres.set(page.items));
+    this.bookService.getBooks({}, 0, 10, 'totalReviews,desc')
+      .subscribe(page => this.popularBooks.set(page.items));
   }
 
   private setupLiveSearch() {
@@ -140,6 +152,34 @@ export class Home implements OnInit {
           this.isLoadingRecommendations.set(false);
         }
       });
+  }
+
+  protected loadTopRelevantReviews(): void {
+    this.isLoadingTopReviews.set(true);
+    this.reviewService.getTopRelevantReviews(6).pipe(
+      switchMap(page => {
+        const reviews = page.items.filter(r => r.text?.trim());
+        if (reviews.length === 0) return of([] as ReviewWithBook[]);
+        const uniqueIds = [...new Set(reviews.map(r => r.bookId))];
+        return forkJoin(
+          uniqueIds.map(id => this.bookService.getBookById(id).pipe(catchError(() => of(null))))
+        ).pipe(
+          map(books => {
+            const bookMap = new Map(books.filter(Boolean).map(b => [b!.id, b!]));
+            return reviews.map(r => ({
+              ...r,
+              bookTitle: bookMap.get(r.bookId)?.title,
+              bookImageUrl: bookMap.get(r.bookId)?.imageUrl,
+              bookAuthor: bookMap.get(r.bookId)?.author?.name,
+            }));
+          })
+        );
+      }),
+      catchError(() => of([] as ReviewWithBook[]))
+    ).subscribe(reviews => {
+      this.topReviews.set(reviews);
+      this.isLoadingTopReviews.set(false);
+    });
   }
 
   protected search() {

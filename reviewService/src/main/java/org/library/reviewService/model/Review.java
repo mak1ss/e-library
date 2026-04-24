@@ -34,4 +34,11 @@ public class Review implements Identifiable, Archivable {
     private String text;
 
     private boolean archived;
+
+    /**
+     * Semantic relevance score computed asynchronously by the recommender service.
+     * NULL until ReviewScoringResultListener processes the result event.
+     * Score range: [0.0, 1.0] where 1.0 = highly relevant, 0.0 = not relevant.
+     */
+    private ReviewScoringResult scoringResult;
 }

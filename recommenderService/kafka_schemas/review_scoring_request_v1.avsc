@@ -1,0 +1,43 @@
+{
+  "type": "record",
+  "name": "ReviewScoringRequest",
+  "namespace": "org.library.reviewService.event",
+  "doc": "Request to score a book review for relevance using semantic similarity",
+  "fields": [
+    {
+      "name": "reviewId",
+      "type": "string",
+      "doc": "Unique identifier of the review to be scored"
+    },
+    {
+      "name": "bookId",
+      "type": "int",
+      "doc": "Unique identifier of the book being reviewed"
+    },
+    {
+      "name": "reviewText",
+      "type": "string",
+      "doc": "The raw review text to be scored"
+    },
+    {
+      "name": "bookMetadata",
+      "type": "string",
+      "doc": "Aggregated book metadata as JSON string (title, author, category, genres, description, ISBN) for semantic context"
+    },
+    {
+      "name": "userId",
+      "type": "string",
+      "doc": "Unique identifier of the user who wrote the review"
+    },
+    {
+      "name": "timestamp",
+      "type": "long",
+      "doc": "Unix timestamp (milliseconds) when review was created"
+    },
+    {
+      "name": "correlationId",
+      "type": "string",
+      "doc": "Correlation ID for distributed tracing across services"
+    }
+  ]
+}

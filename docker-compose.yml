@@ -123,6 +123,28 @@ services:
     networks:
       - e-library-network
   
+  kafka-init:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka-init
+    depends_on:
+      broker:
+        condition: service_started
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: broker:29092
+    entrypoint: >
+      bash -c "
+        echo 'Waiting for Kafka broker to be ready...'
+        sleep 10
+        echo 'Creating topics...'
+        kafka-topics --bootstrap-server broker:29092 --create --if-not-exists --topic review-scoring-requests --partitions 1 --replication-factor 1 &&
+        kafka-topics --bootstrap-server broker:29092 --create --if-not-exists --topic review-scoring-results --partitions 1 --replication-factor 1 &&
+        kafka-topics --bootstrap-server broker:29092 --create --if-not-exists --topic review-scoring-dlq --partitions 1 --replication-factor 1 &&
+        echo 'Topics created successfully'
+        exit 0
+      "
+    networks:
+      - e-library-network
+
   kafka-ui:
     container_name: kafka-ui
     image: provectuslabs/kafka-ui:latest
@@ -131,6 +153,7 @@ services:
     depends_on:
       - broker
       - schema-registry
+      - kafka-init
     environment:
       KAFKA_CLUSTERS_NAME: local
       KAFKA_CLUSTERS_BOOTSTRAPSERVERS: broker:29092

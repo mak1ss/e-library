@@ -208,6 +208,82 @@
 
     </div>
   </section>
-  <div>
-  </div>
+  <!-- Recent Most Relevant Reviews -->
+  <section class="py-24 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold font-serif text-book-dark-gray mb-3">What Readers Are Saying</h2>
+        <p class="text-gray-500 text-lg font-light">The most insightful reviews from our community</p>
+        <div class="h-1 w-24 bg-primary mx-auto rounded-full mt-4"></div>
+      </div>
+
+      @if (isLoadingTopReviews()) {
+        <div class="flex justify-center py-16">
+          <mat-spinner diameter="48"></mat-spinner>
+        </div>
+      } @else if (topReviews().length === 0) {
+        <p class="text-center text-gray-400 py-16">No reviews available yet.</p>
+      } @else {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          @for (review of topReviews(); track review.id) {
+            <div [routerLink]="['/book-details', review.bookId]"
+                 class="group flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-gray-200 transition-all duration-300 cursor-pointer overflow-hidden">
+
+              <!-- Book header -->
+              <div class="flex items-center gap-4 p-5 border-b border-gray-50">
+                <div class="w-12 h-[68px] rounded-lg overflow-hidden bg-gray-100 shrink-0 shadow-sm">
+                  <img [src]="review.bookImageUrl || 'assets/default-book-cover.jpg'"
+                       [alt]="review.bookTitle"
+                       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="min-w-0">
+                  <p class="font-semibold text-sm text-gray-900 line-clamp-1 group-hover:text-primary transition-colors">
+                    {{ review.bookTitle || 'Unknown Book' }}
+                  </p>
+                  <p class="text-xs text-gray-400 truncate mt-0.5">{{ review.bookAuthor }}</p>
+                </div>
+              </div>
+
+              <!-- Review body -->
+              <div class="flex flex-col flex-1 p-5 gap-3">
+                <!-- Stars -->
+                <div class="flex gap-0.5">
+                  @for (_ of [1,2,3,4,5]; track $index) {
+                    <mat-icon class="!w-4 !h-4 !text-[16px]"
+                      [class.text-yellow-400]="$index < review.rating"
+                      [class.text-gray-200]="$index >= review.rating">star</mat-icon>
+                  }
+                </div>
+
+                <!-- Text excerpt -->
+                <p class="text-gray-600 text-sm leading-relaxed line-clamp-4 flex-1">
+                  "{{ review.text }}"
+                </p>
+
+                <!-- Reviewer -->
+                <div class="flex items-center justify-between pt-3 border-t border-gray-50 mt-auto">
+                  <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-full bg-gray-100 border border-gray-200 overflow-hidden flex items-center justify-center shrink-0">
+                      @if (review.avatarUrl) {
+                        <img [src]="review.avatarUrl" class="w-full h-full object-cover" alt="Avatar" referrerpolicy="no-referrer">
+                      } @else {
+                        <span class="text-xs font-bold text-gray-500">{{ review.firstName?.charAt(0) || 'U' }}</span>
+                      }
+                    </div>
+                    <span class="text-xs font-medium text-gray-700">
+                      {{ review.firstName || 'Reader' }} {{ review.lastName || '' }}
+                    </span>
+                  </div>
+                  <span class="text-xs text-gray-400">{{ review.createdAt | date:'mediumDate' }}</span>
+                </div>
+              </div>
+
+            </div>
+          }
+        </div>
+      }
+
+    </div>
+  </section>
 </section>

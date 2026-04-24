@@ -4,6 +4,8 @@ import { SearchBooks } from './components/search-books/search-books';
 import { BookDetails } from './components/book-details/book-details';
 import { ReviewForm } from './components/review-form/review-form';
 import { MyReviews } from './components/my-reviews/my-reviews';
+import { AuthorsPage } from './components/authors/authors';
+import { AuthorDetails } from './components/author-details/author-details';
 
 export const routes: Routes = [
   {
@@ -11,6 +13,12 @@ export const routes: Routes = [
   },
   {
     path: "search", component: SearchBooks
+  },
+  {
+    path: "authors", component: AuthorsPage
+  },
+  {
+    path: "authors/:authorId", component: AuthorDetails
   },
   {
     path: "book-details/:bookId", component: BookDetails

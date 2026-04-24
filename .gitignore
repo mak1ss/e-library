@@ -8,3 +8,9 @@ docker
 
 data/ml_models/
 phase1_datasets/
+
+recommenderService/evaluation_results/
+
+recommenderService/**/__pycache__/
+
+.claude/

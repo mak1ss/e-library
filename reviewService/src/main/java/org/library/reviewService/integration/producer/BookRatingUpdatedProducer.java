@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookRatingUpdatedProducer {
 
-    @Value("${spring.kafka.template.default-topic}")
+    @Value("${kafka.topics.book-rating-updated:book-rating-updated}")
     private String bookRatingUpdatedTopic;
 
     private final KafkaTemplate<String, BookRatingUpdatedEvent> kafkaTemplate;
