@@ -1,41 +1,97 @@
 <section class="text-book-gray">
-  <section class="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-blue-50 py-16 lg:py-24"> <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary/5 blur-3xl"></div>
-  <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-secondary/5 blur-3xl"></div>
+  <section class="relative bg-gradient-to-br from-indigo-50 via-white to-blue-50 py-16 lg:py-24">
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16"> <div class="w-full lg:w-1/2 text-center lg:text-left">
-        <h1 class="text-4xl lg:text-6xl font-bold font-serif text-book-dark-gray mb-4 lg:mb-6 leading-tight">
-          Discover Your <br class="hidden lg:block">
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tertiary">Next Great Read</span>
-        </h1>
-        
-        <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-          Explore thousands of books, read authentic reviews, and connect with fellow book lovers in our digital library.
-        </p>
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary/5 blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-secondary/5 blur-3xl"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+        <div class="w-full lg:w-1/2 text-center lg:text-left">
+          <h1 class="text-4xl lg:text-6xl font-bold font-serif text-book-dark-gray mb-4 lg:mb-6 leading-tight">
+            Discover Your <br class="hidden lg:block">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tertiary">Next Great Read</span>
+          </h1>
 
-        <div class="max-w-lg mx-auto lg:mx-0 relative group z-20">
-          <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-          <form [formGroup]="formGroup" (ngSubmit)="search()" class="relative bg-white rounded-full p-2 flex shadow-xl ring-1 ring-gray-900/5">
-            <input 
-              class="w-full rounded-full pl-6 pr-4 outline-none text-gray-700 placeholder-gray-400 bg-transparent text-lg" 
-              placeholder="Title, author, or ISBN..." 
-              formControlName="search"
-            >
-            <button 
-              mat-flat-button 
-              color="primary" 
-              class="!rounded-full !h-12 !px-8 !text-lg !font-medium shadow-md transition-transform hover:scale-105 active:scale-95">
-              Search
-            </button>
-          </form>
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+            Explore thousands of books, read authentic reviews, and connect with fellow book lovers in our digital
+            library.
+          </p>
+
+          <div class="max-w-lg mx-auto lg:mx-0 relative group z-50">
+            <div
+              class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
+            </div>
+            <form [formGroup]="formGroup" (ngSubmit)="search()"
+              class="relative bg-white rounded-full p-2 flex shadow-xl ring-1 ring-gray-900/5">
+              <input
+                class="w-full rounded-full pl-6 pr-4 outline-none text-gray-700 placeholder-gray-400 bg-transparent text-lg"
+                placeholder="Title, author, or ISBN..." formControlName="search" (blur)="closeDropdown()"
+                autocomplete="off">
+              <button mat-flat-button color="primary"
+                class="!rounded-full !h-12 !px-8 !text-lg !font-medium shadow-md transition-transform hover:scale-105 active:scale-95">
+                Search
+              </button>
+            </form>
+
+            @if (showDropdown() && liveSearchResults().length > 0) {
+            <div
+              class="absolute top-full left-0 right-0 mt-4 bg-white rounded-2xl shadow-2xl ring-1 ring-black/5 overflow-hidden z-[100]">
+              <ul class="max-h-96 overflow-y-auto py-2">
+                @for (book of liveSearchResults(); track book.id) {
+                <li>
+                  <a [routerLink]="['/book-details', book.id]"
+                    class="flex items-start gap-4 px-4 py-3 hover:bg-gray-50 transition-colors duration-200 group/item">
+
+                    <div
+                      class="flex-shrink-0 w-12 h-16 bg-gray-100 rounded-md overflow-hidden shadow-sm border border-gray-100">
+                      <img [src]="book.imageUrl || 'assets/default-book-cover.jpg'"
+                        class="w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-300"
+                        alt="cover">
+                    </div>
+
+                    <div class="flex-1 min-w-0 pt-0.5">
+                      <p class="text-sm font-bold text-gray-900 truncate pr-2">
+                        {{ book.title }}
+                      </p>
+                      <p class="text-xs text-gray-500 truncate mt-0.5">
+                        {{ book.author?.name }}
+                      </p>
+                      <div class="flex items-center gap-2 mt-1.5">
+                        @if(book.averageRating) {
+                        <div class="flex items-center text-yellow-400 text-xs">
+                          <span class="material-icons text-[14px]">star</span>
+                          <span class="font-bold text-gray-700 ml-0.5">{{ book.averageRating | number:'1.1-1' }}</span>
+                        </div>
+                        }
+                        @if(book.price) {
+                        <span class="text-xs font-bold text-primary bg-primary/5 px-2 py-0.5 rounded-full">
+                          {{ book.price | currency }}
+                        </span>
+                        }
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                }
+              </ul>
+
+              <div
+                class="bg-gray-50 px-4 py-3 border-t border-gray-100 text-center cursor-pointer hover:bg-gray-100 transition-colors"
+                (click)="search()">
+                <span class="text-sm font-medium text-primary">
+                  View all results for "{{ formGroup.value.search }}"
+                </span>
+              </div>
+            </div>
+            }
+          </div>
         </div>
-      </div>
 
-      <div class="w-full lg:w-1/2 flex justify-center lg:justify-end mt-12 lg:mt-0">
-         <img src="hero-books-illustration.jpg" 
-              alt="Books Illustration" 
-              class="relative z-10 drop-shadow-2xl transform hover:-translate-y-2 transition duration-500 max-w-[80%] lg:max-w-full h-auto">
-      </div>
+        <div class="w-full lg:w-1/2 flex justify-center lg:justify-end mt-12 lg:mt-0 relative z-0">
+          <img src="hero-books-illustration.jpg" alt="Books Illustration"
+            class="relative z-10 drop-shadow-2xl transform hover:-translate-y-2 transition duration-500 max-w-[80%] lg:max-w-full h-auto">
+        </div>
 
     </div>
   </div>
@@ -44,7 +100,7 @@
   <!-- Recommendations Section (NEW) -->
   <section class="py-20 bg-gradient-to-br from-slate-50 to-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
+
       <div class="text-center mb-12">
         @if (recommendationType() === 'personal') {
           <h2 class="text-4xl font-bold font-serif text-book-dark-gray mb-2">Recommended for You</h2>
@@ -65,13 +121,13 @@
       } @else {
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           @for (book of recommendedBooks(); track book.id) {
-            <div class="book-card-container cursor-pointer group transition-transform hover:scale-105 hover:shadow-lg" 
+            <div class="book-card-container cursor-pointer group transition-transform hover:scale-105 hover:shadow-lg"
                  [matTooltip]="getRecommendationReason(book)"
                  matTooltipPosition="above"
                  (click)="router.navigate(['/book-details', book.id])">
               <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                <img [src]="book.imageUrl || 'assets/default-book-cover.jpg'" 
-                     [alt]="book.title" 
+                <img [src]="book.imageUrl || 'assets/default-book-cover.jpg'"
+                     [alt]="book.title"
                      class="w-full h-64 object-cover">
                 <div class="p-4">
                   <h3 class="font-semibold text-sm text-gray-900 truncate mb-1">{{ book.title }}</h3>
@@ -122,15 +178,34 @@
 
     </div>
   </section>
-  <section class="p-20 bg-secondary-trans">
-    <div class="flex justify-between items-center mb-12">
-      <h2 class="text-3xl font-bold font-serif">Popular this week</h2>
-      <button matButton="text" class="font-medium" (click)="this.router.navigate(['/search'])">View all</button>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-      @for (book of popularBooks(); track $index) {
-      <app-book-card [book]="book"></app-book-card>
-      }
+  <section class="py-24 bg-gray-50 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex flex-col md:flex-row justify-between items-end md:items-center mb-12 gap-4">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold font-serif text-gray-900 mb-3">
+            Popular This Week
+          </h2>
+          <p class="text-gray-500 text-lg font-light">
+            Trending books selected by our community readers
+          </p>
+        </div>
+
+        <button mat-stroked-button
+          class="!rounded-full !px-6 !py-2 !border-gray-300 !text-gray-700 hover:!text-primary hover:!border-primary hover:!bg-white hover:shadow-sm transition-all duration-300 group"
+          (click)="router.navigate(['/search'])">
+          <span class="font-medium">View All Books</span>
+          <mat-icon iconPositionEnd class="ml-1 transition-transform group-hover:translate-x-1">arrow_forward</mat-icon>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+        @for (book of popularBooks(); track $index) {
+        <app-book-card [book]="book"
+          class="h-full transform hover:-translate-y-1 transition-transform duration-300"></app-book-card>
+        }
+      </div>
+
     </div>
   </section>
   <div>

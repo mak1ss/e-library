@@ -18,12 +18,12 @@ spring:
       properties:
         schema:
           registry:
-            url: http://localhost:8082
+            url: http://localhost:8085
     producer:
       properties:
         schema:
           registry:
-            url: http://localhost:8082
+            url: http://localhost:8085
 
 book-service:
   url: http://localhost:8080

@@ -109,11 +109,17 @@ services:
     depends_on:
       - broker
     ports:
-      - "8082:8082"
+      - "8085:8085"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:29092'
-      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8082
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8085
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/subjects"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     networks:
       - e-library-network
   
@@ -128,7 +134,7 @@ services:
     environment:
       KAFKA_CLUSTERS_NAME: local
       KAFKA_CLUSTERS_BOOTSTRAPSERVERS: broker:29092
-      KAFKA_CLUSTERS_SCHEMAREGISTRY: http://schema-registry:8082
+      KAFKA_CLUSTERS_SCHEMAREGISTRY: http://schema-registry:8085
       DYNAMIC_CONFIG_ENABLED: 'true'
     networks:
       - e-library-network
@@ -140,9 +146,6 @@ services:
     container_name: recommender-service
     ports:
       - "8082:8082"
-    depends_on:
-      kafka-init:
-        condition: service_completed_successfully
     environment:
       - ML_MODELS_DIR=/mnt/models
       - LOG_LEVEL=INFO

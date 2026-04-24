@@ -128,7 +128,7 @@
           <mat-icon iconPositionEnd class="text-gray-500 ml-1">expand_more</mat-icon>
         </button>
 
-        <mat-menu #sortMenu="matMenu" xPosition="before" class="mt-2">
+        <mat-menu #sortMenu="matMenu" xPosition="before" class="mt-2 custom-user-menu">
           <button mat-menu-item (click)="updateSort('title,asc')" [class.bg-blue-50]="currentSort() === 'title,asc'">
             Alphabetical (A-Z)
           </button>

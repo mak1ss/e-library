@@ -23,6 +23,8 @@ import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import { MatSliderModule } from '@angular/material/slider';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-search-books',
@@ -88,6 +90,16 @@ export class SearchBooks {
 
     return hasPrice || hasRating || hasDynamicFilters;
   });
+
+  constructor() {
+    this.formGroup.get('search')?.valueChanges.pipe(
+      debounceTime(500),          // Чекаємо 500мс після останнього натискання клавіші
+      distinctUntilChanged(),     // Не відправляємо запит, якщо текст не змінився
+      takeUntilDestroyed()        // Автоматично відписуємось при знищенні компонента
+    ).subscribe(value => {
+      this.search();
+    });
+  }
 
   ngOnInit(): void {
     const filters$ = this.loadFilters();
@@ -211,8 +223,8 @@ export class SearchBooks {
 
     const qp: Record<string, any> = {};
     Object.entries(output).forEach(([k, v]) => {
-      if (v && v.length) qp[k] = v; // arrays become repeated params
-      else qp[k] = null; // remove empty params
+      if (v && v.length) qp[k] = v;
+      else qp[k] = null;
     });
 
     qp['page'] = 0;

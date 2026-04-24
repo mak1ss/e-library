@@ -27,7 +27,7 @@ export class BookService {
     const searchCriteria: string[] = [];
 
     if (filters['query']) {
-      searchCriteria.push(`title:${filters['query']}`);
+      searchCriteria.push(`q:${filters['query']}`);
     }
 
     if (filters['genre'] && filters['genre'].length > 0) {

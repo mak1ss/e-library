@@ -22,7 +22,6 @@ import org.library.bookservice.mapper.Mapper;
 import org.library.bookservice.model.Book;
 import org.library.bookservice.service.AbstractService;
 import org.library.bookservice.service.BookService;
-import org.library.bookservice.service.RecommendationCacheService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
