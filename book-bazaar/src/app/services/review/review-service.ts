@@ -85,6 +85,15 @@ export class ReviewService {
     return this.http.get<PageResponse<Review>>(`${this.apiUrl}/reviews`, { params });
   }
 
+  getTopRelevantReviewsByBook(bookId: number, size: number = 10): Observable<PageResponse<Review>> {
+    const params = new HttpParams()
+      .set('pageIndex', 0)
+      .set('pageSize', size)
+      .set('sort', 'scoringResult.score,desc')
+      .set('search', `bookId=${bookId}`);
+    return this.http.get<PageResponse<Review>>(`${this.apiUrl}/reviews`, { params });
+  }
+
   deleteReview(reviewId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/reviews/${reviewId}`);
   }

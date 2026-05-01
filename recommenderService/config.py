@@ -35,6 +35,11 @@ KAFKA_REVIEW_SCORING_DLQ_TOPIC = os.getenv("KAFKA_REVIEW_SCORING_DLQ_TOPIC", "re
 # Kafka Consumer Group
 KAFKA_CONSUMER_GROUP = os.getenv("KAFKA_CONSUMER_GROUP", "recommender-service-group")
 
+# Incremental matrix update topics
+KAFKA_REVIEW_MATRIX_UPDATE_TOPIC   = os.getenv("KAFKA_REVIEW_MATRIX_UPDATE_TOPIC",   "review-matrix-updates")
+KAFKA_BOOK_METADATA_CHANGED_TOPIC  = os.getenv("KAFKA_BOOK_METADATA_CHANGED_TOPIC",  "book-metadata-changes")
+KAFKA_MATRIX_UPDATE_CONSUMER_GROUP = os.getenv("KAFKA_MATRIX_UPDATE_CONSUMER_GROUP", "recommender-matrix-update-group")
+
 # Batch processing settings (for future optimization)
 KAFKA_BATCH_SIZE = int(os.getenv("KAFKA_BATCH_SIZE", "1"))
 KAFKA_BATCH_TIMEOUT_MS = int(os.getenv("KAFKA_BATCH_TIMEOUT_MS", "1000"))

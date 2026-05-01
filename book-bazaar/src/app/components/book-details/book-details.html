@@ -72,12 +72,16 @@
         <div class="mb-8">
           <h3 class="text-2xl font-bold text-book-dark-gray mb-4 font-serif">About the author</h3>
           <div class="flex gap-4 items-start">
-            <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden shrink-0 border border-gray-200">
-               <img src="author-placeholder.jpg" class="w-full h-full object-cover" alt="Author">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl shrink-0 shadow-sm"
+                 [style]="getAuthorAvatarStyle(book.author?.name)">
+              {{ getAuthorInitials(book.author?.name) }}
             </div>
             <div>
-              <div class="font-bold text-lg mb-1 text-gray-900">{{ book.author?.name }}</div>
-              <p class="text-sm text-gray-600 line-clamp-3 leading-relaxed">
+              <a [routerLink]="['/authors', book.author?.id]"
+                 class="font-bold text-lg mb-1 text-gray-900 hover:text-primary transition-colors cursor-pointer">
+                {{ book.author?.name }}
+              </a>
+              <p class="text-sm text-gray-600 line-clamp-3 leading-relaxed mt-1">
                   {{ book.author?.bio || 'No biography available for this author.' }}
               </p>
             </div>
@@ -163,6 +167,65 @@
 
       <!-- Main Content Area - Full Width -->
       <div class="flex-1">
+
+        <!-- Most Insightful Reviews -->
+        @if (topRelevantLoading()) {
+          <div class="flex justify-center py-10">
+            <mat-spinner diameter="36"></mat-spinner>
+          </div>
+        } @else if (topRelevantReviews().length > 0) {
+          <div class="mb-10">
+            <div class="flex items-center gap-2 mb-1">
+              <mat-icon class="text-violet-500">auto_awesome</mat-icon>
+              <h3 class="text-xl font-bold text-gray-900 font-serif">Most Insightful Reviews</h3>
+            </div>
+            <p class="text-sm text-gray-400 mb-5 ml-8">Ranked by AI relevance to this book's content</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              @for (review of topRelevantReviews(); track review.id) {
+                <div class="relative flex flex-col bg-gradient-to-br from-violet-50 to-blue-50 rounded-2xl p-5 border border-violet-100 hover:shadow-md transition-shadow">
+
+                  <!-- Relevance badge -->
+                  <div class="absolute top-4 right-4 flex items-center gap-1 bg-white border border-violet-200 rounded-full px-2.5 py-1 shadow-sm">
+                    <mat-icon class="!w-3.5 !h-3.5 !text-[14px] text-violet-500">auto_awesome</mat-icon>
+                    <span class="text-xs font-bold text-violet-700">
+                      {{ (review.relevanceScore! * 100) | number:'1.0-0' }}% relevant
+                    </span>
+                  </div>
+
+                  <!-- Stars -->
+                  <div class="flex text-yellow-400 mb-3 pr-24">
+                    @for (_ of [1,2,3,4,5]; track $index) {
+                      <mat-icon class="!w-4 !h-4 !text-[16px]">
+                        {{ $index < review.rating ? 'star' : 'star_border' }}
+                      </mat-icon>
+                    }
+                  </div>
+
+                  <!-- Review text -->
+                  <p class="text-gray-800 text-sm leading-relaxed line-clamp-5 mb-4 flex-1">{{ review.text }}</p>
+
+                  <!-- User info -->
+                  <div class="flex items-center gap-2 pt-3 border-t border-violet-100">
+                    <div class="w-8 h-8 rounded-full bg-white border border-gray-200 overflow-hidden flex items-center justify-center shrink-0">
+                      @if(review.avatarUrl) {
+                        <img [src]="review.avatarUrl" class="w-full h-full object-cover" alt="User" referrerpolicy="no-referrer">
+                      } @else {
+                        <span class="text-gray-600 font-bold text-xs">{{ review.firstName?.charAt(0) || 'U' }}</span>
+                      }
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-sm font-semibold text-gray-800">{{ review.firstName }} {{ review.lastName }}</span>
+                      <span class="text-xs text-gray-400">{{ review.createdAt | date:'mediumDate' }}</span>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+          <mat-divider class="mb-10"></mat-divider>
+        }
+
         <!-- Reviews and Metrics Grid -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
           <!-- Community Reviews Stats -->

@@ -25,6 +25,13 @@
             <mat-icon class="scale-90">person</mat-icon>
             Authors
           </a>
+          @if (userService.isLoggedIn()) {
+            <a [routerLink]="['/recommendations']"
+              class="text-sm font-medium text-gray-600 hover:text-primary transition-colors flex items-center gap-1">
+              <mat-icon class="scale-90">auto_awesome</mat-icon>
+              For You
+            </a>
+          }
         </nav>
       </div>
 

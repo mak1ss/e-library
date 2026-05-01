@@ -29,6 +29,7 @@ kafka:
   topics:
     book-deleted: book-deleted
     book-rating-updated: book-rating-updated
+    book-metadata-changed: book-metadata-changes
 
 gateway:
   url: http://localhost:9000

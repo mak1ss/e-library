@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.library.reviewService.client.BookServiceClient;
 import org.library.reviewService.client.response.BookResponse;
 import org.library.reviewService.exception.AccessDeniedException;
+import org.library.reviewService.integration.producer.ReviewMatrixUpdateProducer;
 import org.library.reviewService.integration.producer.ReviewScoringRequestProducer;
 import org.library.reviewService.model.Review;
 import org.library.reviewService.repository.BaseRepository;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -36,6 +38,7 @@ public class ReviewService extends AbstractService<Review> {
     private final MongoOperations mongoOperations;
     private final BookServiceClient bookClient;
     private final ReviewScoringRequestProducer reviewScoringRequestProducer;
+    private final ReviewMatrixUpdateProducer reviewMatrixUpdateProducer;
     private final BookMetadataAggregator bookMetadataAggregator;
 
     @Override
@@ -109,6 +112,15 @@ public class ReviewService extends AbstractService<Review> {
 
         metricsService.updateMetricsAfterEdit(saved.getBookId(), oldRating, newRating);
 
+        // Publish matrix update for rating change
+        try {
+            reviewMatrixUpdateProducer.publishUpdate(saved, oldRating,
+                    getOtherUserReviews(saved.getUserId(), saved.getBookId()));
+        } catch (Exception e) {
+            log.warn("Failed to publish ReviewMatrixUpdate for updated review {}: {}",
+                    saved.getId(), e.getMessage());
+        }
+
         if (!Objects.equals(oldReview.getText(), saved.getText())) {
             try {
                 ResponseEntity<?> bookResponse = bookClient.getById(saved.getBookId());
@@ -135,22 +147,36 @@ public class ReviewService extends AbstractService<Review> {
         try {
             ResponseEntity<?> bookResponse = bookClient.getById(entity.getBookId());
             if (bookResponse.hasBody()) {
-                // Aggregate metadata from nested objects (author, category, genres)
                 String bookMetadata = bookMetadataAggregator.aggregateMetadata(
                         (BookResponse) bookResponse.getBody());
-                
                 reviewScoringRequestProducer.publishReviewScoringRequest(entity, bookMetadata);
             }
         } catch (Exception e) {
-            // Log error but don't fail review creation - scoring is async and non-critical
             log.warn("Failed to trigger review scoring for review {}: {}",
                             entity.getId(), e.getMessage());
+        }
+
+        // Publish matrix update event for incremental co-occurrence update
+        try {
+            reviewMatrixUpdateProducer.publishCreate(entity,
+                    getOtherUserReviews(entity.getUserId(), entity.getBookId()));
+        } catch (Exception e) {
+            log.warn("Failed to publish ReviewMatrixUpdate for review {}: {}",
+                    entity.getId(), e.getMessage());
         }
     }
 
     @Override
     protected void afterDelete(Review entity) {
         metricsService.removeReviewMetrics(entity.getBookId(), entity.getRating());
+
+        try {
+            reviewMatrixUpdateProducer.publishDelete(entity,
+                    getOtherUserReviews(entity.getUserId(), entity.getBookId()));
+        } catch (Exception e) {
+            log.warn("Failed to publish ReviewMatrixUpdate for deleted review {}: {}",
+                    entity.getId(), e.getMessage());
+        }
     }
 
     /**
@@ -159,6 +185,13 @@ public class ReviewService extends AbstractService<Review> {
      */
     public List<Review> getUserReviews(String userId) {
         Query query = new Query(Criteria.where("userId").is(userId));
+        query.addCriteria(addArchivedCriteria(false));
         return mongoOperations.find(query, Review.class);
+    }
+
+    private List<Review> getOtherUserReviews(String userId, Integer excludeBookId) {
+        return getUserReviews(userId).stream()
+                .filter(r -> !r.getBookId().equals(excludeBookId))
+                .collect(Collectors.toList());
     }
 }

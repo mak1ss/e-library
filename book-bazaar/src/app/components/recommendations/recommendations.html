@@ -1,0 +1,281 @@
+<!-- Hero -->
+<section class="bg-gradient-to-br from-primary/8 via-white to-secondary/20 border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex items-center gap-5">
+      <div
+        class="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg shadow-primary/25 shrink-0">
+        <mat-icon class="!text-white !text-[28px] !w-7 !h-7">auto_awesome</mat-icon>
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold font-serif text-gray-900 tracking-tight">For You</h1>
+        <p class="text-gray-500 mt-1 text-sm">
+          @if (userService.isLoggedIn() && sections().length > 0) {
+            Personalized picks based on {{ sections().length }} of your top-rated reviews
+          } @else if (userService.isLoggedIn()) {
+            Personalized recommendations based on your reading journey
+          } @else {
+            Discover books tailored to your taste — log in to unlock your picks
+          }
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Loading skeleton -->
+@if (isLoading()) {
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-14">
+
+    <!-- Collaborative skeleton -->
+    <div class="space-y-5">
+      <div class="flex items-center gap-3">
+        <div class="skeleton w-10 h-10 rounded-xl shrink-0"></div>
+        <div class="space-y-2">
+          <div class="skeleton h-5 w-36 rounded-full"></div>
+          <div class="skeleton h-3 w-52 rounded-full"></div>
+        </div>
+      </div>
+      <div class="flex gap-4 overflow-hidden">
+        @for (j of skeletonCards; track j) {
+          <div class="skeleton shrink-0 w-52 h-80 rounded-xl"></div>
+        }
+      </div>
+    </div>
+
+    <!-- Per-review skeletons -->
+    @for (i of skeletonSections; track i) {
+      <div class="space-y-5">
+        <div class="flex items-start gap-4">
+          <div class="skeleton w-14 h-20 rounded-lg shrink-0"></div>
+          <div class="space-y-2.5 flex-1 pt-1">
+            <div class="skeleton h-3 w-28 rounded-full"></div>
+            <div class="skeleton h-6 w-60 rounded-full"></div>
+            <div class="skeleton h-4 w-36 rounded-full"></div>
+            <div class="skeleton h-4 w-20 rounded-full"></div>
+          </div>
+        </div>
+        <div class="flex gap-4 overflow-hidden">
+          @for (j of skeletonCards; track j) {
+            <div class="skeleton shrink-0 w-52 h-80 rounded-xl"></div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}
+
+<!-- Not logged in -->
+@else if (!userService.isLoggedIn()) {
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
+
+    <!-- CTA Banner -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-secondary p-10 text-white text-center shadow-xl shadow-primary/20">
+      <div class="relative z-10">
+        <div
+          class="w-16 h-16 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <mat-icon class="!text-white !text-[32px]">auto_awesome</mat-icon>
+        </div>
+        <h2 class="text-3xl font-bold font-serif mb-3">Discover Books Made for You</h2>
+        <p class="text-white/80 text-lg mb-8 max-w-lg mx-auto leading-relaxed">
+          Log in to unlock personalized recommendations based on your reviews and reading history.
+        </p>
+        <div class="flex items-center justify-center gap-4 flex-wrap">
+          <button mat-flat-button
+            class="!bg-white !text-primary !font-bold !rounded-full !px-8 !h-11 !text-base shadow-md"
+            (click)="userService.login()">
+            Log In
+          </button>
+          <button mat-stroked-button
+            class="!text-white !border-white/60 !rounded-full !px-8 !h-11 !text-base"
+            (click)="userService.register()">
+            Create Account
+          </button>
+        </div>
+      </div>
+      <div class="absolute -top-10 -right-10 w-48 h-48 bg-white/10 rounded-full pointer-events-none"></div>
+      <div class="absolute -bottom-14 -left-14 w-64 h-64 bg-white/10 rounded-full pointer-events-none"></div>
+    </div>
+
+    <!-- Popular books -->
+    @if (popularBooks().length > 0) {
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-2">
+            <mat-icon class="text-primary">trending_up</mat-icon>
+            <h2 class="text-xl font-bold text-gray-900">Popular Right Now</h2>
+          </div>
+          <a [routerLink]="['/search']" mat-button class="!text-primary !font-medium">
+            Browse all
+            <mat-icon class="!text-[18px] align-middle ml-0.5">arrow_forward</mat-icon>
+          </a>
+        </div>
+        <div class="scroll-row">
+          @for (book of popularBooks(); track book.id) {
+            <div class="scroll-card">
+              <app-book-card [book]="book" />
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}
+
+<!-- Logged in, no eligible reviews -->
+@else if (sections().length === 0) {
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center py-16 mb-4">
+      <div
+        class="w-20 h-20 bg-primary/8 rounded-full flex items-center justify-center mx-auto mb-5">
+        <mat-icon class="!text-primary/40 !text-[38px]">rate_review</mat-icon>
+      </div>
+      <h2 class="text-2xl font-bold text-gray-800 font-serif mb-3">No recommendations yet</h2>
+      <p class="text-gray-500 max-w-md mx-auto mb-8 leading-relaxed">
+        Start reviewing books you've read and we'll build personalized picks just for you.
+        The more you review, the better your recommendations get.
+      </p>
+      <button mat-flat-button color="primary" [routerLink]="['/search']"
+        class="!rounded-full !px-8 !font-bold !h-11">
+        Browse Books
+      </button>
+    </div>
+
+    @if (popularBooks().length > 0) {
+      <div class="pb-14">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-2">
+            <mat-icon class="text-primary">trending_up</mat-icon>
+            <h2 class="text-xl font-bold text-gray-900">Popular Right Now</h2>
+          </div>
+          <a [routerLink]="['/search']" mat-button class="!text-primary !font-medium">
+            Browse all
+            <mat-icon class="!text-[18px] align-middle ml-0.5">arrow_forward</mat-icon>
+          </a>
+        </div>
+        <div class="scroll-row">
+          @for (book of popularBooks(); track book.id) {
+            <div class="scroll-card">
+              <app-book-card [book]="book" />
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}
+
+<!-- Logged in with sections -->
+@else {
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- Collaborative section -->
+    @if (collaborativeBooks().length > 0) {
+      <div class="mb-12 pb-12 border-b border-gray-100">
+        <div class="flex items-start gap-3 mb-6">
+          <div
+            class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-sm shrink-0 mt-0.5">
+            <mat-icon class="!text-white !overflow-visible">hub</mat-icon>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-gray-900">Picked for you</h2>
+            <p class="text-xs text-gray-400 mt-0.5">Based on your full reading profile</p>
+          </div>
+        </div>
+
+        <div class="scroll-row">
+          @for (book of collaborativeBooks(); track book.id) {
+            <div class="scroll-card"
+              [matTooltip]="getCollabReason(book)"
+              matTooltipPosition="above"
+              [matTooltipShowDelay]="300"
+              [matTooltipDisabled]="!getCollabReason(book)">
+              <app-book-card [book]="book" />
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Per-review sections -->
+    @for (section of sections(); track section.review.id; let last = $last) {
+      <div class="pb-12" [class.mb-12]="!last" [class.border-b]="!last"
+        [class.border-gray-100]="!last">
+
+        <!-- Section header -->
+        <div class="flex items-start justify-between gap-4 mb-6">
+          <div class="flex items-start gap-4">
+
+            <!-- Reviewed book thumbnail -->
+            <a [routerLink]="['/book-details', section.book.id]" class="shrink-0 block group">
+              <div
+                class="w-14 h-20 rounded-lg overflow-hidden shadow-md ring-2 ring-white group-hover:ring-primary/30 transition-all duration-200">
+                <img [src]="section.book.imageUrl || 'assets/default-book-cover.jpg'"
+                  [alt]="section.book.title"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+            </a>
+
+            <div class="flex flex-col gap-1 min-w-0">
+              <span class="text-xs font-bold text-primary uppercase tracking-widest">
+                Because you read
+              </span>
+              <a [routerLink]="['/book-details', section.book.id]" class="no-underline">
+                <h2
+                  class="text-xl font-bold text-gray-900 hover:text-primary transition-colors leading-tight font-serif">
+                  "{{ section.book.title }}"
+                </h2>
+              </a>
+              <p class="text-sm text-gray-500">{{ section.book.author?.name }}</p>
+
+              <!-- Star rating -->
+              <div class="flex items-center gap-0.5 mt-0.5">
+                @for (star of starsArray; track star) {
+                  @if (star <= section.review.rating) {
+                    <mat-icon class="!text-[15px] !w-4 !h-4 text-yellow-400">star</mat-icon>
+                  } @else {
+                    <mat-icon class="!text-[15px] !w-4 !h-4 text-gray-300">star_border</mat-icon>
+                  }
+                }
+                <span class="text-xs text-gray-400 ml-1.5">Your rating</span>
+              </div>
+
+              <!-- Review snippet -->
+              @if (section.review.text?.trim()) {
+                <p class="text-sm text-gray-400 italic mt-1.5 line-clamp-2 max-w-lg">
+                  "{{ section.review.text }}"
+                </p>
+              }
+            </div>
+          </div>
+
+          <!-- Desktop: view book link -->
+          <div class="hidden sm:block shrink-0 self-start mt-1">
+            <a [routerLink]="['/book-details', section.book.id]" mat-button
+              class="!text-primary !font-medium">
+              View book
+              <mat-icon class="!text-[18px]">arrow_forward</mat-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Recommendations row -->
+        @if (section.recommendations.length > 0) {
+          <div class="scroll-row">
+            @for (book of section.recommendations; track book.id) {
+              <div class="scroll-card">
+                <app-book-card [book]="book" />
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="py-10 text-center bg-gray-50/80 rounded-2xl border border-dashed border-gray-200">
+            <mat-icon class="!text-gray-300 !text-[36px]">search_off</mat-icon>
+            <p class="text-sm text-gray-400 mt-2">No similar books found at the moment</p>
+          </div>
+        }
+
+      </div>
+    }
+
+  </div>
+}

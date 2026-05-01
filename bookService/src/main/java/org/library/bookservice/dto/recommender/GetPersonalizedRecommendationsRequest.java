@@ -15,6 +15,15 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class GetPersonalizedRecommendationsRequest {
-    private List<Integer> userSeedBooks;
+    private List<SeedBook> userSeedBooks;
     private Integer topK;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class SeedBook {
+        private Integer bookId;
+        private Integer rating;
+    }
 }

@@ -4,6 +4,7 @@ TFIDF_MATRIX_FILE = "tfidf_matrix.joblib"
 ITEM_COOCCURRENCE_FILE = "item_cooccurrence.npy"
 BOOKID_TO_ROW_FILE = "bookid_to_row.json"
 POPULAR_BOOKS_FILE = "popular_books.json"
+BOOK_EMBEDDINGS_FILE = "book_embeddings.npy"
 
 # Default parameters
 DEFAULT_TOP_K = 10

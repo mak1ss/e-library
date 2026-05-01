@@ -6,7 +6,11 @@
       "Bash(npx playwright *)",
       "Bash(npx tsc *)",
       "Skill(update-config)",
-      "Skill(update-config:*)"
+      "Skill(update-config:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(grep -E \"\\\\.\\(ts|html|scss|css\\)$\")",
+      "Bash(xargs grep *)"
     ]
   }
 }
