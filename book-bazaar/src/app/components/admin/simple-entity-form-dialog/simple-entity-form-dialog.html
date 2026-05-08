@@ -1,0 +1,42 @@
+<div class="bg-white min-w-[420px]">
+  <!-- Dialog header -->
+  <div class="px-6 pt-6 pb-4 border-b border-gray-100 flex items-center gap-3">
+    <div class="w-10 h-10 bg-linear-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-sm shadow-primary/20 shrink-0">
+      <mat-icon class="text-white! scale-90">{{ data.title.startsWith('Edit') ? 'edit' : 'add' }}</mat-icon>
+    </div>
+    <div>
+      <h2 class="text-lg font-serif font-bold text-gray-900 leading-none mb-0.5">{{ data.title }}</h2>
+      <p class="text-xs text-gray-400">{{ data.title.startsWith('Edit') ? 'Update the details below' : 'Fill in the details below' }}</p>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="p-6 flex flex-col gap-4">
+    @for (field of data.fields; track field.key) {
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>{{ field.label }}</mat-label>
+        @if (field.multiline) {
+          <textarea matInput [formControlName]="field.key" rows="3" [maxlength]="field.maxLength"></textarea>
+        } @else {
+          <input matInput [formControlName]="field.key" [maxlength]="field.maxLength" />
+        }
+        @if (getControl(field.key)?.hasError('required') && getControl(field.key)?.touched) {
+          <mat-error>{{ field.label }} is required</mat-error>
+        }
+        @if (getControl(field.key)?.hasError('maxlength')) {
+          <mat-error>Max {{ field.maxLength }} characters</mat-error>
+        }
+      </mat-form-field>
+    }
+
+    <div class="flex justify-end gap-3 pt-2 border-t border-gray-100 mt-1">
+      <button mat-button type="button" (click)="dialogRef.close()"
+              class="font-medium! text-gray-600! hover:bg-gray-50! rounded-full!">
+        Cancel
+      </button>
+      <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid"
+              class="rounded-full! px-6! font-bold!">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

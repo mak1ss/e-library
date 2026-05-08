@@ -4,6 +4,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PageResponse } from '../../model/pageResponse';
 
+export interface AuthorRequest {
+  name: string;
+  bio?: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,5 +31,17 @@ export class AuthorService {
 
   getAuthorById(id: number): Observable<Author> {
     return this.http.get<Author>(`${this.apiUrl}/${id}`);
+  }
+
+  createAuthor(request: AuthorRequest): Observable<Author> {
+    return this.http.post<Author>(this.apiUrl, request);
+  }
+
+  updateAuthor(id: number, request: AuthorRequest): Observable<Author> {
+    return this.http.put<Author>(`${this.apiUrl}/${id}`, request);
+  }
+
+  deleteAuthor(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

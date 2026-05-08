@@ -1,0 +1,161 @@
+<div class="bg-white w-[560px] max-w-full overflow-hidden">
+  <!-- Dialog header -->
+  <div class="px-6 pt-6 pb-4 border-b border-gray-100 flex items-center gap-3">
+    <div class="w-10 h-10 bg-linear-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-sm shadow-primary/20 shrink-0">
+      <mat-icon class="text-white! scale-90">{{ isEdit ? 'edit' : 'add' }}</mat-icon>
+    </div>
+    <div>
+      <h2 class="text-lg font-serif font-bold text-gray-900 leading-none mb-0.5">
+        {{ isEdit ? 'Edit Book' : 'Create Book' }}
+      </h2>
+      <p class="text-xs text-gray-400">{{ isEdit ? 'Update book details' : 'Fill in the details for a new book' }}</p>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="flex justify-center py-10">
+      <mat-spinner diameter="40" />
+    </div>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="submit()" class="p-6 flex flex-col gap-4">
+
+      <!-- Cover picker -->
+      <div class="flex items-center gap-4">
+        <div
+          class="w-24 h-32 rounded-lg border-2 border-dashed border-gray-200 overflow-hidden flex items-center justify-center bg-gray-50 cursor-pointer shrink-0 hover:border-primary/50 transition-colors"
+          (click)="fileInput.click()">
+          @if (coverPreviewUrl()) {
+            <img [src]="coverPreviewUrl()!" class="w-full h-full object-cover" alt="Book cover" />
+          } @else {
+            <mat-icon class="text-gray-300! scale-[1.6]">image</mat-icon>
+          }
+        </div>
+        <div class="flex flex-col gap-2">
+          <button mat-stroked-button type="button" (click)="fileInput.click()" class="rounded-full!">
+            <mat-icon>upload</mat-icon>
+            {{ coverPreviewUrl() ? 'Change Cover' : 'Upload Cover' }}
+          </button>
+          @if (coverPreviewUrl()) {
+            <button mat-button type="button" (click)="removeCover()" class="rounded-full! text-red-500!">
+              <mat-icon>delete</mat-icon>
+              Remove
+            </button>
+          }
+          @if (coverFile()) {
+            <span class="text-xs text-gray-400 truncate max-w-[200px]">{{ coverFile()!.name }}</span>
+          }
+        </div>
+        <input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileChange($event)" />
+      </div>
+
+      <!-- Title -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" maxlength="255" />
+        @if (form.get('title')?.hasError('required') && form.get('title')?.touched) {
+          <mat-error>Title is required</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Author / Category -->
+      <div class="flex gap-3">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Author</mat-label>
+          <mat-select formControlName="authorId">
+            @for (a of authors(); track a.id) {
+              <mat-option [value]="a.id">{{ a.name }}</mat-option>
+            }
+          </mat-select>
+          @if (form.get('authorId')?.hasError('required') && form.get('authorId')?.touched) {
+            <mat-error>Author is required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="categoryId">
+            @for (c of categories(); track c.id) {
+              <mat-option [value]="c.id">{{ c.name }}</mat-option>
+            }
+          </mat-select>
+          @if (form.get('categoryId')?.hasError('required') && form.get('categoryId')?.touched) {
+            <mat-error>Category is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Publisher / Price -->
+      <div class="flex gap-3">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Publisher</mat-label>
+          <mat-select formControlName="publisherId">
+            @for (p of publishers(); track p.id) {
+              <mat-option [value]="p.id">{{ p.name }}</mat-option>
+            }
+          </mat-select>
+          @if (form.get('publisherId')?.hasError('required') && form.get('publisherId')?.touched) {
+            <mat-error>Publisher is required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Price ($)</mat-label>
+          <input matInput type="number" formControlName="price" min="0" step="0.01" />
+          @if (form.get('price')?.hasError('required') && form.get('price')?.touched) {
+            <mat-error>Price is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Genres -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Genres</mat-label>
+        <mat-select formControlName="genreIdList" multiple>
+          @for (g of genres(); track g.id) {
+            <mat-option [value]="g.id">{{ g.name }}</mat-option>
+          }
+        </mat-select>
+        @if (form.get('genreIdList')?.hasError('required') && form.get('genreIdList')?.touched) {
+          <mat-error>At least one genre is required</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Description -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" rows="3" maxlength="500"></textarea>
+        @if (form.get('description')?.hasError('maxlength')) {
+          <mat-error>Max 500 characters</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- ISBN / Release Date -->
+      <div class="flex gap-3">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>ISBN</mat-label>
+          <input matInput formControlName="ISBN" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Release Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="releaseDate" />
+          <mat-datepicker-toggle matIconSuffix [for]="picker" />
+          <mat-datepicker #picker />
+        </mat-form-field>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex justify-end gap-3 pt-2 border-t border-gray-100 mt-1">
+        <button mat-button type="button" (click)="dialogRef.close()"
+                class="font-medium! text-gray-600! hover:bg-gray-50! rounded-full!">
+          Cancel
+        </button>
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid"
+                class="rounded-full! px-6! font-bold!">
+          {{ isEdit ? 'Update' : 'Create' }}
+        </button>
+      </div>
+
+    </form>
+  }
+</div>

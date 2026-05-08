@@ -42,6 +42,10 @@ export class UserService {
     return p ? `${p.firstName}` : '';
   });
 
+  isAdmin = computed(() =>
+    !!(this.keycloak.tokenParsed as any)?.realm_access?.roles?.includes('ROLE_ADMIN')
+  );
+
   constructor() {
     // Якщо юзер залогінений - одразу вантажимо профіль
     if (this.isLoggedIn()) {

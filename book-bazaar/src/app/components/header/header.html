@@ -32,6 +32,13 @@
               For You
             </a>
           }
+          @if (userService.isAdmin()) {
+            <a [routerLink]="['/admin']"
+              class="text-sm font-medium text-gray-600 hover:text-primary transition-colors flex items-center gap-1">
+              <mat-icon class="scale-90">admin_panel_settings</mat-icon>
+              Admin
+            </a>
+          }
         </nav>
       </div>
 

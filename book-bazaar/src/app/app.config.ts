@@ -1,4 +1,5 @@
 import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -13,6 +14,7 @@ import {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
+    provideNativeDateAdapter(),
     provideZonelessChangeDetection(),
     provideRouter(
       routes,

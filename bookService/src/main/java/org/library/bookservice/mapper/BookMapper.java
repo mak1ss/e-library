@@ -1,7 +1,7 @@
 package org.library.bookservice.mapper;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.library.bookservice.dao.BookDao;
 import org.library.bookservice.dto.book.BookRequest;
 import org.library.bookservice.dto.book.BookResponse;
 import org.library.bookservice.model.Book;
@@ -22,6 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BookMapper implements Mapper<Book, BookResponse, BookRequest> {
 
+    private final BookDao bookDao;
     private final AuthorService authorService;
     private final CategoryService categoryService;
     private final PublisherService publisherService;
@@ -62,6 +63,12 @@ public class BookMapper implements Mapper<Book, BookResponse, BookRequest> {
 
         entity.setGenres(bookGenres);
 
+        id.flatMap(bookDao::getById).ifPresent(existing -> {
+            entity.setImageKey(existing.getImageKey());
+            entity.setAverageRating(existing.getAverageRating());
+            entity.setTotalReviews(existing.getTotalReviews());
+        });
+
         return entity;
     }
 
@@ -92,6 +99,7 @@ public class BookMapper implements Mapper<Book, BookResponse, BookRequest> {
     }
 
     private String buildImageUrl(String key) {
+        if (key == null || key.isBlank()) return null;
         return imagesHost + imagesPath + key;
     }
 }
