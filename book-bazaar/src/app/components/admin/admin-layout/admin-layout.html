@@ -1,0 +1,73 @@
+<div class="flex min-h-[calc(100vh-80px)] bg-gray-50">
+  <!-- Sidebar -->
+  <aside class="w-64 shrink-0 bg-white border-r border-gray-100 flex flex-col">
+    <!-- Brand header -->
+    <div class="px-5 py-5 border-b border-gray-100">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-linear-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-sm shadow-primary/20 shrink-0">
+          <mat-icon class="scale-75 text-white!">admin_panel_settings</mat-icon>
+        </div>
+        <div>
+          <p class="text-sm font-bold text-gray-900 leading-none mb-0.5">Admin Panel</p>
+          <p class="text-[11px] text-gray-400 leading-none">BookBazaar</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 px-3 py-5 flex flex-col gap-0.5">
+      <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-3 mb-2">Manage</p>
+
+      <a routerLink="/admin" routerLinkActive="bg-primary/10 text-primary font-semibold"
+         [routerLinkActiveOptions]="{exact: true}"
+         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-all no-underline">
+        <mat-icon class="scale-90 shrink-0">dashboard</mat-icon>
+        Dashboard
+      </a>
+
+      <a routerLink="/admin/books" routerLinkActive="bg-primary/10 text-primary font-semibold"
+         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-all no-underline">
+        <mat-icon class="scale-90 shrink-0">menu_book</mat-icon>
+        Books
+      </a>
+
+      <a routerLink="/admin/authors" routerLinkActive="bg-primary/10 text-primary font-semibold"
+         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-all no-underline">
+        <mat-icon class="scale-90 shrink-0">person</mat-icon>
+        Authors
+      </a>
+
+      <a routerLink="/admin/categories" routerLinkActive="bg-primary/10 text-primary font-semibold"
+         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-all no-underline">
+        <mat-icon class="scale-90 shrink-0">category</mat-icon>
+        Categories
+      </a>
+
+      <a routerLink="/admin/genres" routerLinkActive="bg-primary/10 text-primary font-semibold"
+         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-all no-underline">
+        <mat-icon class="scale-90 shrink-0">label</mat-icon>
+        Genres
+      </a>
+
+      <a routerLink="/admin/publishers" routerLinkActive="bg-primary/10 text-primary font-semibold"
+         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-all no-underline">
+        <mat-icon class="scale-90 shrink-0">business</mat-icon>
+        Publishers
+      </a>
+    </nav>
+
+    <!-- Footer -->
+    <div class="px-3 py-4 border-t border-gray-100">
+      <a routerLink="/"
+         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-500 hover:bg-gray-50 hover:text-primary transition-all no-underline">
+        <mat-icon class="scale-90 shrink-0">arrow_back</mat-icon>
+        Back to Store
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="flex-1 p-8 overflow-auto">
+    <router-outlet />
+  </main>
+</div>

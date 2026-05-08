@@ -32,3 +32,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: var(--color-primary) !important;
   color: white !important;
 }
+
+/* Fix: TailwindCSS sets border-color: currentColor on all elements, which makes
+   Angular Material's mdc-notched-outline__notch right border visible as a vertical line. */
+.mdc-notched-outline__notch {
+  border-right: none !important;
+}

@@ -4,6 +4,18 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PageResponse } from '../../model/pageResponse';
 
+export interface BookRequest {
+  title: string;
+  authorId: number;
+  categoryId: number;
+  genreIdList: number[];
+  description?: string;
+  ISBN?: string;
+  publisherId: number;
+  releaseDate?: string;
+  price: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,12 +24,6 @@ export class BookService {
   private baseUrl = 'http://localhost:9000/book-service/api/books';
   private http: HttpClient = inject(HttpClient);
 
-  /**
-   * Отримує список книг з фільтрацією та пагінацією
-   * @param filters - об'єкт з фільтрами (наприклад, { genre: ['Fantasy'], query: 'Harry' })
-   * @param page - номер сторінки (починаючи з 0)
-   * @param size - розмір сторінки
-   */
   getBooks(filters: Record<string, any> = {}, page: number = 0, size: number = 10, sort: string = 'title,asc'): Observable<PageResponse<Book>> {
     let params = new HttpParams()
       .set('pageIndex', page)
@@ -76,7 +82,6 @@ export class BookService {
       params = params.set('search', searchCriteria.join(','));
     }
 
-    console.log('Generated Params:', params.toString()); // Для дебагу
     return this.http.get<PageResponse<Book>>(this.baseUrl, { params });
   }
 
@@ -84,24 +89,31 @@ export class BookService {
     return this.http.get<Book>(`${this.baseUrl}/${id}`);
   }
 
-  /**
-   * Get similar books for a given book (content-based filtering)
-   * @param bookId - Book ID to find similar books for
-   * @param topK - Number of recommendations (default: 10)
-   */
   getSimilarBooks(bookId: number, topK: number = 10): Observable<PageResponse<Book>> {
-    let params = new HttpParams().set('topK', topK.toString());
+    const params = new HttpParams().set('topK', topK.toString());
     return this.http.get<PageResponse<Book>>(`${this.baseUrl}/${bookId}/similar`, { params });
   }
 
-  /**
-   * Get personalized recommendations for authenticated user (collaborative filtering)
-   * Falls back to popular books if user has no review history
-   * @param topK - Number of recommendations (default: 10)
-   */
   getPersonalizedRecommendations(topK: number = 10): Observable<PageResponse<Book>> {
-    let params = new HttpParams().set('topK', topK.toString());
+    const params = new HttpParams().set('topK', topK.toString());
     return this.http.get<PageResponse<Book>>(`${this.baseUrl}/recommendations/personal`, { params });
   }
-}
 
+  createBook(request: BookRequest): Observable<Book> {
+    return this.http.post<Book>(this.baseUrl, request);
+  }
+
+  updateBook(id: number, request: BookRequest): Observable<Book> {
+    return this.http.put<Book>(`${this.baseUrl}/${id}`, request);
+  }
+
+  deleteBook(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  uploadCover(bookId: number, file: File): Observable<Book> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<Book>(`${this.baseUrl}/${bookId}/cover`, formData);
+  }
+}

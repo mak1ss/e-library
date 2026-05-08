@@ -1,0 +1,108 @@
+<div>
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+      <h1 class="text-2xl font-serif font-bold text-gray-900">Books</h1>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary">
+        {{ total() }}
+      </span>
+    </div>
+    <button mat-flat-button color="primary" (click)="openCreate()" class="rounded-full! px-5! font-bold!">
+      <mat-icon>add</mat-icon> New Book
+    </button>
+  </div>
+
+  <!-- Search -->
+  <mat-form-field appearance="outline" class="w-full mb-4">
+    <mat-label>Search books…</mat-label>
+    <mat-icon matPrefix class="text-gray-400 mr-1">search</mat-icon>
+    <input matInput [(ngModel)]="searchQuery" (ngModelChange)="onSearch($event)" />
+  </mat-form-field>
+
+  <!-- Table -->
+  @if (loading()) {
+    <div class="flex justify-center py-16"><mat-spinner diameter="40" /></div>
+  } @else if (books().length === 0) {
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center justify-center py-16 gap-3">
+      <div class="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center text-gray-400">
+        <mat-icon class="scale-125">menu_book</mat-icon>
+      </div>
+      <p class="font-semibold text-gray-600">No books found</p>
+      <p class="text-sm text-gray-400">Try a different search or add a new book</p>
+    </div>
+  } @else {
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+      <table mat-table [dataSource]="books()" class="w-full">
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef class="font-semibold! text-gray-500! text-xs! uppercase tracking-wide bg-gray-50!">Title</th>
+          <td mat-cell *matCellDef="let b" class="py-3!">
+            <span class="font-medium text-gray-900">{{ b.title }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="author">
+          <th mat-header-cell *matHeaderCellDef class="font-semibold! text-gray-500! text-xs! uppercase tracking-wide bg-gray-50!">Author</th>
+          <td mat-cell *matCellDef="let b" class="text-gray-600 text-sm">{{ b.author?.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef class="font-semibold! text-gray-500! text-xs! uppercase tracking-wide bg-gray-50!">Category</th>
+          <td mat-cell *matCellDef="let b">
+            @if (b.category?.name) {
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-secondary/40 text-dark">
+                {{ b.category?.name }}
+              </span>
+            }
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef class="font-semibold! text-gray-500! text-xs! uppercase tracking-wide bg-gray-50!">Price</th>
+          <td mat-cell *matCellDef="let b" class="font-medium text-gray-800">${{ b.price }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="averageRating">
+          <th mat-header-cell *matHeaderCellDef class="font-semibold! text-gray-500! text-xs! uppercase tracking-wide bg-gray-50!">Rating</th>
+          <td mat-cell *matCellDef="let b">
+            <div class="flex items-center gap-1">
+              <mat-icon class="text-amber-400 scale-75 shrink-0">star</mat-icon>
+              <span class="text-sm font-medium text-gray-700">{{ b.averageRating | number:'1.1-1' }}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalReviews">
+          <th mat-header-cell *matHeaderCellDef class="font-semibold! text-gray-500! text-xs! uppercase tracking-wide bg-gray-50!">Reviews</th>
+          <td mat-cell *matCellDef="let b" class="text-sm text-gray-500">{{ b.totalReviews }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="bg-gray-50!"></th>
+          <td mat-cell *matCellDef="let b" class="text-right">
+            <button mat-icon-button [matTooltip]="'Edit'" (click)="openEdit(b)"
+                    class="text-gray-400! hover:text-primary! hover:bg-primary/10! transition-colors rounded-full!">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button [matTooltip]="'Delete'" (click)="openDelete(b)"
+                    class="text-gray-400! hover:text-red-500! hover:bg-red-50! transition-colors rounded-full!">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns;" class="hover:bg-gray-50/80 transition-colors border-b border-gray-50 last:border-0"></tr>
+      </table>
+    </div>
+
+    <mat-paginator
+      [length]="total()"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      [pageSizeOptions]="[10, 25, 50]"
+      (page)="onPage($event)"
+      class="mt-2 bg-transparent">
+    </mat-paginator>
+  }
+</div>

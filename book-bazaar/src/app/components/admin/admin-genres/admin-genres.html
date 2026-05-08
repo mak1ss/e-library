@@ -1,0 +1,62 @@
+<div>
+  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+      <h1 class="text-2xl font-serif font-bold text-gray-900">Genres</h1>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary">
+        {{ total() }}
+      </span>
+    </div>
+    <button mat-flat-button color="primary" (click)="openCreate()" class="rounded-full! px-5! font-bold!">
+      <mat-icon>add</mat-icon> New Genre
+    </button>
+  </div>
+
+  <mat-form-field appearance="outline" class="w-full mb-4">
+    <mat-label>Search genres…</mat-label>
+    <mat-icon matPrefix class="text-gray-400 mr-1">search</mat-icon>
+    <input matInput [(ngModel)]="searchQuery" (ngModelChange)="onSearch($event)" />
+  </mat-form-field>
+
+  @if (loading()) {
+    <div class="flex justify-center py-16"><mat-spinner diameter="40" /></div>
+  } @else if (genres().length === 0) {
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center justify-center py-16 gap-3">
+      <div class="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center text-gray-400">
+        <mat-icon class="scale-125">label</mat-icon>
+      </div>
+      <p class="font-semibold text-gray-600">No genres found</p>
+      <p class="text-sm text-gray-400">Try a different search or add a new genre</p>
+    </div>
+  } @else {
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+      <table mat-table [dataSource]="genres()" class="w-full">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef class="font-semibold! text-gray-500! text-xs! uppercase tracking-wide bg-gray-50!">Name</th>
+          <td mat-cell *matCellDef="let g" class="py-3! font-medium text-gray-900">{{ g.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef class="font-semibold! text-gray-500! text-xs! uppercase tracking-wide bg-gray-50!">Description</th>
+          <td mat-cell *matCellDef="let g" class="text-sm text-gray-500 max-w-sm truncate">{{ g.description }}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="bg-gray-50!"></th>
+          <td mat-cell *matCellDef="let g" class="text-right">
+            <button mat-icon-button [matTooltip]="'Edit'" (click)="openEdit(g)"
+                    class="text-gray-400! hover:text-primary! hover:bg-primary/10! transition-colors rounded-full!">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button [matTooltip]="'Delete'" (click)="openDelete(g)"
+                    class="text-gray-400! hover:text-red-500! hover:bg-red-50! transition-colors rounded-full!">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns;" class="hover:bg-gray-50/80 transition-colors border-b border-gray-50 last:border-0"></tr>
+      </table>
+    </div>
+    <mat-paginator [length]="total()" [pageSize]="pageSize" [pageIndex]="pageIndex"
+      [pageSizeOptions]="[10, 25, 50]" (page)="onPage($event)" class="mt-2 bg-transparent">
+    </mat-paginator>
+  }
+</div>

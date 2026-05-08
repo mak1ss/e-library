@@ -31,6 +31,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -75,6 +76,14 @@ public class BookController extends AbstractController<Book, BookRequest, BookRe
         }, () -> {
             throw new NoSuchElementException();
         });
+    }
+
+    @PostMapping("/{id}/cover")
+    public ResponseEntity<BookResponse> uploadCover(
+            @PathVariable Integer id,
+            @RequestParam("file") MultipartFile file) {
+        Book book = service.uploadCoverImage(id, file);
+        return ResponseEntity.ok(mapper.entityToResponse(book));
     }
 
     /**

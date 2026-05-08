@@ -1,0 +1,33 @@
+<div>
+  <!-- Welcome banner -->
+  <div class="bg-linear-to-br from-primary to-dark rounded-2xl p-6 mb-8 flex items-center justify-between overflow-hidden relative">
+    <div class="relative z-10">
+      <h1 class="text-2xl font-serif font-bold text-white mb-1">Admin Dashboard</h1>
+      <p class="text-white/70 text-sm">Manage books, authors, categories and more</p>
+    </div>
+    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center shrink-0">
+      <mat-icon class="scale-150 text-white/80">auto_stories</mat-icon>
+    </div>
+    <!-- Decorative circles -->
+    <div class="absolute -right-6 -top-6 w-32 h-32 bg-white/5 rounded-full"></div>
+    <div class="absolute -right-2 -bottom-8 w-24 h-24 bg-white/5 rounded-full"></div>
+  </div>
+
+  <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Resources</p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    @for (tile of tiles; track tile.route) {
+      <a [routerLink]="tile.route"
+         class="flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 transition-all no-underline group">
+        <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-linear-to-br group-hover:from-primary group-hover:to-secondary group-hover:text-white transition-all shrink-0 shadow-sm">
+          <mat-icon class="scale-110">{{ tile.icon }}</mat-icon>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-semibold text-gray-900 text-sm mb-0.5">{{ tile.label }}</p>
+          <p class="text-xs text-gray-500 truncate">{{ tile.description }}</p>
+        </div>
+        <mat-icon class="text-gray-300 group-hover:text-primary transition-colors shrink-0 scale-90">chevron_right</mat-icon>
+      </a>
+    }
+  </div>
+</div>
