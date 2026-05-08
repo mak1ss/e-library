@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package event;
+package org.library.reviewService.event;
 
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
@@ -12,26 +12,26 @@ import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
-public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -6157092453092234736L;
+public class UserReviewEntry extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = -4358695644658120921L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"BookDeletedEvent\",\"namespace\":\"event\",\"fields\":[{\"name\":\"bookId\",\"type\":\"int\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"UserReviewEntry\",\"namespace\":\"org.library.reviewService.event\",\"fields\":[{\"name\":\"bookId\",\"type\":\"int\"},{\"name\":\"rating\",\"type\":\"int\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<BookDeletedEvent> ENCODER =
+  private static final BinaryMessageEncoder<UserReviewEntry> ENCODER =
       new BinaryMessageEncoder<>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<BookDeletedEvent> DECODER =
+  private static final BinaryMessageDecoder<UserReviewEntry> DECODER =
       new BinaryMessageDecoder<>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<BookDeletedEvent> getEncoder() {
+  public static BinaryMessageEncoder<UserReviewEntry> getEncoder() {
     return ENCODER;
   }
 
@@ -39,7 +39,7 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<BookDeletedEvent> getDecoder() {
+  public static BinaryMessageDecoder<UserReviewEntry> getDecoder() {
     return DECODER;
   }
 
@@ -48,12 +48,12 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<BookDeletedEvent> createDecoder(SchemaStore resolver) {
+  public static BinaryMessageDecoder<UserReviewEntry> createDecoder(SchemaStore resolver) {
     return new BinaryMessageDecoder<>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this BookDeletedEvent to a ByteBuffer.
+   * Serializes this UserReviewEntry to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -62,31 +62,34 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
   }
 
   /**
-   * Deserializes a BookDeletedEvent from a ByteBuffer.
+   * Deserializes a UserReviewEntry from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a BookDeletedEvent instance decoded from the given buffer
+   * @return a UserReviewEntry instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static BookDeletedEvent fromByteBuffer(
+  public static UserReviewEntry fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
 
   private int bookId;
+  private int rating;
 
   /**
    * Default constructor.  Note that this does not initialize fields
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public BookDeletedEvent() {}
+  public UserReviewEntry() {}
 
   /**
    * All-args constructor.
    * @param bookId The new value for bookId
+   * @param rating The new value for rating
    */
-  public BookDeletedEvent(java.lang.Integer bookId) {
+  public UserReviewEntry(java.lang.Integer bookId, java.lang.Integer rating) {
     this.bookId = bookId;
+    this.rating = rating;
   }
 
   @Override
@@ -100,6 +103,7 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return bookId;
+    case 1: return rating;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -110,6 +114,7 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: bookId = (java.lang.Integer)value$; break;
+    case 1: rating = (java.lang.Integer)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -132,47 +137,65 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
   }
 
   /**
-   * Creates a new BookDeletedEvent RecordBuilder.
-   * @return A new BookDeletedEvent RecordBuilder
+   * Gets the value of the 'rating' field.
+   * @return The value of the 'rating' field.
    */
-  public static event.BookDeletedEvent.Builder newBuilder() {
-    return new event.BookDeletedEvent.Builder();
+  public int getRating() {
+    return rating;
+  }
+
+
+  /**
+   * Sets the value of the 'rating' field.
+   * @param value the value to set.
+   */
+  public void setRating(int value) {
+    this.rating = value;
   }
 
   /**
-   * Creates a new BookDeletedEvent RecordBuilder by copying an existing Builder.
+   * Creates a new UserReviewEntry RecordBuilder.
+   * @return A new UserReviewEntry RecordBuilder
+   */
+  public static org.library.reviewService.event.UserReviewEntry.Builder newBuilder() {
+    return new org.library.reviewService.event.UserReviewEntry.Builder();
+  }
+
+  /**
+   * Creates a new UserReviewEntry RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new BookDeletedEvent RecordBuilder
+   * @return A new UserReviewEntry RecordBuilder
    */
-  public static event.BookDeletedEvent.Builder newBuilder(event.BookDeletedEvent.Builder other) {
+  public static org.library.reviewService.event.UserReviewEntry.Builder newBuilder(org.library.reviewService.event.UserReviewEntry.Builder other) {
     if (other == null) {
-      return new event.BookDeletedEvent.Builder();
+      return new org.library.reviewService.event.UserReviewEntry.Builder();
     } else {
-      return new event.BookDeletedEvent.Builder(other);
+      return new org.library.reviewService.event.UserReviewEntry.Builder(other);
     }
   }
 
   /**
-   * Creates a new BookDeletedEvent RecordBuilder by copying an existing BookDeletedEvent instance.
+   * Creates a new UserReviewEntry RecordBuilder by copying an existing UserReviewEntry instance.
    * @param other The existing instance to copy.
-   * @return A new BookDeletedEvent RecordBuilder
+   * @return A new UserReviewEntry RecordBuilder
    */
-  public static event.BookDeletedEvent.Builder newBuilder(event.BookDeletedEvent other) {
+  public static org.library.reviewService.event.UserReviewEntry.Builder newBuilder(org.library.reviewService.event.UserReviewEntry other) {
     if (other == null) {
-      return new event.BookDeletedEvent.Builder();
+      return new org.library.reviewService.event.UserReviewEntry.Builder();
     } else {
-      return new event.BookDeletedEvent.Builder(other);
+      return new org.library.reviewService.event.UserReviewEntry.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for BookDeletedEvent instances.
+   * RecordBuilder for UserReviewEntry instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<BookDeletedEvent>
-    implements org.apache.avro.data.RecordBuilder<BookDeletedEvent> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<UserReviewEntry>
+    implements org.apache.avro.data.RecordBuilder<UserReviewEntry> {
 
     private int bookId;
+    private int rating;
 
     /** Creates a new Builder */
     private Builder() {
@@ -183,23 +206,31 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(event.BookDeletedEvent.Builder other) {
+    private Builder(org.library.reviewService.event.UserReviewEntry.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.bookId)) {
         this.bookId = data().deepCopy(fields()[0].schema(), other.bookId);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
+      if (isValidValue(fields()[1], other.rating)) {
+        this.rating = data().deepCopy(fields()[1].schema(), other.rating);
+        fieldSetFlags()[1] = other.fieldSetFlags()[1];
+      }
     }
 
     /**
-     * Creates a Builder by copying an existing BookDeletedEvent instance
+     * Creates a Builder by copying an existing UserReviewEntry instance
      * @param other The existing instance to copy.
      */
-    private Builder(event.BookDeletedEvent other) {
+    private Builder(org.library.reviewService.event.UserReviewEntry other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.bookId)) {
         this.bookId = data().deepCopy(fields()[0].schema(), other.bookId);
         fieldSetFlags()[0] = true;
+      }
+      if (isValidValue(fields()[1], other.rating)) {
+        this.rating = data().deepCopy(fields()[1].schema(), other.rating);
+        fieldSetFlags()[1] = true;
       }
     }
 
@@ -217,7 +248,7 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'bookId'.
       * @return This builder.
       */
-    public event.BookDeletedEvent.Builder setBookId(int value) {
+    public org.library.reviewService.event.UserReviewEntry.Builder setBookId(int value) {
       validate(fields()[0], value);
       this.bookId = value;
       fieldSetFlags()[0] = true;
@@ -237,17 +268,57 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'bookId' field.
       * @return This builder.
       */
-    public event.BookDeletedEvent.Builder clearBookId() {
+    public org.library.reviewService.event.UserReviewEntry.Builder clearBookId() {
       fieldSetFlags()[0] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'rating' field.
+      * @return The value.
+      */
+    public int getRating() {
+      return rating;
+    }
+
+
+    /**
+      * Sets the value of the 'rating' field.
+      * @param value The value of 'rating'.
+      * @return This builder.
+      */
+    public org.library.reviewService.event.UserReviewEntry.Builder setRating(int value) {
+      validate(fields()[1], value);
+      this.rating = value;
+      fieldSetFlags()[1] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'rating' field has been set.
+      * @return True if the 'rating' field has been set, false otherwise.
+      */
+    public boolean hasRating() {
+      return fieldSetFlags()[1];
+    }
+
+
+    /**
+      * Clears the value of the 'rating' field.
+      * @return This builder.
+      */
+    public org.library.reviewService.event.UserReviewEntry.Builder clearRating() {
+      fieldSetFlags()[1] = false;
       return this;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public BookDeletedEvent build() {
+    public UserReviewEntry build() {
       try {
-        BookDeletedEvent record = new BookDeletedEvent();
+        UserReviewEntry record = new UserReviewEntry();
         record.bookId = fieldSetFlags()[0] ? this.bookId : (java.lang.Integer) defaultValue(fields()[0]);
+        record.rating = fieldSetFlags()[1] ? this.rating : (java.lang.Integer) defaultValue(fields()[1]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -258,8 +329,8 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<BookDeletedEvent>
-    WRITER$ = (org.apache.avro.io.DatumWriter<BookDeletedEvent>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<UserReviewEntry>
+    WRITER$ = (org.apache.avro.io.DatumWriter<UserReviewEntry>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -267,8 +338,8 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<BookDeletedEvent>
-    READER$ = (org.apache.avro.io.DatumReader<BookDeletedEvent>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<UserReviewEntry>
+    READER$ = (org.apache.avro.io.DatumReader<UserReviewEntry>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
@@ -282,6 +353,8 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
   {
     out.writeInt(this.bookId);
 
+    out.writeInt(this.rating);
+
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
@@ -291,11 +364,17 @@ public class BookDeletedEvent extends org.apache.avro.specific.SpecificRecordBas
     if (fieldOrder == null) {
       this.bookId = in.readInt();
 
+      this.rating = in.readInt();
+
     } else {
-      for (int i = 0; i < 1; i++) {
+      for (int i = 0; i < 2; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.bookId = in.readInt();
+          break;
+
+        case 1:
+          this.rating = in.readInt();
           break;
 
         default:

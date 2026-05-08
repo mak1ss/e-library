@@ -7,6 +7,7 @@ class ExplanationReasonType(str, Enum):
     """Types of recommendation explanations"""
     TF_IDF_MATCH = "TF_IDF_MATCH"
     COLLABORATIVE_FILTER = "COLLABORATIVE_FILTER"
+    EMBEDDING_SIMILARITY = "EMBEDDING_SIMILARITY"
 
 
 class ExplanationDetails(BaseModel):
@@ -39,11 +40,17 @@ class GetSimilarBooksRequest(BaseModel):
     topK: int = Field(default=10, ge=1, le=50, description="Number of recommendations")
 
 
+class SeedBook(BaseModel):
+    """A book the user has reviewed, with their rating."""
+    bookId: int
+    rating: int = Field(ge=1, le=5)
+
+
 class GetPersonalizedRecommendationsRequest(BaseModel):
     """Request model for getting personalized recommendations"""
-    userSeedBooks: List[int] = Field(
-        ..., 
-        description="List of book IDs user has reviewed"
+    userSeedBooks: List[SeedBook] = Field(
+        ...,
+        description="Books the user has reviewed, each with their rating"
     )
     topK: int = Field(default=10, ge=1, le=50, description="Number of recommendations")
 

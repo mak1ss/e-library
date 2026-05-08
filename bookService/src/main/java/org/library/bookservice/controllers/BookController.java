@@ -180,20 +180,25 @@ public class BookController extends AbstractController<Book, BookRequest, BookRe
             ResponseEntity<PageResponse<ReviewResponse>> reviewResponse =
                     reviewServiceClient.getUserReviewedBooks(userId);
 
-            List<Integer> seedBookIds = new ArrayList<>();
+            List<GetPersonalizedRecommendationsRequest.SeedBook> seedBooks = new ArrayList<>();
             if (reviewResponse.getStatusCode() == HttpStatus.OK && reviewResponse.getBody() != null) {
-                // Extract unique book IDs from reviews
-                seedBookIds = reviewResponse.getBody().getItems().stream()
-                        .map(ReviewResponse::getBookId)
-                        .distinct()
+                // Deduplicate by bookId, keeping the highest rating in case of re-reviews
+                Map<Integer, Integer> seedBookRatings = reviewResponse.getBody().getItems().stream()
+                        .collect(Collectors.toMap(
+                                ReviewResponse::getBookId,
+                                ReviewResponse::getRating,
+                                Integer::max
+                        ));
+                seedBooks = seedBookRatings.entrySet().stream()
+                        .map(e -> new GetPersonalizedRecommendationsRequest.SeedBook(e.getKey(), e.getValue()))
                         .collect(Collectors.toList());
             }
 
             List<BookResponse> recommendations = new ArrayList<>();
 
             // Case 1: User has review history → use collaborative filtering (real-time)
-            if (!seedBookIds.isEmpty()) {
-                recommendations = computePersonalizedRecommendations(seedBookIds, topK);
+            if (!seedBooks.isEmpty()) {
+                recommendations = computePersonalizedRecommendations(seedBooks, topK);
             }
 
             // Case 2: No history → use popular books
@@ -222,7 +227,8 @@ public class BookController extends AbstractController<Book, BookRequest, BookRe
     /**
      * Helper: Compute recommendations via recommenderService (real-time, no caching)
      */
-    private List<BookResponse> computePersonalizedRecommendations(List<Integer> seedBooks, Integer topK) {
+    private List<BookResponse> computePersonalizedRecommendations(
+            List<GetPersonalizedRecommendationsRequest.SeedBook> seedBooks, Integer topK) {
         try {
             // Call recommenderService (collaborative filtering)
             GetPersonalizedRecommendationsRequest request = GetPersonalizedRecommendationsRequest.builder()
@@ -241,10 +247,10 @@ public class BookController extends AbstractController<Book, BookRequest, BookRe
 
             // Build map of seed books for explanation enrichment
             Map<Integer, BookResponse> seedBooksMap = new HashMap<>();
-            for (Integer seedBookId : seedBooks) {
-                Optional<Book> seedBook = service.getById(seedBookId);
+            for (GetPersonalizedRecommendationsRequest.SeedBook seed : seedBooks) {
+                Optional<Book> seedBook = service.getById(seed.getBookId());
                 if (seedBook.isPresent()) {
-                    seedBooksMap.put(seedBookId, getMapper().entityToResponse(seedBook.get()));
+                    seedBooksMap.put(seed.getBookId(), getMapper().entityToResponse(seedBook.get()));
                 }
             }
 

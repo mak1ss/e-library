@@ -117,7 +117,7 @@ export class Home implements OnInit {
 
     if (this.userService.isLoggedIn()) {
       // Logged in: try to get personalized recommendations
-      this.bookService.getPersonalizedRecommendations(10).subscribe({
+      this.bookService.getPersonalizedRecommendations(5).subscribe({
         next: (response) => {
           this.recommendedBooks.set(response.items || []);
           this.recommendationType.set('personal');
@@ -139,7 +139,7 @@ export class Home implements OnInit {
    * Load popular books (fallback for new/unauthenticated users)
    */
   protected loadPopularBooks(): void {
-    this.bookService.getBooks({}, 0, 10)
+    this.bookService.getBooks({}, 0, 5)
       .subscribe({
         next: (response) => {
           this.recommendedBooks.set(response.items || []);

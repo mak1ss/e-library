@@ -14,3 +14,5 @@ sentence-transformers>=3.0.0
 # Kafka event streaming and schema management
 aiokafka>=0.10.0
 confluent-kafka[avro]>=2.0.0
+# Testing
+pytest>=7.0.0

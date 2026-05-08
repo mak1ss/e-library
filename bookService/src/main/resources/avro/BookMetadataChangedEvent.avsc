@@ -1,0 +1,19 @@
+{
+  "namespace": "event",
+  "type": "record",
+  "name": "BookMetadataChangedEvent",
+  "fields": [
+    {"name": "eventType",   "type": "string"},
+    {"name": "bookId",      "type": "int"},
+    {"name": "title",       "type": ["null", "string"], "default": null},
+    {"name": "authorName",  "type": ["null", "string"], "default": null},
+    {
+      "name": "genres",
+      "type": {"type": "array", "items": "string"},
+      "default": []
+    },
+    {"name": "category",    "type": ["null", "string"], "default": null},
+    {"name": "description", "type": ["null", "string"], "default": null},
+    {"name": "timestamp",   "type": "long"}
+  ]
+}

@@ -31,6 +31,7 @@ kafka:
     book-rating-updated: book-rating-updated
     review-scoring-request: review-scoring-requests
     review-scoring-result: review-scoring-results
+    review-matrix-update: review-matrix-updates
 
 book-service:
   url: http://localhost:8080

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, effect } from '@angular/core';
+import { Component, inject, signal, effect } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BookService } from '../../services/book/book-service';
 import { Book } from '../../model/book';
@@ -21,6 +21,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
+
+const AVATAR_GRADIENTS = [
+  ['#8b5cf6', '#7c3aed'],
+  ['#3b82f6', '#4338ca'],
+  ['#10b981', '#0d9488'],
+  ['#f97316', '#d97706'],
+  ['#f43f5e', '#db2777'],
+  ['#06b6d4', '#0284c7'],
+];
 
 @Component({
   selector: 'app-book-details',
@@ -71,9 +80,13 @@ export class BookDetails {
   currentUserReview = signal<Review | null>(null);
 
   reviews = signal<Review[]>([]);
+  topRelevantReviews = signal<Review[]>([]);
+  topRelevantLoading = signal<boolean>(false);
   metrics = signal<ReviewMetrics | null>(null);
   reviewsTotal = signal<number>(0);
   reviewsLoading = signal<boolean>(false);
+
+  private readonly RELEVANCE_THRESHOLD = 0.15;
 
   pageIndex = signal<number>(0);
   pageSize = signal<number>(10);
@@ -91,6 +104,7 @@ export class BookDetails {
         this.loadBook(bookId);
         this.loadMetrics(bookId);
         this.loadReviews(bookId);
+        this.loadTopRelevantReviews(bookId);
         this.loadSimilarBooks(bookId);
         this.checkUserReview(bookId);
         // Скинути пагінацію та фільтри
@@ -152,6 +166,23 @@ export class BookDetails {
       error: (err) => {
         console.error(err);
         this.reviewsLoading.set(false);
+      }
+    });
+  }
+
+  private loadTopRelevantReviews(bookId: number) {
+    this.topRelevantLoading.set(true);
+    this.reviewService.getTopRelevantReviewsByBook(bookId).subscribe({
+      next: (page) => {
+        const relevant = page.items.filter(
+          r => r.relevanceScore != null && r.relevanceScore > this.RELEVANCE_THRESHOLD
+        );
+        this.topRelevantReviews.set(relevant);
+        this.topRelevantLoading.set(false);
+      },
+      error: () => {
+        this.topRelevantReviews.set([]);
+        this.topRelevantLoading.set(false);
       }
     });
   }
@@ -290,6 +321,15 @@ export class BookDetails {
       case 'scoringResult.score,desc': return 'Most relevant';
       default: return 'Sort by';
     }
+  }
+
+  getAuthorInitials(name: string = ''): string {
+    return name.split(' ').slice(0, 2).map(w => w[0]?.toUpperCase() ?? '').join('');
+  }
+
+  getAuthorAvatarStyle(name: string = ''): string {
+    const [from, to] = AVATAR_GRADIENTS[name.charCodeAt(0) % AVATAR_GRADIENTS.length];
+    return `background: linear-gradient(135deg, ${from}, ${to})`;
   }
 
   /**

@@ -6,6 +6,7 @@ import { ReviewForm } from './components/review-form/review-form';
 import { MyReviews } from './components/my-reviews/my-reviews';
 import { AuthorsPage } from './components/authors/authors';
 import { AuthorDetails } from './components/author-details/author-details';
+import { RecommendationsPage } from './components/recommendations/recommendations';
 
 export const routes: Routes = [
   {
@@ -28,5 +29,8 @@ export const routes: Routes = [
   },
   {
     path: "my-reviews", component: MyReviews
+  },
+  {
+    path: "recommendations", component: RecommendationsPage
   }
 ];

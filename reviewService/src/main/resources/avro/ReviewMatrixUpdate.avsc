@@ -1,0 +1,35 @@
+{
+  "namespace": "org.library.reviewService.event",
+  "type": "record",
+  "name": "ReviewMatrixUpdate",
+  "fields": [
+    {
+      "name": "eventType",
+      "type": {
+        "type": "enum",
+        "name": "ReviewEventType",
+        "symbols": ["CREATE", "UPDATE", "DELETE"]
+      }
+    },
+    {"name": "userId",    "type": "string"},
+    {"name": "bookId",    "type": "int"},
+    {"name": "rating",    "type": "int"},
+    {"name": "oldRating", "type": ["null", "int"], "default": null},
+    {
+      "name": "userOtherReviews",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "UserReviewEntry",
+          "fields": [
+            {"name": "bookId",  "type": "int"},
+            {"name": "rating",  "type": "int"}
+          ]
+        }
+      },
+      "default": []
+    },
+    {"name": "timestamp", "type": "long"}
+  ]
+}
